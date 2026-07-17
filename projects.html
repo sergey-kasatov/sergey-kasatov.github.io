@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
+  <title>Projects · Sergey Kasatov | Data Analyst</title>
+  <meta name="description" content="Six end-to-end data projects by Sergey Kasatov: demand forecasting, predictive maintenance, NLP, computer vision, customer segmentation, and BI dashboards. Two live demos.">
+  <meta name="author" content="Sergey Kasatov">
+  <meta name="theme-color" content="#f2efe9">
+  <link rel="canonical" href="https://sergey-kasatov.github.io/projects.html">
+  <link rel="alternate" hreflang="en" href="https://sergey-kasatov.github.io/projects.html">
+  <link rel="alternate" hreflang="de" href="https://sergey-kasatov.github.io/de/projects.html">
+  <link rel="alternate" hreflang="x-default" href="https://sergey-kasatov.github.io/projects.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects · Sergey Kasatov">
+  <meta property="og:description" content="Six end-to-end data projects: forecasting, ML, NLP, CV, and BI. Every metric reproducible; two live demos.">
+  <meta property="og:url" content="https://sergey-kasatov.github.io/projects.html">
+  <meta property="og:image" content="https://sergey-kasatov.github.io/assets/og-banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- SVG sprite -->
+  <svg class="sr-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-datum" viewBox="0 0 48 58">
+      <rect x="5" y="4" width="38" height="38" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M21 13 H12 V23 H21 V33 H12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+      <path d="M27 13 V33 M36 13 L27 23 L36 33" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+      <path d="M24 42 V47" stroke="currentColor" stroke-width="2"/>
+      <path class="datum-tri" d="M17 56 L31 56 L24 47 Z"/>
+    </symbol>
+    <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1 0 1.52-.01 2.74-.01 3.11 0 .3.2.66.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></symbol>
+    <symbol id="i-li" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></symbol>
+    <symbol id="i-tb" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="4" y1="20" x2="4" y2="10"/><line x1="10" y1="20" x2="10" y2="4"/><line x1="16" y1="20" x2="16" y2="13"/><line x1="21" y1="20" x2="3" y2="20"/></g></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16"/><path d="m22 7-10 6L2 7"/></g></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v8H3V6h8"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></g></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></g></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><polygon fill="none" stroke="currentColor" stroke-width="2" points="6 3 20 12 6 21 6 3"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></g></symbol>
+    <symbol id="i-sheet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></g></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 13h8M9 17h8"/></g></symbol>
+  </svg>
+
+  <div class="sheet-frame" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Sergey Kasatov, home">
+        <svg class="brand-mark" aria-hidden="true"><use href="#i-datum"/></svg>
+        <span class="brand-text">
+          <span class="brand-name">Kasatov</span>
+          <span class="brand-sub">Data Analyst</span>
+        </span>
+      </a>
+      <nav class="nav-links" id="site-nav" aria-label="Main navigation">
+        <a href="index.html"><span class="n">01</span>Home</a>
+        <a href="projects.html" aria-current="page"><span class="n">02</span>Projects</a>
+        <a href="about.html"><span class="n">03</span>About</a>
+        <a href="contact.html"><span class="n">04</span>Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="lang-link" href="de/projects.html" lang="de" hreflang="de" aria-label="Deutsche Version">DE</a>
+        <button class="theme-toggle" type="button" aria-label="Switch between paper and blueprint theme">
+          <svg class="ic icon-blueprint" aria-hidden="true"><use href="#i-print"/></svg>
+          <svg class="ic icon-paper" aria-hidden="true"><use href="#i-sheet"/></svg>
+        </button>
+        <a class="btn btn-primary btn-sm nav-cta" href="contact.html">Hire me</a>
+        <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+          <svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-annos" aria-hidden="true">
+          <span class="anno">Doc no. <b>SK-DA-2026</b> · Parts list</span>
+          <span class="anno">Sheet <b>02 / 04</b> · Scale <b>1:1</b></span>
+        </div>
+        <h1 class="page-title">Parts list: <span class="hl">projects</span></h1>
+        <p class="section-lede">Six end-to-end projects: forecasting, machine learning, NLP, computer vision, and BI. Every metric below is reproducible from the linked repositories; two projects run live.</p>
+      </div>
+    </section>
+
+    <!-- ============ BOM table ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="reveal" style="overflow-x:auto;">
+          <table class="bom">
+            <thead>
+              <tr><th>Pos.</th><th>Designation</th><th class="opt">Key metric</th><th class="opt">Stack</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="pos">01</td><td class="name"><a href="#p-freshmart">FreshMart Demand Planner</a></td><td class="qty">RMSE <b>138.0</b></td><td class="qty opt">Python · MLflow · Streamlit</td><td class="qty"><b>Live</b></td></tr>
+              <tr><td class="pos">02</td><td class="name"><a href="#p-maintenance">Predictive Maintenance: Fleet Risk &amp; Cost</a></td><td class="qty">PR-AUC <b>0.902</b></td><td class="qty opt">XGBoost · SHAP · SQL</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">03</td><td class="name"><a href="#p-nlp">NLP: Disaster Tweets Classification</a></td><td class="qty">accuracy <b>0.819</b></td><td class="qty opt">scikit-learn · DistilBERT</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">04</td><td class="name"><a href="#p-cifar">CIFAR-10 Transfer Learning Study</a></td><td class="qty">accuracy <b>82.7%</b></td><td class="qty opt">TensorFlow · ResNet50</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">05</td><td class="name"><a href="#p-traveltide">TravelTide: Customer Segmentation</a></td><td class="qty">users <b>5,998</b></td><td class="qty opt">SQL · Databricks</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">06</td><td class="name"><a href="#p-dashboard">Retail KPI Dashboard</a></td><td class="qty">months <b>48</b></td><td class="qty opt">Tableau · LOD</td><td class="qty"><b>Live</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Detail views ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+          <button class="filter-btn active" data-filter="all" type="button" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter="ml" type="button" aria-pressed="false">Machine Learning &amp; AI</button>
+          <button class="filter-btn" data-filter="analytics" type="button" aria-pressed="false">Analytics &amp; BI</button>
+          <button class="filter-btn" data-filter="live" type="button" aria-pressed="false">Live demos</button>
+        </div>
+
+        <div class="projects-grid">
+
+          <article class="detail-card reveal" id="p-freshmart" data-cats="ml live">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 01</span> · Apr&#8211;May 2026</span>
+              <span class="badge-live"><span class="dot" aria-hidden="true"></span>Live</span>
+            </div>
+            <div class="dc-body">
+              <h3>FreshMart Demand Planner</h3>
+              <p>End-to-end retail demand forecasting: EDA, feature engineering, 10+ models compared (SARIMAX, Prophet, XGBoost, LSTM), HyperOpt tuning, and MLflow experiment tracking. Deployed as a Streamlit planning tool that speaks the language of store managers: total demand, peak day, average daily forecast.</p>
+              <div class="metric-row">
+                <span class="metric">champion RMSE <b>138.0</b></span>
+                <span class="metric">MAE <b>93.1</b></span>
+                <span class="metric">models <b>10+</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Python</span><span class="tag">TimeSeries</span><span class="tag">XGBoost</span><span class="tag">MLflow</span><span class="tag">Streamlit</span>
+              </div>
+              <div class="dc-links">
+                <a href="case-freshmart.html"><svg class="ic" aria-hidden="true"><use href="#i-sheet"/></svg>Case study PS-01</a>
+                <a href="https://freshmart-demand-planner.streamlit.app" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Open live app</a>
+                <a href="https://github.com/sergey-kasatov/time-series-forecasting-project" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-maintenance" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 02</span> · Apr&#8211;May 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>Predictive Maintenance: Fleet Risk &amp; Cost</h3>
+              <p>Three business questions answered on a 92,000-row logistics fleet dataset: which vehicles need maintenance (classification), what it will cost (regression), and how to segment the fleet by risk (clustering). SHAP analysis identified brake condition as the dominant failure predictor, exactly what 17 years in vehicle engineering would suggest.</p>
+              <div class="metric-row">
+                <span class="metric">PR-AUC <b>0.902</b></span>
+                <span class="metric">R&#178; <b>0.885</b></span>
+                <span class="metric">rows <b>92k</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">SHAP</span><span class="tag">SQL</span><span class="tag">Clustering</span>
+              </div>
+              <div class="dc-links">
+                <a href="case-maintenance.html"><svg class="ic" aria-hidden="true"><use href="#i-sheet"/></svg>Case study PS-02</a>
+                <a href="https://github.com/sergey-kasatov/predictive-maintenance-ml" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code &amp; notebooks</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-nlp" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 03</span> · Jun 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>NLP: Disaster Tweets Classification</h3>
+              <p>Does a tweet report a real disaster, or is "this album is fire" just slang? I shipped an interpretable TF-IDF + Logistic Regression classifier and stress-tested it against a from-scratch CNN and a fine-tuned DistilBERT. The explainable model won the trade-off: every flagged tweet can be defended word by word, which matters more than the last two points of accuracy.</p>
+              <div class="metric-row">
+                <span class="metric">accuracy <b>0.819</b></span>
+                <span class="metric">Kaggle public <b>0.791</b></span>
+                <span class="metric">DistilBERT bench <b>0.839</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">NLTK</span><span class="tag">PyTorch</span><span class="tag">DistilBERT</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/nlp-disaster-tweets-classification" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code &amp; notebooks</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-cifar" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 04</span> · May 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>CIFAR-10 Transfer Learning Study</h3>
+              <p>A controlled ablation study with ResNet50: isolating the impact of dataset size, augmentation, learning-rate scheduling, and partial unfreezing, tested individually and combined. Grad-CAM visualizations show what the model actually attends to. The same mechanism drives automated visual inspection in manufacturing.</p>
+              <div class="metric-row">
+                <span class="metric">accuracy <b>66% &#8594; 82.7%</b></span>
+                <span class="metric">images <b>60k</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">ResNet50</span><span class="tag">GradCAM</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/cifar10-resnet50-transfer-learning-experiments" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code &amp; experiments</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-traveltide" data-cats="analytics">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 05</span> · Mar&#8211;Apr 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>TravelTide: Customer Segmentation</h3>
+              <p>Retention targeting for a travel platform: a SQL pipeline in Databricks aggregated 49,211 sessions into 30+ behavioral features for 5,998 users, then a rule-based perk-fit score assigned each user the most relevant reward. K-Means and DBSCAN served as benchmarks; the interpretable approach won on stability and deployment readiness.</p>
+              <div class="metric-row">
+                <span class="metric">users <b>5,998</b></span>
+                <span class="metric">segments <b>5</b> balanced</span>
+                <span class="metric">features <b>30+</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">SQL</span><span class="tag">SparkSQL</span><span class="tag">Databricks</span><span class="tag">Python</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/traveltide-segmentation-retention" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code</a>
+                <a href="https://youtu.be/jfZfYKk5VJ4" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg>Presentation</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-dashboard" data-cats="analytics live">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 06</span> · Feb 2026</span>
+              <span class="badge-live"><span class="dot" aria-hidden="true"></span>Live</span>
+            </div>
+            <div class="dc-body">
+              <h3>Retail KPI Dashboard</h3>
+              <p>Interactive Tableau dashboard tracking sales, profit, discount, and orders with drill-downs by region, product category, and time. LOD expressions and dashboard actions give non-technical users self-service analysis, the same logic as a quality trend board in a plant.</p>
+              <div class="metric-row">
+                <span class="metric">rows <b>~10k</b></span>
+                <span class="metric">months <b>48</b></span>
+                <span class="metric">states <b>49</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Tableau</span><span class="tag">LOD</span><span class="tag">DashboardActions</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://public.tableau.com/views/RetailKPIDashboardSalesProfitDiscount/MainDashboard" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Open on Tableau Public</a>
+                <a href="https://github.com/sergey-kasatov/phoenix-retail-kpi-dashboard" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Repo</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="projects-foot reveal">More projects and work in progress on <a href="https://github.com/sergey-kasatov" target="_blank" rel="noopener">GitHub</a> and <a href="https://public.tableau.com/app/profile/sergey.kasatov/vizzes" target="_blank" rel="noopener">Tableau Public</a>.</p>
+      </div>
+    </section>
+
+    <!-- ============ Approval block ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="approval reveal">
+          <div>
+            <h2>Want the story behind these projects?</h2>
+            <p>17 years of automotive engineering shaped how I approach every dataset: root cause first, business impact second, tooling third.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="about.html">My story <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <a class="btn" href="contact.html">Get in touch</a>
+            </div>
+          </div>
+          <div class="approval-side">
+            <div class="stamp reveal-stamp">Metrics reproducible<small>from linked repositories</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <svg class="brand-mark" aria-hidden="true"><use href="#i-datum"/></svg>
+          <span class="brand-text"><span class="brand-name">Kasatov</span><span class="brand-sub">Data Analyst</span></span>
+        </a>
+        <p>Data Analyst in Cologne with 17 years of automotive engineering behind the analytics. Open to work from September 2026.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Elsewhere</h4>
+        <a href="https://github.com/sergey-kasatov" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/sergey-kasatov" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://public.tableau.com/app/profile/sergey.kasatov/vizzes" target="_blank" rel="noopener">Tableau Public</a>
+        <a href="mailto:sergey.kasatov@gmx.de">sergey.kasatov@gmx.de</a>
+      </div>
+    </div>
+    <div class="container foot-bottom">
+      <span>&#169; <span id="year">2026</span> Sergey Kasatov · Cologne, Germany</span>
+      <span>no cookies · no tracking · self-hosted fonts · vanilla HTML/CSS/JS</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+  (function(){
+    var btns = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.projects-grid .detail-card');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+        btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+        var f = btn.getAttribute('data-filter');
+        cards.forEach(function(c){
+          var show = f === 'all' || (c.getAttribute('data-cats') || '').split(' ').indexOf(f) !== -1;
+          c.classList.toggle('card-hidden', !show);
+          if (show) c.classList.add('in');
+        });
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

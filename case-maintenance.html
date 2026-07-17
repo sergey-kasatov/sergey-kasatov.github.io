@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
+  <title>Predictive Maintenance · Case Study | Sergey Kasatov</title>
+  <meta name="description" content="Predictive maintenance case study on a 92,000-row fleet dataset: classification (PR-AUC 0.902), cost regression (R2 0.885), risk clustering, and SHAP interpretation confirming domain knowledge.">
+  <meta name="author" content="Sergey Kasatov">
+  <meta name="theme-color" content="#f2efe9">
+  <link rel="canonical" href="https://sergey-kasatov.github.io/case-maintenance.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Case study · Predictive Maintenance">
+  <meta property="og:description" content="Three business questions, one 92,000-row fleet dataset, SHAP-explained answers. Process sheet PS-02.">
+  <meta property="og:url" content="https://sergey-kasatov.github.io/case-maintenance.html">
+  <meta property="og:image" content="https://sergey-kasatov.github.io/assets/og-banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- SVG sprite -->
+  <svg class="sr-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-datum" viewBox="0 0 48 58">
+      <rect x="5" y="4" width="38" height="38" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M21 13 H12 V23 H21 V33 H12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+      <path d="M27 13 V33 M36 13 L27 23 L36 33" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+      <path d="M24 42 V47" stroke="currentColor" stroke-width="2"/>
+      <path class="datum-tri" d="M17 56 L31 56 L24 47 Z"/>
+    </symbol>
+    <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1 0 1.52-.01 2.74-.01 3.11 0 .3.2.66.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v8H3V6h8"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></g></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></g></symbol>
+    <symbol id="i-sheet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></g></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 13h8M9 17h8"/></g></symbol>
+  </svg>
+
+  <div class="sheet-frame" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Sergey Kasatov, home">
+        <svg class="brand-mark" aria-hidden="true"><use href="#i-datum"/></svg>
+        <span class="brand-text">
+          <span class="brand-name">Kasatov</span>
+          <span class="brand-sub">Data Analyst</span>
+        </span>
+      </a>
+      <nav class="nav-links" id="site-nav" aria-label="Main navigation">
+        <a href="index.html"><span class="n">01</span>Home</a>
+        <a href="projects.html" aria-current="page"><span class="n">02</span>Projects</a>
+        <a href="about.html"><span class="n">03</span>About</a>
+        <a href="contact.html"><span class="n">04</span>Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="lang-link" href="de/projects.html" lang="de" hreflang="de" aria-label="Deutsche Version">DE</a>
+        <button class="theme-toggle" type="button" aria-label="Switch between paper and blueprint theme">
+          <svg class="ic icon-blueprint" aria-hidden="true"><use href="#i-print"/></svg>
+          <svg class="ic icon-paper" aria-hidden="true"><use href="#i-sheet"/></svg>
+        </button>
+        <a class="btn btn-primary btn-sm nav-cta" href="contact.html">Hire me</a>
+        <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+          <svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-annos" aria-hidden="true">
+          <span class="anno">Doc no. <b>SK-DA-2026-PS02</b> · Process sheet</span>
+          <span class="anno">Ref. <b>Pos. 02</b> · Parts list</span>
+        </div>
+        <p class="anno case-crumb"><a href="projects.html">02 Projects</a> / Process sheet PS-02</p>
+        <h1 class="page-title">Predictive <span class="hl">Maintenance</span></h1>
+        <p class="section-lede">Three business questions answered on a 92,000-row logistics fleet dataset: which vehicles need maintenance, what it will cost, and how to segment the fleet by risk. Explained with SHAP.</p>
+      </div>
+    </section>
+
+    <!-- ============ Purpose & scope ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Purpose &amp; scope</p>
+          <h2 class="section-title">Predict the failure before it stops the fleet</h2>
+          <p class="section-lede case-lede">A logistics company needs to reduce unplanned breakdowns. The dataset: 92,000 vehicles, 27 features - usage hours, brake and tire condition, load, fuel efficiency, route, last maintenance date. Each business question maps to its own modeling task: classification, regression, clustering.</p>
+        </div>
+        <div class="reveal">
+          <div class="chip-list">
+            <span class="chip hot">Python</span><span class="chip hot">XGBoost</span><span class="chip hot">SHAP</span><span class="chip hot">SQL</span><span class="chip">scikit-learn</span><span class="chip">KMeans · DBSCAN</span><span class="chip">SQLite star schema · 8 tables</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Operation sequence ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Operation sequence · Routing</p>
+          <h2 class="section-title">Seven operations, one pipeline</h2>
+          <p class="section-lede">One notebook per operation, plus five standalone SQL files that step from SELECT/WHERE to window functions.</p>
+        </div>
+        <div class="reveal" style="overflow-x:auto;">
+          <table class="bom">
+            <thead>
+              <tr><th>Op.</th><th>Operation</th><th class="opt">Scope</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="pos">10</td><td class="name">EDA</td><td class="qty opt">27 features, class imbalance, correlation, outliers</td></tr>
+              <tr><td class="pos">20</td><td class="name">Fleet SQL analysis</td><td class="qty opt">JOINs, CTEs, window functions on an 8-table star schema</td></tr>
+              <tr><td class="pos">30</td><td class="name">Feature engineering</td><td class="qty opt">vehicle_age, overload_ratio, days_since_maintenance · leakage detection and removal</td></tr>
+              <tr><td class="pos">40</td><td class="name">Classification</td><td class="qty opt">Dummy &#8594; Logistic Regression &#8594; Random Forest &#8594; XGBoost · imbalance handled</td></tr>
+              <tr><td class="pos">50</td><td class="name">Regression</td><td class="qty opt">Dummy &#8594; Linear &#8594; RF &#8594; XGBoost · log-transform for skewed targets</td></tr>
+              <tr><td class="pos">60</td><td class="name">Clustering</td><td class="qty opt">KMeans (k=2) + DBSCAN · PCA visualization · post-hoc label validation</td></tr>
+              <tr><td class="pos">70</td><td class="name">SHAP interpretation</td><td class="qty opt">global importance, beeswarm, dependence, waterfall for the highest-risk vehicle</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Measured results ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Measured values</p>
+          <h2 class="section-title">Three tasks, three scorecards</h2>
+        </div>
+        <div class="stats-grid reveal">
+          <div class="stat">
+            <div class="value"><span>0.902</span></div>
+            <div class="label">PR-AUC · classification · XGBoost</div>
+          </div>
+          <div class="stat">
+            <div class="value"><span>0.784</span></div>
+            <div class="label">F1 · classification · Logistic Regression</div>
+          </div>
+          <div class="stat">
+            <div class="value"><span>0.885</span></div>
+            <div class="label">R&#178; · cost regression · Random Forest</div>
+          </div>
+          <div class="stat">
+            <div class="value"><span class="u">$</span><span>530</span></div>
+            <div class="label">RMSE · cost regression · Random Forest</div>
+          </div>
+        </div>
+
+        <div class="aside-row" style="margin-top:1.6rem;">
+          <figure class="split-figure reveal" role="img" aria-label="Class distribution: 70,655 of 92,000 vehicles require maintenance, 21,345 do not">
+            <span class="anno"><b>Fig. 1</b> · Target class distribution (source data)</span>
+            <div class="srow">
+              <span class="cap">needs maintenance</span>
+              <div class="bar" style="width:77%;"></div>
+              <span class="cap"><b>70,655</b></span>
+            </div>
+            <div class="srow">
+              <span class="cap">no maintenance</span>
+              <div class="bar alt" style="width:23%;"></div>
+              <span class="cap"><b>21,345</b></span>
+            </div>
+            <figcaption class="anno" style="margin-top:1rem;">Not a balanced setup: F1 and PR-AUC are more informative than accuracy alone.</figcaption>
+          </figure>
+          <div class="aside-card reveal">
+            <h3>Clustering, reported honestly</h3>
+            <p style="margin-top:.6rem;">KMeans at k=2 scored a modest silhouette of 0.083, but the post-hoc validation gave the clusters an operational meaning: overloaded versus normally-loaded vehicles. A weak score with a real-world interpretation beats a pretty score without one.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Interpretation ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Interpretation · SHAP</p>
+          <h2 class="section-title">The model confirmed the domain knowledge</h2>
+        </div>
+        <div class="aside-row">
+          <div class="aside-card reveal" style="position:relative;">
+            <h3>Key finding</h3>
+            <p style="margin-top:.6rem;">Brake_Condition is the dominant risk predictor across the fleet. That is exactly what 17 years in vehicle development would suggest: the model did not replace the domain knowledge, it quantified and confirmed it. The SHAP waterfall for the single highest-risk vehicle turns that into a management-ready explanation.</p>
+            <span class="note insp-note" aria-hidden="true">textbook &#10003;</span>
+          </div>
+          <div class="aside-card reveal">
+            <h3>Data discipline</h3>
+            <p style="margin-top:.6rem;">Feature engineering included explicit leakage detection and removal, and the star schema (vehicle fact table plus brake, route, weather, model and other dimensions) kept the SQL analysis clean. Predictive quality is a data problem before it is a modeling problem.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Approval block ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="approval reveal">
+          <div>
+            <h2>Read the notebooks.</h2>
+            <p>Seven notebooks and five SQL files, from raw fleet data to SHAP waterfalls: the full chain is public and reproducible.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://github.com/sergey-kasatov/predictive-maintenance-ml" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code &amp; notebooks</a>
+              <a class="btn" href="projects.html">Back to parts list</a>
+            </div>
+          </div>
+          <div class="approval-side">
+            <div class="stamp reveal-stamp">Domain confirmed<small>PS-02 · Pos. 02</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <svg class="brand-mark" aria-hidden="true"><use href="#i-datum"/></svg>
+          <span class="brand-text"><span class="brand-name">Kasatov</span><span class="brand-sub">Data Analyst</span></span>
+        </a>
+        <p>Data Analyst in Cologne with 17 years of automotive engineering behind the analytics. Open to work from September 2026.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Elsewhere</h4>
+        <a href="https://github.com/sergey-kasatov" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/sergey-kasatov" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://public.tableau.com/app/profile/sergey.kasatov/vizzes" target="_blank" rel="noopener">Tableau Public</a>
+        <a href="mailto:sergey.kasatov@gmx.de">sergey.kasatov@gmx.de</a>
+      </div>
+    </div>
+    <div class="container foot-bottom">
+      <span>&#169; <span id="year">2026</span> Sergey Kasatov · Cologne, Germany</span>
+      <span>no cookies · no tracking · self-hosted fonts · vanilla HTML/CSS/JS</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
