@@ -143,7 +143,7 @@
   /* ---------- Copy email ---------- */
   document.querySelectorAll('[data-copy-email]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var email = 'sergey.kasatov@gmx.de';
+      var email = 'sergey@kasatov.de';
       var note = document.querySelector('.copy-note');
       var isDe = (document.documentElement.lang || '').indexOf('de') === 0;
       function ok() { if (note) note.textContent = isDe ? 'in die Zwischenablage kopiert ✓' : 'copied to clipboard ✓'; }
