@@ -1,4 +1,60 @@
+# Personal site of Sergey Kasatov, Data Analyst, Cologne.
+# AI crawlers are welcome by design: this is a public professional
+# profile and being read by an agent is a discovery path, not a leak.
+# Machine-readable profile: https://kasatov.de/index.md
+# Structured data: schema.org/Person JSON-LD on the home page.
+
 User-agent: *
+Allow: /
+
+# Search and AI answer engines, named explicitly so the policy is a
+# decision rather than a default.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://kasatov.de/sitemap.xml
