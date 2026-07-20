@@ -4,7 +4,14 @@
 # Machine-readable profile: https://kasatov.de/index.md
 # Structured data: schema.org/Person JSON-LD on the home page.
 
+# Content usage preferences (contentsignals.org). All three are "yes"
+# deliberately: this is a public professional profile during a job
+# search, so being trained on, surfaced in search, and quoted as input
+# to an AI answer are all wanted outcomes, not costs.
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
 User-agent: *
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 # Search and AI answer engines, named explicitly so the policy is a
