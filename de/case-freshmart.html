@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
+  <title>FreshMart Demand Planner · Fallstudie | Sergey Kasatov</title>
+  <meta name="description" content="Fallstudie Absatzprognose: 10+ Modelle verglichen (SARIMAX, Prophet, XGBoost, LSTM), HyperOpt-getuntes Random Forest als Champion mit RMSE 138,0, MLflow-Tracking, deployed als Streamlit-Planungs-App.">
+  <meta name="author" content="Sergey Kasatov">
+  <meta name="theme-color" content="#f2efe9">
+  <link rel="canonical" href="https://kasatov.de/de/case-freshmart.html">
+  <link rel="alternate" hreflang="en" href="https://kasatov.de/case-freshmart.html">
+  <link rel="alternate" hreflang="de" href="https://kasatov.de/de/case-freshmart.html">
+  <link rel="alternate" hreflang="x-default" href="https://kasatov.de/case-freshmart.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Fallstudie · FreshMart Demand Planner">
+  <meta property="og:description" content="10+ Prognosemodelle verglichen, ein Champion, eine deployed Planungs-App. Arbeitsplan PS-01.">
+  <meta property="og:url" content="https://kasatov.de/de/case-freshmart.html">
+  <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <!-- SVG sprite -->
+  <svg class="sr-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-datum" viewBox="0 0 48 58">
+      <rect x="5" y="4" width="38" height="38" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M21 13 H12 V23 H21 V33 H12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+      <path d="M27 13 V33 M36 13 L27 23 L36 33" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+      <path d="M24 42 V47" stroke="currentColor" stroke-width="2"/>
+      <path class="datum-tri" d="M17 56 L31 56 L24 47 Z"/>
+    </symbol>
+    <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1 0 1.52-.01 2.74-.01 3.11 0 .3.2.66.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v8H3V6h8"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></g></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></g></symbol>
+    <symbol id="i-sheet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></g></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 13h8M9 17h8"/></g></symbol>
+  </svg>
+
+  <div class="sheet-frame" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Sergey Kasatov, Startseite">
+        <svg class="brand-mark" aria-hidden="true"><use href="#i-datum"/></svg>
+        <span class="brand-text">
+          <span class="brand-name">Kasatov</span>
+          <span class="brand-sub">Datenanalyst</span>
+        </span>
+      </a>
+      <nav class="nav-links" id="site-nav" aria-label="Hauptnavigation">
+        <a href="index.html"><span class="n">01</span>Start</a>
+        <a href="projects.html" aria-current="page"><span class="n">02</span>Projekte</a>
+        <a href="about.html"><span class="n">03</span>Profil</a>
+        <a href="contact.html"><span class="n">04</span>Kontakt</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="lang-link" href="../case-freshmart.html" lang="en" hreflang="en" aria-label="English version">EN</a>
+        <button class="theme-toggle" type="button" aria-label="Zwischen Papier- und Blaupausen-Thema wechseln">
+          <svg class="ic icon-blueprint" aria-hidden="true"><use href="#i-print"/></svg>
+          <svg class="ic icon-paper" aria-hidden="true"><use href="#i-sheet"/></svg>
+        </button>
+        <a class="btn btn-primary btn-sm nav-cta" href="contact.html">Kontakt aufnehmen</a>
+        <button class="nav-burger" type="button" aria-label="Men&#252; &#246;ffnen" aria-expanded="false" aria-controls="site-nav">
+          <svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-annos" aria-hidden="true">
+          <span class="anno">Dok.-Nr. <b>SK-DA-2026-PS01</b> · Arbeitsplan</span>
+          <span class="anno">Ref. <b>Pos. 01</b> · St&#252;ckliste</span>
+        </div>
+        <p class="anno case-crumb"><a href="projects.html">02 Projekte</a> / Arbeitsplan PS-01</p>
+        <h1 class="page-title">FreshMart <span class="hl">Demand Planner</span></h1>
+        <p class="section-lede">Absatzprognose End-to-End: EDA, Feature Engineering, Modellvergleich &#252;ber statistische, ML- und Deep-Learning-Familien, HyperOpt-Tuning und ein deployed Streamlit-Werkzeug f&#252;r die Filialleitung.</p>
+      </div>
+    </section>
+
+    <!-- ============ Zweck & Umfang ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Zweck &amp; Umfang</p>
+          <h2 class="section-title">Manuelle Planung durch eine Prognose ersetzen</h2>
+          <p class="section-lede case-lede">Eine Filialleitung muss Bestand und Personal f&#252;r die kommende Periode planen. Der Datensatz: t&#228;gliche St&#252;ckabs&#228;tze aus den Wettbewerbsdaten der Corporaci&#243;n Favorita, angereichert um &#214;lpreise und Feiertags-Features. Die Aufgabe: manuelle Planung in eine systematische, ML-basierte Bedarfsprognose &#252;berf&#252;hren.</p>
+        </div>
+        <div class="reveal">
+          <div class="chip-list">
+            <span class="chip hot">Python</span><span class="chip hot">Zeitreihen</span><span class="chip">SARIMAX · Holt-Winters · Prophet</span><span class="chip">Linear · Ridge · RF · GBM · XGBoost</span><span class="chip">LSTM</span><span class="chip hot">HyperOpt</span><span class="chip hot">MLflow</span><span class="chip hot">Streamlit</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Arbeitsfolge ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Arbeitsfolge · Arbeitsplan</p>
+          <h2 class="section-title">F&#252;nf Arbeitsg&#228;nge, eine Pipeline</h2>
+          <p class="section-lede">Wie ein Arbeitsplan in der Fertigung: nummerierte Arbeitsg&#228;nge mit definiertem Umfang. Ein Notebook pro Arbeitsgang.</p>
+        </div>
+        <div class="reveal" style="overflow-x:auto;">
+          <table class="bom">
+            <thead>
+              <tr><th>AG</th><th>Arbeitsgang</th><th class="opt">Umfang</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="pos">10</td><td class="name">EDA &amp; Bereinigung</td><td class="qty opt">Zerlegung, Stationarit&#228;tspr&#252;fung, Ausrei&#223;er-Sichtung</td></tr>
+              <tr><td class="pos">20</td><td class="name">Feature Engineering</td><td class="qty opt">Kalender-, Lag-, Rolling-, &#214;lpreis- und Feiertags-Features</td></tr>
+              <tr><td class="pos">30</td><td class="name">Statistische Modelle</td><td class="qty opt">SARIMAX, Holt-Winters, Prophet</td></tr>
+              <tr><td class="pos">40</td><td class="name">ML-Training &amp; Tuning</td><td class="qty opt">Linear / Ridge / RF / GBM / XGBoost + LSTM · HyperOpt-Suche · MLflow-Tracking</td></tr>
+              <tr><td class="pos">50</td><td class="name">Deployment</td><td class="qty opt">Streamlit-Planungs-App: Stichtag, Horizont, KPI-&#220;bersicht, CSV-Export</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Messwerte ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Messwerte · Testzeitraum Jan&#8211;M&#228;r 2014</p>
+          <h2 class="section-title">Champion: HyperOpt-getuntes Random Forest</h2>
+        </div>
+        <div class="stats-grid reveal">
+          <div class="stat">
+            <div class="value"><span>138,0</span></div>
+            <div class="label">RMSE · Champion, niedrigster Wert aller Modelle</div>
+          </div>
+          <div class="stat">
+            <div class="value"><span>93,1</span></div>
+            <div class="label">MAE · mittlerer absoluter Fehler</div>
+          </div>
+          <div class="stat">
+            <div class="value"><span>21,3</span><span class="u">&#160;%</span></div>
+            <div class="label">MAPE · mittlerer absoluter prozentualer Fehler</div>
+          </div>
+          <div class="stat">
+            <div class="value"><span>0,43</span></div>
+            <div class="label">R&#178; · ehrlich mit ausgewiesen</div>
+          </div>
+        </div>
+        <div class="aside-row" style="margin-top:1.6rem;">
+          <div class="aside-card reveal">
+            <h3>Warum der Wald das LSTM schlug</h3>
+            <p style="margin-top:.6rem;">Bei rund 424 Zeilen Tagesdaten hatte das tiefe Modell zu wenig zu lernen. Das HyperOpt-getunte Random Forest verarbeitete die konstruierten nichtlinearen Features gut, war einfacher und stabiler im Deployment und w&#228;hlte sogar eine flache max_depth von 3.</p>
+          </div>
+          <div class="aside-card reveal">
+            <h3>Warum der Vergleich fair ist</h3>
+            <p style="margin-top:.6rem;">Ein chronologisches Testfenster (Jan&#8211;M&#228;r 2014) und derselbe Satz an Metriken f&#252;r jedes Modell. Kein Shuffling; das Training liegt immer vor dem Test. RMSE f&#252;hrt die Bewertung an, weil im Einzelhandel ein gro&#223;er Fehltreffer an einem nachfragestarken Tag genau das ist, was Bestand und Personalplanung trifft.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Deployment + Grenzen ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Deployment · Abnahme</p>
+          <h2 class="section-title">Ein Werkzeug, das Planung spricht, nicht Metriken</h2>
+        </div>
+        <div class="aside-row">
+          <div class="aside-card reveal">
+            <h3>Funktionen der App</h3>
+            <ul class="now-list" style="margin-top:.8rem;">
+              <li><span class="now-dot" aria-hidden="true"></span><div>Stichtagsauswahl und Prognosehorizont</div></li>
+              <li><span class="now-dot" aria-hidden="true"></span><div>KPI-&#220;bersicht: Gesamtbedarf, Tagesdurchschnitt, Spitzentag</div></li>
+              <li><span class="now-dot" aria-hidden="true"></span><div>Historienvergleich und CSV-Export</div></li>
+            </ul>
+          </div>
+          <div class="aside-card reveal" style="position:relative;">
+            <h3>Dokumentierte Einschr&#228;nkung</h3>
+            <p style="margin-top:.6rem;">Die App prognostiziert nur innerhalb des vorbereiteten Testfensters: Sie ist ein Portfolio-Prototyp auf bereits feature-engineerten Zeilen. Echte Zukunftsdaten br&#228;uchten zuerst eine Pipeline, die zuk&#252;nftige Kalender-, Feiertags-, &#214;l- und rekursive Lag-/Rolling-Features erzeugt. Diesen Unterschied zu kennen, geh&#246;rt zum Handwerk.</p>
+            <span class="note insp-note" aria-hidden="true">bewusst ehrlich</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Freigabeblock ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="approval reveal">
+          <div>
+            <h2>Sehen Sie es laufen.</h2>
+            <p>Die App ist deployed und &#246;ffentlich; jedes Experiment hinter dem Champion ist in MLflow protokolliert und aus dem Repository reproduzierbar.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://freshmart-demand-planner.streamlit.app" target="_blank" rel="noopener">Live-App &#246;ffnen <svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg></a>
+              <a class="btn" href="https://github.com/sergey-kasatov/time-series-forecasting-project" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code &amp; Notebooks</a>
+              <a class="btn" href="projects.html">Zur&#252;ck zur St&#252;ckliste</a>
+            </div>
+          </div>
+          <div class="approval-side">
+            <div class="stamp reveal-stamp">Live &amp; reproduzierbar<small>PS-01 · Pos. 01</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ Fu&#223;zeile ============ -->
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <svg class="brand-mark" aria-hidden="true"><use href="#i-datum"/></svg>
+          <span class="brand-text"><span class="brand-name">Kasatov</span><span class="brand-sub">Datenanalyst</span></span>
+        </a>
+        <p>Datenanalyst in K&#246;ln, mit 17 Jahren Automobil-Engineering hinter der Analytik. Verf&#252;gbar ab September 2026.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Seiten</h4>
+        <a href="index.html">Start</a>
+        <a href="projects.html">Projekte</a>
+        <a href="about.html">Profil</a>
+        <a href="contact.html">Kontakt</a>
+      </div>
+      <div class="foot-col">
+        <h4>Anderswo</h4>
+        <a href="https://github.com/sergey-kasatov" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/sergey-kasatov" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://public.tableau.com/app/profile/sergey.kasatov/vizzes" target="_blank" rel="noopener">Tableau Public</a>
+        <a href="mailto:sergey@kasatov.de">sergey@kasatov.de</a>
+      </div>
+    </div>
+    <div class="container foot-bottom">
+      <span>&#169; <span id="year">2026</span> Sergey Kasatov · K&#246;ln, Deutschland</span>
+      <span>keine Cookies · kein Tracking · selbst gehostete Schriften · vanilla HTML/CSS/JS</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
