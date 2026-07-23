@@ -505,6 +505,17 @@ a.contact-item:hover .ci-icon { border-color:var(--accent); color:var(--accent);
   .callouts, .stats-grid { border-inline-width:1.5px; }
   .hero-grid { grid-template-columns:minmax(0,1.7fr) minmax(380px,1fr); }
 }
+@media (min-width:1920px) {
+  :root {
+    --container:2000px;
+    --pad:clamp(2rem, 4vw, 6rem);
+    --fs-hero:clamp(5rem, 12vw, 15rem);
+    --fs-title:clamp(2.5rem, 3.8vw, 4.8rem);
+    --fs-lede:clamp(1.15rem, 1.25vw, 1.45rem);
+    --fs-body:clamp(1.08rem, 1.1vw, 1.28rem);
+    --fs-mono:clamp(.8rem, .85vw, .95rem);
+  }
+}
 @media (max-width:1100px) {
   .nav-links {
     position:fixed; inset:0; z-index:100; background:var(--paper);
