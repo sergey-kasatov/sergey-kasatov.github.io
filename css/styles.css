@@ -68,7 +68,7 @@
   --f-mono:'IBM Plex Mono',ui-monospace,'Cascadia Mono',monospace;
   --f-note:'Caveat',cursive;
 
-  --container:1720px;
+  --container:1880px;
   --pad:clamp(1.25rem, 3.4vw, 4.5rem);
   --frame-inset:10px;
 
@@ -509,7 +509,7 @@ a.contact-item:hover .ci-icon { border-color:var(--accent); color:var(--accent);
 }
 @media (min-width:1920px) {
   :root {
-    --container:2240px;
+    --container:2380px;
     --pad:clamp(2rem, 4vw, 6rem);
     --fs-hero:clamp(5rem, 12vw, 15rem);
     --fs-title:clamp(2.5rem, 3.8vw, 4.8rem);
