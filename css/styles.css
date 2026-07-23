@@ -408,7 +408,7 @@ button { font:inherit; color:inherit; background:none; border:none; cursor:point
 .fig-ticks { position:absolute; inset:0; pointer-events:none; }
 .about-copy p { margin-bottom:1.2rem; max-width:66ch; }
 .about-copy strong { font-weight:600; }
-.aside-row { display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(1.2rem,1.8vw,2rem); margin-top:2rem; }
+.aside-row { display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(1.2rem,1.8vw,2rem); margin-top:2rem; align-items:start; }
 .aside-card { border:1.5px solid var(--line); background:var(--paper-2); padding:1.4rem; }
 .aside-card h3 { font-family:var(--f-mono); font-size:.72rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
 .now-list li { display:flex; gap:.8rem; padding-block:.5rem; font-size:.94em; }
