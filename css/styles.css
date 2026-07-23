@@ -588,3 +588,12 @@ a.contact-item:hover .ci-icon { border-color:var(--accent); color:var(--accent);
 .split-figure .bar.alt { background:transparent; }
 .split-figure .cap { font-family:var(--f-mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); white-space:nowrap; }
 .split-figure .cap b { color:var(--ink); }
+
+/* ---------- Badges and Milestones Row ---------- */
+.badges-row { margin-top: 3.5rem; display: flex; gap: 2.2rem; flex-wrap: wrap; justify-content: start; align-items: center; }
+.milestones-panel { flex: 1 1 280px; min-width: 250px; border-left: 1.5px dashed var(--line-soft); padding-left: 2rem; display: flex; flex-direction: column; justify-content: center; min-height: 170px; box-sizing: border-box; }
+@media (max-width: 580px) {
+  .badges-row { justify-content: center; }
+  .milestones-panel { border-left: none; border-top: 1.5px dashed var(--line-soft); padding-left: 0; padding-top: 1.8rem; min-height: auto; }
+}
+

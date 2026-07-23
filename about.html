@@ -132,43 +132,33 @@
           </div>
         </div>
         
-        <!-- ============ Horizontal Badges Row ============ -->
-        <div class="badges-row reveal" style="margin-top: 3.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: space-between; align-items: start;">
+        <!-- ============ Horizontal Badges & Milestones Row ============ -->
+        <div class="badges-row reveal">
           <!-- Badge 1: Google Data Analytics (Active) -->
-          <div class="badge-card" style="flex: 1 1 170px; min-width: 150px; max-width: 190px; border: 1.5px solid var(--frame); padding: 12px; background: var(--paper); text-align: center; box-sizing: border-box; margin: 0 auto;">
+          <div class="badge-card" style="flex: 0 0 170px; border: 1.5px solid var(--frame); padding: 12px; background: var(--paper); text-align: center; box-sizing: border-box;">
             <p style="font-family: var(--f-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; font-weight: 600; letter-spacing: 0.05em;">Active Badge</p>
-            <div style="display: inline-block;">
-              <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="1a47b5d8-e42b-42da-a213-699d2a667ba9" data-share-badge-host="https://www.credly.com"></div>
-            </div>
-            <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+            <a href="https://www.credly.com/badges/1a47b5d8-e42b-42da-a213-699d2a667ba9/public_url" target="_blank" rel="noopener" style="display: inline-block; text-decoration: none;">
+              <img src="assets/google-data-analytics.png" alt="Google Data Analytics Badge" style="width: 130px; height: 130px; display: block; margin: 0 auto;">
+            </a>
           </div>
           
-          <!-- Badge 2: Power BI PL-300 (In Progress) -->
-          <div class="badge-card planned" style="flex: 1 1 170px; min-width: 150px; max-width: 190px; border: 1.5px dashed var(--line-soft); padding: 12px; background: var(--paper); opacity: 0.7; text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 334px; box-sizing: border-box; margin: 0 auto;">
-            <p style="font-family: var(--f-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; font-weight: 600; letter-spacing: 0.05em;">In Progress</p>
-            <p style="font-weight: 600; font-size: 0.95em; margin-bottom: 0.5rem; color: var(--ink);">Power BI Analyst</p>
-            <p style="font-family: var(--f-mono); font-size: 0.65rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.03em;">PL-300 · Target Q3 2026</p>
-          </div>
-          
-          <!-- Badge 3: AWS CCP (Planned) -->
-          <div class="badge-card planned" style="flex: 1 1 170px; min-width: 150px; max-width: 190px; border: 1.5px dashed var(--line-soft); padding: 12px; background: var(--paper); opacity: 0.7; text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 334px; box-sizing: border-box; margin: 0 auto;">
-            <p style="font-family: var(--f-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-2); margin-bottom: 0.8rem; letter-spacing: 0.05em;">Planned</p>
-            <p style="font-weight: 600; font-size: 0.95em; margin-bottom: 0.5rem; color: var(--ink);">AWS Cloud Practitioner</p>
-            <p style="font-family: var(--f-mono); font-size: 0.65rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.03em;">CLF-C01 · Target Q4 2026</p>
-          </div>
-          
-          <!-- Badge 4: DataCamp (Planned) -->
-          <div class="badge-card planned" style="flex: 1 1 170px; min-width: 150px; max-width: 190px; border: 1.5px dashed var(--line-soft); padding: 12px; background: var(--paper); opacity: 0.7; text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 334px; box-sizing: border-box; margin: 0 auto;">
-            <p style="font-family: var(--f-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-2); margin-bottom: 0.8rem; letter-spacing: 0.05em;">Planned</p>
-            <p style="font-weight: 600; font-size: 0.95em; margin-bottom: 0.5rem; color: var(--ink);">DataCamp Analyst</p>
-            <p style="font-family: var(--f-mono); font-size: 0.65rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.03em;">Target Q4 2026</p>
-          </div>
-          
-          <!-- Badge 5: Future Slot -->
-          <div class="badge-card planned" style="flex: 1 1 170px; min-width: 150px; max-width: 190px; border: 1.5px dashed var(--line-soft); padding: 12px; background: var(--paper); opacity: 0.5; text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 334px; box-sizing: border-box; margin: 0 auto;">
-            <p style="font-family: var(--f-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.8rem; letter-spacing: 0.05em;">Future</p>
-            <p style="font-weight: 600; font-size: 0.95em; margin-bottom: 0.5rem; color: var(--ink-3);">Next Milestone</p>
-            <p style="font-family: var(--f-mono); font-size: 0.65rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.03em;">TBD</p>
+          <!-- Next Milestones Panel -->
+          <div class="milestones-panel">
+            <h4 style="font-family: var(--f-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-2); margin-bottom: 0.9rem; letter-spacing: 0.05em; margin-top: 0;">Next Milestones</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+              <li style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.95em; color: var(--ink);">
+                <span style="font-family: var(--f-mono); color: var(--accent); font-weight: bold; font-size: 1.1em;">[&rsaquo;]</span>
+                <div><b>Tableau Desktop Foundations</b> <span style="font-family: var(--f-mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.02em;">&middot; In Progress</span></div>
+              </li>
+              <li style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.95em; color: var(--ink-2);">
+                <span style="font-family: var(--f-mono); color: var(--line-soft); font-weight: bold;">[ ]</span>
+                <div><b>Power BI Data Analyst (PL-300)</b> <span style="font-family: var(--f-mono); font-size: 0.7rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.02em;">&middot; Target Q3 2026</span></div>
+              </li>
+              <li style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.95em; color: var(--ink-2);">
+                <span style="font-family: var(--f-mono); color: var(--line-soft); font-weight: bold;">[ ]</span>
+                <div><b>AWS Certified Cloud Practitioner</b> <span style="font-family: var(--f-mono); font-size: 0.7rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.02em;">&middot; Target Q4 2026</span></div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
