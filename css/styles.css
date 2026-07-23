@@ -116,7 +116,7 @@ body {
 }
 img { max-width:100%; height:auto; display:block; }
 a { color:inherit; }
-p { text-align: justify; text-justify: inter-word; }
+p, blockquote, .now-list li { text-align: justify; text-justify: inter-word; }
 ul,ol { list-style:none; }
 button { font:inherit; color:inherit; background:none; border:none; cursor:pointer; }
 ::selection { background:var(--accent); color:var(--paper); }
@@ -592,7 +592,7 @@ a.contact-item:hover .ci-icon { border-color:var(--accent); color:var(--accent);
 .split-figure .cap b { color:var(--ink); }
 
 /* ---------- Badges and Milestones Row ---------- */
-.badges-row { margin-top: clamp(3.5rem, 8vh, 7.5rem); margin-bottom: 0; display: flex; gap: 2.2rem; flex-wrap: wrap; justify-content: start; align-items: center; }
+.badges-row { margin-top: 2.2rem; margin-bottom: 0; display: flex; gap: 2.2rem; flex-wrap: wrap; justify-content: start; align-items: center; }
 .milestones-panel { flex: 1 1 280px; min-width: 250px; display: flex; flex-direction: column; justify-content: center; min-height: 170px; box-sizing: border-box; }
 @media (max-width: 580px) {
   .badges-row { justify-content: center; }
