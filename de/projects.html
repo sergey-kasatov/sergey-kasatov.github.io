@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
   <title>Projekte · Sergey Kasatov | Datenanalyst</title>
-  <meta name="description" content="Sechs End-to-End-Datenprojekte von Sergey Kasatov: Absatzprognose, Predictive Maintenance, NLP, Computer Vision, Kundensegmentierung und BI-Dashboards. Zwei Live-Demos.">
+  <meta name="description" content="Neun End-to-End-Datenprojekte von Sergey Kasatov: Absatzprognose, Predictive Maintenance, NLP, Computer Vision, LLM-Workflows und BI-Dashboards. Zwei Live-Demos.">
   <meta name="author" content="Sergey Kasatov">
   <meta name="theme-color" content="#f2efe9">
   <link rel="canonical" href="https://kasatov.de/de/projects.html">
@@ -15,7 +15,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projekte · Sergey Kasatov">
-  <meta property="og:description" content="Sechs End-to-End-Datenprojekte: Prognose, ML, NLP, CV und BI. Jede Kennzahl reproduzierbar; zwei Live-Demos.">
+  <meta property="og:description" content="Neun End-to-End-Datenprojekte: Prognose, ML, NLP, CV, LLM-Workflows und BI. Jede Kennzahl reproduzierbar; zwei Live-Demos.">
   <meta property="og:url" content="https://kasatov.de/de/projects.html">
   <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
   <meta property="og:image:width" content="1200">
@@ -88,7 +88,7 @@
           <span class="anno">Blatt <b>02 / 04</b> · Ma&#223;stab <b>1:1</b></span>
         </div>
         <h1 class="page-title">St&#252;ckliste: <span class="hl">Projekte</span></h1>
-        <p class="section-lede">Sechs End-to-End-Projekte: Prognose, Machine Learning, NLP, Computer Vision und BI. Jede Kennzahl ist aus den verlinkten Repositories reproduzierbar; zwei Projekte laufen live.</p>
+        <p class="section-lede">Neun End-to-End-Projekte: Prognose, Machine Learning, NLP, Computer Vision, LLM-Workflows und BI. Jede Kennzahl ist aus den verlinkten Repositories reproduzierbar; zwei Projekte laufen live.</p>
       </div>
     </section>
 
@@ -107,6 +107,9 @@
               <tr><td class="pos">04</td><td class="name"><a href="#p-cifar">CIFAR-10 Transfer-Learning-Studie</a></td><td class="qty">Accuracy <b>82,7 %</b></td><td class="qty opt">TensorFlow · ResNet50</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">05</td><td class="name"><a href="#p-traveltide">TravelTide: Kundensegmentierung</a></td><td class="qty">Nutzer <b>5.998</b></td><td class="qty opt">SQL · Databricks</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">06</td><td class="name"><a href="#p-dashboard">Retail-KPI-Dashboard</a></td><td class="qty">Monate <b>48</b></td><td class="qty opt">Tableau · LOD</td><td class="qty"><b>Live</b></td></tr>
+              <tr><td class="pos">07</td><td class="name"><a href="#p-iatf">IATF Quality Report Prompt</a></td><td class="qty">erfundene Zahlen <b>0/7</b></td><td class="qty opt">Claude · Python stdlib</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">08</td><td class="name"><a href="#p-carprice">Car Price Estimator</a></td><td class="qty">Medianfehler <b>11,9 %</b></td><td class="qty opt">Python · XGBoost</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">09</td><td class="name"><a href="#p-volta">Volta Order Triage Agent</a></td><td class="qty">Treffer <b>29/29</b></td><td class="qty opt">n8n · Gemini · Airtable</td><td class="qty">GitHub</td></tr>
             </tbody>
           </table>
         </div>
@@ -253,6 +256,69 @@
               <div class="dc-links">
                 <a href="https://public.tableau.com/views/RetailKPIDashboardSalesProfitDiscount/MainDashboard" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Auf Tableau Public &#246;ffnen</a>
                 <a href="https://github.com/sergey-kasatov/phoenix-retail-kpi-dashboard" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Repo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-iatf" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 07</span> · Jul 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>IATF Quality Report Prompt</h3>
+              <p>Kann man einem Sprachmodell verbieten, eine L&#252;cke in einer gelenkten Aufzeichnung zu f&#252;llen? Ein Drei-Zonen-Prompt entwirft deutsche Qualit&#228;tsberichte nach ISO 9001 / IATF 16949 und darf keine Zahl ableiten, die nicht in den Daten steht: In einer QMS-Aufzeichnung ist eine abgeleitete Zahl eine Audit-Feststellung, auch wenn sie rechnerisch stimmt. Ein Negativkontrolltest hielt eine Zahl zur&#252;ck und lie&#223; beide Operanden als K&#246;der stehen. Kein Lauf hat sie berechnet; die L&#252;ckenmarkierung erschien nur in 5 von 7 L&#228;ufen an beiden geforderten Stellen, und diese schw&#228;chere Zahl ist ver&#246;ffentlicht wie gemessen, der Prompt bewusst nicht nachgebessert.</p>
+              <div class="metric-row">
+                <span class="metric">erfundene Zahlen <b>0 von 7</b> L&#228;ufen</span>
+                <span class="metric">L&#252;cke doppelt markiert <b>5 von 7</b></span>
+                <span class="metric">eigene Defekte ver&#246;ffentlicht <b>3</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Claude Opus 5</span><span class="tag">Prompt Engineering</span><span class="tag">Testdesign</span><span class="tag">Python</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/iatf-quality-report-prompt" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Prompt, Test &amp; Transkripte</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-carprice" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 08</span> · Jul 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>Car Price Estimator</h3>
+              <p>Ein Preistool, das eine kalibrierte Preisspanne statt einer einzelnen Zahl liefert, gebaut auf 56.244 Gebrauchtwagen-Inseraten. Zwei der drei geforderten Modellfamilien verloren gegen eine Nachschlagetabelle, wie ein H&#228;ndler sie im Kopf hat; XGBoost gewann, und der echte Vorsprung liegt bei Autos, die die Tabelle nie gesehen hat: 46 % besser. Der Befund, &#252;ber den man nach 17 Jahren Automobilbranche streiten m&#246;chte: Der Kilometerstand sagt den Preis kaum voraus, sobald das Alter bekannt ist, mit 2,2 % Permutations-Importance gegen 62,5 % f&#252;r das Alter.</p>
+              <div class="metric-row">
+                <span class="metric">Medianfehler <b>11,9 %</b></span>
+                <span class="metric">Lookup-Baseline <b>13,3 %</b></span>
+                <span class="metric">MAE <b>1.016 $</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">XGBoost</span><span class="tag">Conformal Prediction</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/car-price-estimator" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code &amp; Notebooks</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-volta" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 09</span> · Jul 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>Volta Order Triage Agent</h3>
+              <p>Ein n8n-Workflow mit 26 Nodes, der Freitext-Gro&#223;handelsbestellungen auf Englisch und Portugiesisch triagiert. Deterministische Airtable-Lookups sammeln zuerst jeden Fakt; ein begrenzter LLM-Agent trifft die eine Entscheidung, die sich nicht als Regel schreiben l&#228;sst; Logik routet und protokolliert jede Bestellung, und der Mensch bleibt der Absender: Der Workflow kontaktiert nie einen Kunden. &#220;ber drei Durchl&#228;ufe an drei Tagen stimmten alle 29 protokollierten Klassifikationen mit dem Antwortschl&#252;ssel des Kurses &#252;berein, und kein Input erhielt je zwei verschiedene Klassifikationen.</p>
+              <div class="metric-row">
+                <span class="metric">Antwortschl&#252;ssel <b>29 / 29</b></span>
+                <span class="metric">KI-Schritte <b>2 von 8</b></span>
+                <span class="metric">Nodes <b>26</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">n8n</span><span class="tag">Gemini</span><span class="tag">Airtable</span><span class="tag">Slack</span><span class="tag">Gmail API</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/llm-order-triage-agent" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Design &amp; Evidenz</a>
               </div>
             </div>
           </article>

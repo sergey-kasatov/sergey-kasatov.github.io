@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kasatov.de/</loc><lastmod>2026-07-18</lastmod>
+    <loc>https://kasatov.de/</loc><lastmod>2026-07-31</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/index.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/"/>
   </url>
   <url>
-    <loc>https://kasatov.de/projects.html</loc><lastmod>2026-07-18</lastmod>
+    <loc>https://kasatov.de/projects.html</loc><lastmod>2026-07-31</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/projects.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/projects.html"/>
   </url>
@@ -16,7 +16,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/about.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/contact.html</loc><lastmod>2026-07-18</lastmod>
+    <loc>https://kasatov.de/contact.html</loc><lastmod>2026-07-31</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/contact.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/contact.html"/>
   </url>
@@ -31,12 +31,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/case-maintenance.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/de/index.html</loc><lastmod>2026-07-20</lastmod>
+    <loc>https://kasatov.de/de/index.html</loc><lastmod>2026-07-31</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/index.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/de/projects.html</loc><lastmod>2026-07-20</lastmod>
+    <loc>https://kasatov.de/de/projects.html</loc><lastmod>2026-07-31</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/projects.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/projects.html"/>
   </url>
@@ -46,7 +46,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/about.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/de/contact.html</loc><lastmod>2026-07-18</lastmod>
+    <loc>https://kasatov.de/de/contact.html</loc><lastmod>2026-07-31</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/contact.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/contact.html"/>
   </url>

@@ -13,7 +13,7 @@ HTML pages linked below.
 - Retrained into data analytics (Masterschool, Data Analytics Program AZAV,
   Advanced Data Science and AI). Python, SQL, Tableau, machine learning, with a
   preference for interpretable models.
-- Six completed portfolio projects, two of them deployed live. Open to Data Analyst,
+- Nine completed portfolio projects, two of them deployed live. Open to Data Analyst,
   BI Analyst and Operations Analyst roles in Germany from September 2026.
 
 ## Contact and profiles
@@ -52,7 +52,7 @@ Languages: Russian (native), English (C1), German (B2).
 
 ## Portfolio projects
 
-Six completed projects. Every metric below is reproducible from the linked repository.
+Nine completed projects. Every metric below is reproducible from the linked repository.
 
 ### 1. FreshMart Demand Planner (live)
 
@@ -118,6 +118,48 @@ self-service analysis, the same logic as a quality trend board on a plant floor.
 
 - Live: https://public.tableau.com/views/RetailKPIDashboardSalesProfitDiscount/MainDashboard
 - Repo: https://github.com/sergey-kasatov/phoenix-retail-kpi-dashboard
+
+### 7. IATF Quality Report Prompt
+
+A prompt that drafts German ISO 9001 / IATF 16949 quality reports and is forbidden
+to derive any figure it was not given: a QMS report is a controlled record, and a
+derived figure is an audit finding even when the arithmetic is right. A
+negative-control test withheld one figure while leaving both operands in place as
+bait. Across 7 runs the prompt never computed the withheld figure and never
+introduced any figure absent from the input; the gap marker appeared in both
+required places in only 5 of 7 runs, and that weaker number is published as found,
+with the prompt deliberately left unfixed. A stdlib-only Python checker judges each
+run mechanically, and the prompt accepted a customer 8D form with no edit.
+
+- Code: https://github.com/sergey-kasatov/iatf-quality-report-prompt
+
+### 8. Car Price Estimator
+
+Used-car pricing on 56,244 listings that returns a calibrated price range rather
+than a single number. Two of the three required model families (linear regression,
+decision tree) lost to a dealer-style lookup table; XGBoost beat it at MAE 1,016 USD
+and 11.9 percent median error against the lookup's 13.3, with the real gain on cars
+the lookup had never seen: 46 percent better there, 12 percent on familiar ones.
+Mileage is 2.2 percent of permutation importance against 62.5 for age, so mileage
+barely predicts price once age is known. Prediction intervals use split conformal
+calibrated per price band, after the global version hit its 80 percent coverage
+target on average while covering only 51.5 percent of cheap cars. Ships a CLI and
+an importable module that reproduces the notebooks exactly.
+
+- Code: https://github.com/sergey-kasatov/car-price-estimator
+
+### 9. Volta Order Triage Agent
+
+A 26-node n8n workflow that triages free-text wholesale orders in English and
+Portuguese. A schema-bound extraction step turns prose into structured items,
+deterministic Airtable lookups gather every fact, and one bounded LLM agent makes
+the single judgment a rule cannot express, choosing between standard, needs_review
+and needs_clarification. Logic routes and logs every order, and a human stays the
+sender: the workflow never contacts a customer. Across three passes on three
+separate days, all 29 recorded classifications matched the course answer key and no
+input ever produced two different classifications. 2 of 8 processing steps are AI.
+
+- Code: https://github.com/sergey-kasatov/llm-order-triage-agent
 
 ## Experience
 

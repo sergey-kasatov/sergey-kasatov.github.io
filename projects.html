@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
   <title>Projects · Sergey Kasatov | Data Analyst</title>
-  <meta name="description" content="Six end-to-end data projects by Sergey Kasatov: demand forecasting, predictive maintenance, NLP, computer vision, customer segmentation, and BI dashboards. Two live demos.">
+  <meta name="description" content="Nine end-to-end data projects by Sergey Kasatov: demand forecasting, predictive maintenance, NLP, computer vision, LLM workflows, and BI dashboards. Two live demos.">
   <meta name="author" content="Sergey Kasatov">
   <meta name="theme-color" content="#f2efe9">
   <link rel="canonical" href="https://kasatov.de/projects.html">
@@ -15,7 +15,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects · Sergey Kasatov">
-  <meta property="og:description" content="Six end-to-end data projects: forecasting, ML, NLP, CV, and BI. Every metric reproducible; two live demos.">
+  <meta property="og:description" content="Nine end-to-end data projects: forecasting, ML, NLP, CV, LLM workflows, and BI. Every metric reproducible; two live demos.">
   <meta property="og:url" content="https://kasatov.de/projects.html">
   <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
   <meta property="og:image:width" content="1200">
@@ -91,7 +91,7 @@
           <span class="anno">Sheet <b>02 / 04</b> · Scale <b>1:1</b></span>
         </div>
         <h1 class="page-title">Parts list: <span class="hl">projects</span></h1>
-        <p class="section-lede">Six end-to-end projects: forecasting, machine learning, NLP, computer vision, and BI. Every metric below is reproducible from the linked repositories; two projects run live.</p>
+        <p class="section-lede">Nine end-to-end projects: forecasting, machine learning, NLP, computer vision, LLM workflows, and BI. Every metric below is reproducible from the linked repositories; two projects run live.</p>
       </div>
     </section>
 
@@ -110,6 +110,9 @@
               <tr><td class="pos">04</td><td class="name"><a href="#p-cifar">CIFAR-10 Transfer Learning Study</a></td><td class="qty">accuracy <b>82.7%</b></td><td class="qty opt">TensorFlow · ResNet50</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">05</td><td class="name"><a href="#p-traveltide">TravelTide: Customer Segmentation</a></td><td class="qty">users <b>5,998</b></td><td class="qty opt">SQL · Databricks</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">06</td><td class="name"><a href="#p-dashboard">Retail KPI Dashboard</a></td><td class="qty">months <b>48</b></td><td class="qty opt">Tableau · LOD</td><td class="qty"><b>Live</b></td></tr>
+              <tr><td class="pos">07</td><td class="name"><a href="#p-iatf">IATF Quality Report Prompt</a></td><td class="qty">invented figures <b>0/7</b></td><td class="qty opt">Claude · Python stdlib</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">08</td><td class="name"><a href="#p-carprice">Car Price Estimator</a></td><td class="qty">median error <b>11.9%</b></td><td class="qty opt">Python · XGBoost</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">09</td><td class="name"><a href="#p-volta">Volta Order Triage Agent</a></td><td class="qty">answer key <b>29/29</b></td><td class="qty opt">n8n · Gemini · Airtable</td><td class="qty">GitHub</td></tr>
             </tbody>
           </table>
         </div>
@@ -256,6 +259,69 @@
               <div class="dc-links">
                 <a href="https://public.tableau.com/views/RetailKPIDashboardSalesProfitDiscount/MainDashboard" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Open on Tableau Public</a>
                 <a href="https://github.com/sergey-kasatov/phoenix-retail-kpi-dashboard" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Repo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-iatf" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 07</span> · Jul 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>IATF Quality Report Prompt</h3>
+              <p>Can a language model be stopped from filling a gap in a controlled record? A three-zone prompt drafts German ISO 9001 / IATF 16949 quality reports and is forbidden to derive any figure it was not given: in a QMS record a derived figure is an audit finding even when the arithmetic is right. A negative-control test withheld one figure and left both operands in as bait. No run computed it; the gap marker appeared in both required places in only 5 of 7 runs, and that weaker number is published as found, prompt deliberately unfixed.</p>
+              <div class="metric-row">
+                <span class="metric">invented figures <b>0 of 7</b> runs</span>
+                <span class="metric">gap marked twice <b>5 of 7</b></span>
+                <span class="metric">own defects published <b>3</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Claude Opus 5</span><span class="tag">Prompt engineering</span><span class="tag">Test design</span><span class="tag">Python</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/iatf-quality-report-prompt" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Prompt, test &amp; transcripts</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-carprice" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 08</span> · Jul 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>Car Price Estimator</h3>
+              <p>A pricing tool that returns a calibrated price range instead of a single number, built on 56,244 used-car listings. Two of the three required model families lost to a dealer-style lookup table; XGBoost won, and its real gain sits on cars the lookup has never seen: 46% better. The finding worth arguing about after 17 years in automotive: mileage barely predicts price once age is known, at 2.2% of permutation importance against 62.5% for age.</p>
+              <div class="metric-row">
+                <span class="metric">median error <b>11.9%</b></span>
+                <span class="metric">lookup baseline <b>13.3%</b></span>
+                <span class="metric">MAE <b>$1,016</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">XGBoost</span><span class="tag">Conformal prediction</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/car-price-estimator" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code &amp; notebooks</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-volta" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 09</span> · Jul 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>Volta Order Triage Agent</h3>
+              <p>A 26-node n8n workflow that triages free-text wholesale orders in English and Portuguese. Deterministic Airtable lookups gather every fact first; one bounded LLM agent makes the single call a rule cannot express; logic routes and logs every order, and a human stays the sender: the workflow never contacts a customer. Across three passes on three separate days, all 29 recorded classifications matched the course answer key, and no input ever produced two different classifications.</p>
+              <div class="metric-row">
+                <span class="metric">answer-key match <b>29 / 29</b></span>
+                <span class="metric">AI steps <b>2 of 8</b></span>
+                <span class="metric">nodes <b>26</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">n8n</span><span class="tag">Gemini</span><span class="tag">Airtable</span><span class="tag">Slack</span><span class="tag">Gmail API</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/llm-order-triage-agent" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Design &amp; evidence</a>
               </div>
             </div>
           </article>
