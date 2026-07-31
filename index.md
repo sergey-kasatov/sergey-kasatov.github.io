@@ -42,8 +42,8 @@ between a model that scores well and a model someone trusts.
 ## Skills
 
 Technical: SQL, Python, pandas, Tableau, Excel and Power Query, machine learning,
-NLP, deep learning, data cleaning, exploratory data analysis, KPI design, dashboards,
-DBeaver, Jupyter.
+NLP, deep learning, AI agent workflows (n8n), data cleaning, exploratory data
+analysis, KPI design, dashboards, DBeaver, Jupyter.
 
 Domain: automotive quality engineering, 8D problem solving, SPC, PPAP, APQP,
 launch management, body in white and closures, supplier quality.
