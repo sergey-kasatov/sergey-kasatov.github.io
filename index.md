@@ -117,7 +117,6 @@ by region, product category and period across roughly 10,000 rows, 48 months and
 self-service analysis, the same logic as a quality trend board on a plant floor.
 
 - Live: https://public.tableau.com/views/RetailKPIDashboardSalesProfitDiscount/MainDashboard
-- Repo: https://github.com/sergey-kasatov/phoenix-retail-kpi-dashboard
 
 ### 7. IATF Quality Report Prompt
 
