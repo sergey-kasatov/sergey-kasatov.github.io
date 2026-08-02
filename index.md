@@ -266,6 +266,7 @@ September 2026. Based in Cologne. On-site, hybrid or remote.
 
 ## About this site
 
-Static HTML, no cookies, no tracking, no external requests, self-hosted fonts.
-Available in English and German (https://kasatov.de/de/index.html). Written and
-maintained by Sergey Kasatov.
+Static HTML, no cookies, self-hosted fonts. The only external request is the
+cookieless GoatCounter visitor counter (no personal data stored, no consent
+banner required). Available in English and German
+(https://kasatov.de/de/index.html). Written and maintained by Sergey Kasatov.
