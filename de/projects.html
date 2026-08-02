@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
   <title>Projekte · Sergey Kasatov | Datenanalyst</title>
-  <meta name="description" content="Neun End-to-End-Datenprojekte von Sergey Kasatov: Absatzprognose, Predictive Maintenance, NLP, Computer Vision, LLM-Workflows und BI-Dashboards. Zwei Live-Demos.">
+  <meta name="description" content="Elf End-to-End-Datenprojekte von Sergey Kasatov: Absatzprognose, Predictive Maintenance, NLP, Computer Vision, LLM-Workflows, Reinforcement Learning und BI-Dashboards. Zwei Live-Demos.">
   <meta name="author" content="Sergey Kasatov">
   <meta name="theme-color" content="#f2efe9">
   <link rel="canonical" href="https://kasatov.de/de/projects.html">
@@ -15,7 +15,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projekte · Sergey Kasatov">
-  <meta property="og:description" content="Neun End-to-End-Datenprojekte: Prognose, ML, NLP, CV, LLM-Workflows und BI. Jede Kennzahl reproduzierbar; zwei Live-Demos.">
+  <meta property="og:description" content="Elf End-to-End-Datenprojekte: Prognose, ML, NLP, CV, LLM-Workflows, RL und BI. Jede Kennzahl reproduzierbar; zwei Live-Demos.">
   <meta property="og:url" content="https://kasatov.de/de/projects.html">
   <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
   <meta property="og:image:width" content="1200">
@@ -88,7 +88,7 @@
           <span class="anno">Blatt <b>02 / 04</b> · Ma&#223;stab <b>1:1</b></span>
         </div>
         <h1 class="page-title">St&#252;ckliste: <span class="hl">Projekte</span></h1>
-        <p class="section-lede">Neun End-to-End-Projekte: Prognose, Machine Learning, NLP, Computer Vision, LLM-Workflows und BI. Jede Kennzahl ist aus den verlinkten Repositories reproduzierbar; zwei Projekte laufen live.</p>
+        <p class="section-lede">Elf End-to-End-Projekte: Prognose, Machine Learning, NLP, Computer Vision, LLM-Workflows, Reinforcement Learning und BI. Jede Kennzahl ist aus den verlinkten Repositories reproduzierbar; zwei Projekte laufen live.</p>
       </div>
     </section>
 
@@ -109,7 +109,9 @@
               <tr><td class="pos">06</td><td class="name"><a href="#p-dashboard">Retail-KPI-Dashboard</a></td><td class="qty">Monate <b>48</b></td><td class="qty opt">Tableau · LOD</td><td class="qty"><b>Live</b></td></tr>
               <tr><td class="pos">07</td><td class="name"><a href="#p-iatf">IATF Quality Report Prompt</a></td><td class="qty">ohne erfundene Zahlen <b>7/7</b></td><td class="qty opt">Claude · Python stdlib</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">08</td><td class="name"><a href="#p-carprice">Car Price Estimator</a></td><td class="qty">Medianfehler <b>11,9 %</b></td><td class="qty opt">Python · XGBoost</td><td class="qty">GitHub</td></tr>
-              <tr><td class="pos">09</td><td class="name"><a href="#p-volta">Volta Order Triage Agent</a></td><td class="qty">Treffer <b>29/29</b></td><td class="qty opt">n8n · Gemini · Airtable</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">09</td><td class="name"><a href="#p-volta">Volta Order Triage Agent</a></td><td class="qty">Treffer <b>30/30</b></td><td class="qty opt">n8n · Gemini · Airtable</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">10</td><td class="name"><a href="#p-fx">FX Random Walk Benchmark</a></td><td class="qty">Fehler erkl&#228;rt <b>r = 0,97</b></td><td class="qty opt">Python · statsmodels · XGBoost</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">11</td><td class="name"><a href="#p-neuron">Neuron Platformer RL</a></td><td class="qty">Erfolgsrate (Holdout) <b>80 %</b></td><td class="qty opt">PyTorch · Stable-Baselines3</td><td class="qty">GitHub</td></tr>
             </tbody>
           </table>
         </div>
@@ -307,9 +309,9 @@
             </div>
             <div class="dc-body">
               <h3>Volta Order Triage Agent</h3>
-              <p>Ein n8n-Workflow mit 26 Nodes, der Freitext-Gro&#223;handelsbestellungen auf Englisch und Portugiesisch triagiert. Deterministische Airtable-Lookups sammeln zuerst jeden Fakt; ein begrenzter LLM-Agent trifft die eine Entscheidung, die sich nicht als Regel schreiben l&#228;sst; Logik routet und protokolliert jede Bestellung, und der Mensch bleibt der Absender: Der Workflow kontaktiert nie einen Kunden. &#220;ber drei Durchl&#228;ufe an drei Tagen stimmten alle 29 protokollierten Klassifikationen mit dem Antwortschl&#252;ssel des Kurses &#252;berein, und kein Input erhielt je zwei verschiedene Klassifikationen.</p>
+              <p>Ein n8n-Workflow mit 26 Nodes, der Freitext-Gro&#223;handelsbestellungen auf Englisch und Portugiesisch triagiert. Deterministische Airtable-Lookups sammeln zuerst jeden Fakt; ein begrenzter LLM-Agent trifft die eine Entscheidung, die sich nicht als Regel schreiben l&#228;sst; Logik routet und protokolliert jede Bestellung, und der Mensch bleibt der Absender: Der Workflow kontaktiert nie einen Kunden. &#220;ber je drei Durchl&#228;ufe der zehn Beispielbestellungen stimmten alle 30 protokollierten Klassifikationen mit dem Antwortschl&#252;ssel des Kurses &#252;berein, und kein Input erhielt je zwei verschiedene Klassifikationen.</p>
               <div class="metric-row">
-                <span class="metric">Antwortschl&#252;ssel <b>29 / 29</b></span>
+                <span class="metric">Antwortschl&#252;ssel <b>30 / 30</b></span>
                 <span class="metric">KI-Schritte <b>2 von 8</b></span>
                 <span class="metric">Nodes <b>26</b></span>
               </div>
@@ -318,6 +320,48 @@
               </div>
               <div class="dc-links">
                 <a href="https://github.com/sergey-kasatov/llm-order-triage-agent" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Design &amp; Evidenz</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-fx" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 10</span> · Jul 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>FX Random Walk Benchmark</h3>
+              <p>Eine Bankaufgabe verlangte ein Modell zur Wechselkursprognose. Das Projekt stellte die Frage, die in der Aufgabe fehlte: verglichen womit? 20 Jahre Tageskurse SGD/USD und CNY/USD, zuerst die naive Basislinie "morgen gleich heute", danach ARIMA, SARIMA und Gradient Boosting gegen sie gemessen, &#252;ber 42.924 Walk-Forward-Prognosen. Kein Modell schlug die Basislinie auf irgendeinem Signifikanzniveau, AIC w&#228;hlte ARIMA(0,1,0), also den Zufallspfad selbst, und die eigens entwickelte Kennzahl move_ratio erkl&#228;rt den Fehler jedes Modells mit r = 0,97. Die Leckagefreiheit ist keine Zusicherung, sondern ein maschineller Nachweis: Alle Beobachtungen nach dem Stichtag werden &#252;berschrieben, und die Merkmale davor m&#252;ssen byte-identisch zur&#252;ckkommen.</p>
+              <div class="metric-row">
+                <span class="metric">Walk-Forward-Prognosen <b>42.924</b></span>
+                <span class="metric">Modelle besser als naiv <b>0</b></span>
+                <span class="metric">Fehler erkl&#228;rt <b>r = 0,97</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Python</span><span class="tag">statsmodels</span><span class="tag">XGBoost</span><span class="tag">Diebold-Mariano</span><span class="tag">Backtesting</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/fx-random-walk-benchmark" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Ger&#252;st, Pr&#252;fungen &amp; Notebooks</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal" id="p-neuron" data-cats="ml">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 11</span> · Jul&#8211;Aug 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>Neuron Platformer RL</h3>
+              <p>Reinforcement-Learning-Demos laufen meist in einer fertigen Umgebung, was die schwierigen Teile verdeckt: Belohnungsdesign, Beobachtungsdesign und die Frage, ob die Aufgabe &#252;berhaupt l&#246;sbar ist. Hier ist der gesamte Stack selbst gebaut, samt Levelgenerator, dessen L&#252;cken durch die exakte Sprungphysik begrenzt sind, und einem Audit, das die L&#246;sbarkeit &#252;ber 1.200 Seeds neu beweist. Dann die eigentliche Frage: Ein Agent, der nur rohe 84x84-Pixel liest, ohne Koordinaten, Geschwindigkeiten oder Objektlisten, schl&#228;gt die handgebaute Zustandsvektor-Baseline mit 80 % zu 50 % auf ungesehenen Levels, und ein Schwierigkeits-Curriculum bringt ihn auf 57 % (mittel) und 53 % (schwer). Grad-CAM zeigt, worauf er blickt: Plattformkanten vor dem Sprung, die L&#252;cke, den Gegner.</p>
+              <div class="metric-row">
+                <span class="metric">Pixel-Agent <b>80 %</b></span>
+                <span class="metric">Zustands-Baseline <b>50 %</b></span>
+                <span class="metric">unm&#246;gliche &#220;berg&#228;nge <b>0 von 11.619</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Stable-Baselines3</span><span class="tag">Gymnasium</span><span class="tag">Grad-CAM</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://github.com/sergey-kasatov/neuron-platformer-rl" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Umgebung, Agenten &amp; Ergebnisse</a>
               </div>
             </div>
           </article>

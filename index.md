@@ -13,7 +13,7 @@ HTML pages linked below.
 - Retrained into data analytics (Masterschool, Data Analytics Program AZAV,
   Advanced Data Science and AI). Python, SQL, Tableau, machine learning, with a
   preference for interpretable models.
-- Nine completed portfolio projects, two of them deployed live. Open to Data Analyst,
+- Eleven completed portfolio projects, two of them deployed live. Open to Data Analyst,
   BI Analyst and Operations Analyst roles in Germany from September 2026.
 
 ## Contact and profiles
@@ -42,8 +42,9 @@ between a model that scores well and a model someone trusts.
 ## Skills
 
 Technical: SQL, Python, pandas, Tableau, Excel and Power Query, machine learning,
-NLP, deep learning, AI agent workflows (n8n), data cleaning, exploratory data
-analysis, KPI design, dashboards, DBeaver, Jupyter.
+NLP, deep learning, AI agent workflows (n8n), prompt engineering and structured LLM
+outputs, AI strategy and governance, data cleaning, exploratory data analysis,
+KPI design, dashboards, DBeaver, Jupyter.
 
 Domain: automotive quality engineering, 8D problem solving, SPC, PPAP, APQP,
 launch management, body in white and closures, supplier quality.
@@ -52,7 +53,7 @@ Languages: Russian (native), English (C1), German (B2).
 
 ## Portfolio projects
 
-Nine completed projects. Every metric below is reproducible from the linked repository.
+Eleven completed projects. Every metric below is reproducible from the linked repository.
 
 ### 1. FreshMart Demand Planner (live)
 
@@ -154,11 +155,39 @@ Portuguese. A schema-bound extraction step turns prose into structured items,
 deterministic Airtable lookups gather every fact, and one bounded LLM agent makes
 the single judgment a rule cannot express, choosing between standard, needs_review
 and needs_clarification. Logic routes and logs every order, and a human stays the
-sender: the workflow never contacts a customer. Across three passes on three
-separate days, all 29 recorded classifications matched the course answer key and no
+sender: the workflow never contacts a customer. Across three runs of each of the ten
+sample orders, all 30 recorded classifications matched the course answer key and no
 input ever produced two different classifications. 2 of 8 processing steps are AI.
 
 - Code: https://github.com/sergey-kasatov/llm-order-triage-agent
+
+### 10. FX Random Walk Benchmark
+
+A walk-forward benchmark that asks the question the banking brief did not: compared
+to what? Twenty years of daily SGD/USD and CNY/USD, the naive "tomorrow equals today"
+baseline established first, then ARIMA, SARIMA and gradient boosting scored against
+it over 42,924 forecasts from 1,022 origins at three horizons. No model beat the
+baseline at any significance level under Diebold-Mariano with the Harvey correction,
+AIC selected ARIMA(0,1,0) for SGD, which is the random walk itself, and a purpose-built
+move_ratio measure explains every model's error at r = 0.97. The no-leakage property
+is proved mechanically rather than asserted: rewriting every observation after the cut
+date must leave the earlier features byte-identical. Results are priced against a
+USD 10m exposure. The only negative-result study in the portfolio.
+
+- Code: https://github.com/sergey-kasatov/fx-random-walk-benchmark
+
+### 11. Neuron Platformer RL
+
+A 2D platformer built from scratch as a custom Gymnasium environment, with a level
+generator whose every gap is capped by the exact jump-physics envelope: an audit
+re-proves solvability across 1,200 seeds, finding 0 impossible transitions in 11,619.
+A PPO agent reading raw 84x84 pixels, with no coordinates, velocities or object lists,
+beats the hand-crafted 19-feature state-vector baseline 80 percent to 50 percent on
+30 held-out seeds; a difficulty curriculum then carries it to 57 percent on medium and
+53 percent on hard. Grad-CAM over the policy CNN shows attention on platform edges,
+gaps and enemies. Four classic RL failure modes are documented rather than hidden.
+
+- Code: https://github.com/sergey-kasatov/neuron-platformer-rl
 
 ## Experience
 
@@ -218,7 +247,8 @@ programs. Owned SOP readiness for 2 vehicle programs.
 **Master School Institute of Technology** - Data Analytics Program (AZAV), Advanced
 Data Science and AI. Sep 2025 - Sep 2026, full time. Python, SQL and pandas on large
 datasets; Tableau and Matplotlib for BI reporting; statistical analysis and predictive
-modelling.
+modelling; time series, computer vision and NLP with LLMs; AI-assisted analysis
+workflows, AI strategy and governance, and automation with agent concepts.
 
 **Technische Hochschule Ingolstadt** - International Automotive Engineering,
 Oct 2010 - Mar 2013. Master's program, coursework completed, degree not awarded.
