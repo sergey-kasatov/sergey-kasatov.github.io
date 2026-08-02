@@ -186,6 +186,11 @@ beats the hand-crafted 19-feature state-vector baseline 80 percent to 50 percent
 30 held-out seeds; a difficulty curriculum then carries it to 57 percent on medium and
 53 percent on hard. Grad-CAM over the policy CNN shows attention on platform edges,
 gaps and enemies. Four classic RL failure modes are documented rather than hidden.
+A fourth phase replaces the frame stack with an LSTM reading one frame at a time:
+recurrence does learn the game, but on less than half the training budget it reaches
+37 percent on medium against the curriculum agent's 57 percent, with its evaluation
+curve still rising when the budget ran out, so the number is reported as a floor
+rather than as a win.
 
 - Code: https://github.com/sergey-kasatov/neuron-platformer-rl
 
