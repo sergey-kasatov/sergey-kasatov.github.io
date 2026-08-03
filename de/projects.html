@@ -109,7 +109,7 @@
               <tr><td class="pos">06</td><td class="name"><a href="#p-dashboard">Retail-KPI-Dashboard</a></td><td class="qty">Monate <b>48</b></td><td class="qty opt">Tableau · LOD</td><td class="qty"><b>Live</b></td></tr>
               <tr><td class="pos">07</td><td class="name"><a href="#p-iatf">IATF Quality Report Prompt</a></td><td class="qty">ohne erfundene Zahlen <b>7/7</b></td><td class="qty opt">Claude · Python stdlib</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">08</td><td class="name"><a href="#p-carprice">Car Price Estimator</a></td><td class="qty">Medianfehler <b>11,9 %</b></td><td class="qty opt">Python · XGBoost</td><td class="qty">GitHub</td></tr>
-              <tr><td class="pos">09</td><td class="name"><a href="#p-volta">Volta Order Triage Agent</a></td><td class="qty">Treffer <b>30/30</b></td><td class="qty opt">n8n · Gemini · Airtable</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">09</td><td class="name"><a href="#p-triage">KI-Auftragstriage</a></td><td class="qty">Treffer <b>30/30</b></td><td class="qty opt">n8n · Gemini · Airtable</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">10</td><td class="name"><a href="#p-fx">FX Random Walk Benchmark</a></td><td class="qty">Fehler erkl&#228;rt <b>r = 0,97</b></td><td class="qty opt">Python · statsmodels · XGBoost</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">11</td><td class="name"><a href="#p-neuron">Neuron Platformer RL</a></td><td class="qty">Erfolgsrate (Holdout) <b>80 %</b></td><td class="qty opt">PyTorch · Stable-Baselines3</td><td class="qty">GitHub</td></tr>
             </tbody>
@@ -304,13 +304,13 @@
             </div>
           </article>
 
-          <article class="detail-card reveal" id="p-volta" data-cats="ai">
+          <article class="detail-card reveal" id="p-triage" data-cats="ai">
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 09</span> · Jul 2026</span>
             </div>
             <div class="dc-body">
-              <h3>Volta Order Triage Agent</h3>
-              <p>Ein n8n-Workflow mit 26 Nodes, der Freitext-Gro&#223;handelsbestellungen auf Englisch und Portugiesisch triagiert. Deterministische Airtable-Lookups sammeln zuerst jeden Fakt; ein begrenzter LLM-Agent trifft die eine Entscheidung, die sich nicht als Regel schreiben l&#228;sst; Logik routet und protokolliert jede Bestellung, und der Mensch bleibt der Absender: Der Workflow kontaktiert nie einen Kunden. &#220;ber je drei Durchl&#228;ufe der zehn Beispielbestellungen stimmten alle 30 protokollierten Klassifikationen mit dem Antwortschl&#252;ssel des Kurses &#252;berein, und kein Input erhielt je zwei verschiedene Klassifikationen.</p>
+              <h3>KI-Auftragstriage</h3>
+              <p>Ein n8n-Workflow mit 26 Nodes, der Freitext-Gro&#223;handelsbestellungen auf Englisch und Portugiesisch triagiert. Deterministische Airtable-Lookups sammeln zuerst jeden Fakt; ein begrenzter LLM-Agent trifft die eine Entscheidung, die sich nicht als Regel schreiben l&#228;sst; Logik routet und protokolliert jede Bestellung, und der Mensch bleibt der Absender: Der Workflow kontaktiert nie einen Kunden. &#220;ber je drei Durchl&#228;ufe der zehn Beispielbestellungen stimmten alle 30 protokollierten Klassifikationen mit dem Antwortschl&#252;ssel des Kurses &#252;berein, und kein Input erhielt je zwei verschiedene Klassifikationen. Grundlage ist ein fiktiver Gro&#223;handelsfall, Volta Coffee Roasters in Porto.</p>
               <div class="metric-row">
                 <span class="metric">Antwortschl&#252;ssel <b>30 / 30</b></span>
                 <span class="metric">KI-Schritte <b>2 von 8</b></span>

@@ -148,7 +148,7 @@ an importable module that reproduces the notebooks exactly.
 
 - Code: https://github.com/sergey-kasatov/car-price-estimator
 
-### 9. Volta Order Triage Agent
+### 9. AI Order Triage Agent
 
 A 26-node n8n workflow that triages free-text wholesale orders in English and
 Portuguese. A schema-bound extraction step turns prose into structured items,
@@ -158,6 +158,7 @@ and needs_clarification. Logic routes and logs every order, and a human stays th
 sender: the workflow never contacts a customer. Across three runs of each of the ten
 sample orders, all 30 recorded classifications matched the course answer key and no
 input ever produced two different classifications. 2 of 8 processing steps are AI.
+Built on a fictional wholesale case, Volta Coffee Roasters in Porto.
 
 - Code: https://github.com/sergey-kasatov/llm-order-triage-agent
 

@@ -112,7 +112,7 @@
               <tr><td class="pos">06</td><td class="name"><a href="#p-dashboard">Retail KPI Dashboard</a></td><td class="qty">months <b>48</b></td><td class="qty opt">Tableau · LOD</td><td class="qty"><b>Live</b></td></tr>
               <tr><td class="pos">07</td><td class="name"><a href="#p-iatf">IATF Quality Report Prompt</a></td><td class="qty">no invented figures <b>7/7</b></td><td class="qty opt">Claude · Python stdlib</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">08</td><td class="name"><a href="#p-carprice">Car Price Estimator</a></td><td class="qty">median error <b>11.9%</b></td><td class="qty opt">Python · XGBoost</td><td class="qty">GitHub</td></tr>
-              <tr><td class="pos">09</td><td class="name"><a href="#p-volta">Volta Order Triage Agent</a></td><td class="qty">answer key <b>30/30</b></td><td class="qty opt">n8n · Gemini · Airtable</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">09</td><td class="name"><a href="#p-triage">AI Order Triage Agent</a></td><td class="qty">answer key <b>30/30</b></td><td class="qty opt">n8n · Gemini · Airtable</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">10</td><td class="name"><a href="#p-fx">FX Random Walk Benchmark</a></td><td class="qty">error explained <b>r = 0.97</b></td><td class="qty opt">Python · statsmodels · XGBoost</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">11</td><td class="name"><a href="#p-neuron">Neuron Platformer RL</a></td><td class="qty">held-out success <b>80%</b></td><td class="qty opt">PyTorch · Stable-Baselines3</td><td class="qty">GitHub</td></tr>
             </tbody>
@@ -307,13 +307,13 @@
             </div>
           </article>
 
-          <article class="detail-card reveal" id="p-volta" data-cats="ai">
+          <article class="detail-card reveal" id="p-triage" data-cats="ai">
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 09</span> · Jul 2026</span>
             </div>
             <div class="dc-body">
-              <h3>Volta Order Triage Agent</h3>
-              <p>A 26-node n8n workflow that triages free-text wholesale orders in English and Portuguese. Deterministic Airtable lookups gather every fact first; one bounded LLM agent makes the single call a rule cannot express; logic routes and logs every order, and a human stays the sender: the workflow never contacts a customer. Across three runs of each of the ten sample orders, all 30 recorded classifications matched the course answer key, and no input ever produced two different classifications.</p>
+              <h3>AI Order Triage Agent</h3>
+              <p>A 26-node n8n workflow that triages free-text wholesale orders in English and Portuguese. Deterministic Airtable lookups gather every fact first; one bounded LLM agent makes the single call a rule cannot express; logic routes and logs every order, and a human stays the sender: the workflow never contacts a customer. Across three runs of each of the ten sample orders, all 30 recorded classifications matched the course answer key, and no input ever produced two different classifications. Built on a fictional wholesale case, Volta Coffee Roasters in Porto.</p>
               <div class="metric-row">
                 <span class="metric">answer-key match <b>30 / 30</b></span>
                 <span class="metric">AI steps <b>2 of 8</b></span>
