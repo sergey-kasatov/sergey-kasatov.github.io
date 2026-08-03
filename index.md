@@ -189,9 +189,11 @@ beats the hand-crafted 19-feature state-vector baseline 80 percent to 50 percent
 gaps and enemies. Four classic RL failure modes are documented rather than hidden.
 A fourth phase replaces the frame stack with an LSTM reading one frame at a time:
 recurrence does learn the game, but on less than half the training budget it reaches
-37 percent on medium against the curriculum agent's 57 percent, with its evaluation
-curve still rising when the budget ran out, so the number is reported as a floor
-rather than as a win.
+37 percent on medium against the curriculum agent's 57 percent. Doubling that budget
+tested the obvious excuse and refuted it: typical performance rose, the peak did not.
+The same run showed that a 30-episode evaluation carries about plus or minus 14
+points, which retired two comparisons the project had already published, and the
+write-up was rewritten rather than left flattering.
 
 - Code: https://github.com/sergey-kasatov/neuron-platformer-rl
 
