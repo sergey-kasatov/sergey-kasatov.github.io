@@ -183,17 +183,19 @@ A 2D platformer built from scratch as a custom Gymnasium environment, with a lev
 generator whose every gap is capped by the exact jump-physics envelope: an audit
 re-proves solvability across 1,200 seeds, finding 0 impossible transitions in 11,619.
 A PPO agent reading raw 84x84 pixels, with no coordinates, velocities or object lists,
-beats the hand-crafted 19-feature state-vector baseline 80 percent to 50 percent on
-30 held-out seeds; a difficulty curriculum then carries it to 57 percent on medium and
-53 percent on hard. Grad-CAM over the policy CNN shows attention on platform edges,
-gaps and enemies. Four classic RL failure modes are documented rather than hidden.
-A fourth phase replaces the frame stack with an LSTM reading one frame at a time:
-recurrence does learn the game, but on less than half the training budget it reaches
-37 percent on medium against the curriculum agent's 57 percent. Doubling that budget
-tested the obvious excuse and refuted it: typical performance rose, the peak did not.
-The same run showed that a 30-episode evaluation carries about plus or minus 14
-points, which retired two comparisons the project had already published, and the
-write-up was rewritten rather than left flattering.
+beats the hand-crafted 19-feature state-vector baseline 80 percent to 27 percent on
+200 held-out seeds; a difficulty curriculum then carries it to 52 percent on medium
+and 55 percent on hard. Grad-CAM over the policy CNN shows attention on platform
+edges, gaps and enemies. Four classic RL failure modes are documented rather than
+hidden. A fourth phase replaces the frame stack with an LSTM reading one frame at a
+time: recurrence does learn the game but lands behind the frame stack on every tier,
+29.5 percent on medium against the curriculum agent's 52. Getting the numbers honest
+took three extra experiments: a budget doubling that refuted the write-up's own
+excuse (typical performance rose, the peak did not), a noise analysis showing a
+30-episode evaluation carries about plus or minus 14 points, and a 200-seed
+re-measurement of all four models that replaced every headline figure - the state
+baseline's published 50 percent was really 27. The write-up was rewritten rather
+than left flattering.
 
 - Code: https://github.com/sergey-kasatov/neuron-platformer-rl
 
