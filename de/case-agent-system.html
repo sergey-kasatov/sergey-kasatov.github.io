@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
+  <title>KI-Agentensystem (AI-Brain) · Fallstudie | Sergey Kasatov</title>
+  <meta name="description" content="Fallstudie Multi-Agenten-System: 19 wiederkehrende Workflows mit je genau einem geplanten Owner, drei LLM-Laufzeitumgebungen auf einem Markdown-Regelwerk, zwei unabh&#228;ngige Scheduler und f&#252;nf Pr&#252;f-Gates, die einen Lauf scheitern lassen k&#246;nnen.">
+  <meta name="author" content="Sergey Kasatov">
+  <meta name="theme-color" content="#f2efe9">
+  <link rel="canonical" href="https://kasatov.de/de/case-agent-system.html">
+  <link rel="alternate" hreflang="en" href="https://kasatov.de/case-agent-system.html">
+  <link rel="alternate" hreflang="de" href="https://kasatov.de/de/case-agent-system.html">
+  <link rel="alternate" hreflang="x-default" href="https://kasatov.de/case-agent-system.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Fallstudie · KI-Agentensystem (AI-Brain)">
+  <meta property="og:description" content="Neunzehn wiederkehrende Workflows, je ein Owner, drei LLM-Laufzeiten und Gates, die den Lauf scheitern lassen k&#246;nnen. Arbeitsplan PS-03.">
+  <meta property="og:url" content="https://kasatov.de/de/case-agent-system.html">
+  <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script data-goatcounter="https://kasatov.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- SVG sprite -->
+  <svg class="sr-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-datum" viewBox="0 0 48 58">
+      <rect x="5" y="4" width="38" height="38" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M21 13 H12 V23 H21 V33 H12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+      <path d="M27 13 V33 M36 13 L27 23 L36 33" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+      <path d="M24 42 V47" stroke="currentColor" stroke-width="2"/>
+      <path class="datum-tri" d="M17 56 L31 56 L24 47 Z"/>
+    </symbol>
+    <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1 0 1.52-.01 2.74-.01 3.11 0 .3.2.66.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v8H3V6h8"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></g></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></g></symbol>
+    <symbol id="i-sheet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/></g></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 13h8M9 17h8"/></g></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16"/><path d="m2 6 10 7 10-7"/></g></symbol>
+  </svg>
+
+  <div class="sheet-frame" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Sergey Kasatov, Startseite">
+        <svg class="brand-mark" aria-hidden="true"><use href="#i-datum"/></svg>
+        <span class="brand-text">
+          <span class="brand-name">Kasatov</span>
+          <span class="brand-sub">KI &amp; Daten</span>
+        </span>
+      </a>
+      <nav class="nav-links" id="site-nav" aria-label="Hauptnavigation">
+        <a href="index.html"><span class="n">01</span>Start</a>
+        <a href="projects.html" aria-current="page"><span class="n">02</span>Projekte</a>
+        <a href="about.html"><span class="n">03</span>Profil</a>
+        <a href="contact.html"><span class="n">04</span>Kontakt</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="lang-link" href="../case-agent-system.html" lang="en" hreflang="en" aria-label="English version">EN</a>
+        <button class="theme-toggle" type="button" aria-label="Zwischen Papier- und Blaupausen-Thema wechseln">
+          <svg class="ic icon-blueprint" aria-hidden="true"><use href="#i-print"/></svg>
+          <svg class="ic icon-paper" aria-hidden="true"><use href="#i-sheet"/></svg>
+        </button>
+        <a class="btn btn-primary btn-sm nav-cta" href="contact.html">Kontakt aufnehmen</a>
+        <button class="nav-burger" type="button" aria-label="Men&#252; &#246;ffnen" aria-expanded="false" aria-controls="site-nav">
+          <svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-annos" aria-hidden="true">
+          <span class="anno">Dok.-Nr. <b>SK-DA-2026-PS03</b> · Arbeitsplan</span>
+          <span class="anno">Ref. <b>Pos. 12</b> · St&#252;ckliste</span>
+        </div>
+        <p class="anno case-crumb"><a href="projects.html">02 Projekte</a> / Arbeitsplan PS-03</p>
+        <h1 class="page-title">KI-Agentensystem <span class="hl">(AI-Brain)</span></h1>
+        <p class="section-lede">Ein privates Multi-Agenten-System im t&#228;glichen Betrieb: 19 wiederkehrende Workflows mit je genau einem geplanten Owner, ausgef&#252;hrt von drei LLM-Laufzeitumgebungen und einem selbst gehosteten n8n-Server auf einem einzigen Markdown-Regelwerk, verteilt auf zwei bewusst unabh&#228;ngige Rechner.</p>
+      </div>
+    </section>
+
+    <!-- ============ Zweck & Umfang ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Zweck &amp; Umfang</p>
+          <h2 class="section-title">Die Frage ist nicht, ob ein Agent das kann</h2>
+          <p class="section-lede case-lede">Eine Jobsuche, ein Vollzeit-Datenprogramm und mehrere private Verwaltungsbereiche erzeugen immer dieselbe Art wiederkehrender Arbeit: aus einer Quelle sammeln, gegen die Historie entdoppeln, jeden Eintrag bewerten, das Ergebnis in die richtige Datei schreiben, zwischen den Sitzungen nichts verlieren. Von Hand skaliert das nicht. Einem Chat-Assistenten alles zu &#252;berlassen scheitert anders, denn er hat kein Ged&#228;chtnis zwischen Sitzungen, wiederholt bereits erledigte Arbeit und liefert lieber eine plausible Antwort, als zu melden, dass er keine bekommen hat. Die Entwurfsfrage war deshalb immer die andere: <strong>Wie verhindert man, dass er unbemerkt das Falsche tut?</strong> Daraus besteht der gr&#246;&#223;te Teil dieses Systems.</p>
+        </div>
+        <div class="reveal">
+          <div class="chip-list">
+            <span class="chip hot">Claude Code</span><span class="chip">OpenAI Codex</span><span class="chip">Google Gemini</span><span class="chip hot">n8n, selbst gehostet in Docker</span><span class="chip hot">Python</span><span class="chip">macOS launchd</span><span class="chip">Windows Task Scheduler</span><span class="chip hot">Markdown als Zustandsschicht</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Arbeitsfolge ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Arbeitsfolge · Routing</p>
+          <h2 class="section-title">Sechs Entwurfsentscheidungen, in der Reihenfolge ihrer Bedeutung</h2>
+          <p class="section-lede">Jede Zeile ist eine Regel, die zuerst aufgeschrieben und danach durchgesetzt wurde. Die Architektur ist das Ergebnis, nicht der Code.</p>
+        </div>
+        <div class="reveal" style="overflow-x:auto;">
+          <table class="bom">
+            <thead>
+              <tr><th>Op.</th><th>Entscheidung</th><th class="opt">Was sie verhindert</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="pos">10</td><td class="name">Regeln liegen in einfachem Markdown</td><td class="qty opt">Jeder Agent, jeder Anbieter liest zum Sitzungsstart dieselben kanonischen Dateien. Kein Workflow h&#228;ngt an einem Hersteller</td></tr>
+              <tr><td class="pos">20</td><td class="name">Genau ein geplanter Owner je Workflow</td><td class="qty opt">Mehrere Agenten schreiben dieselben Dateien ohne Datenbanksperre. Die Ownership verhindert, dass zwei L&#228;ufe zwei widerspr&#252;chliche Fassungen eines Berichts erzeugen</td></tr>
+              <tr><td class="pos">30</td><td class="name">Deterministische Schicht unter der semantischen</td><td class="qty opt">Python &#252;bernimmt Abruf, Parsing, Entdopplung und Schreiben; das Modell bekommt nur die Bewertung, die wirklich Bewertung erfordert</td></tr>
+              <tr><td class="pos">40</td><td class="name">Begrenzte Agenten</td><td class="qty opt">Der Agent erh&#228;lt die Fakten deterministisch und entscheidet innerhalb einer festgelegten Optionsmenge, statt Fakten zu suchen und zugleich zu entscheiden</td></tr>
+              <tr><td class="pos">50</td><td class="name">Gates, die den Lauf scheitern lassen k&#246;nnen</td><td class="qty opt">Ein Ergebnis gilt nicht als richtig, weil ein Agent es behauptet. Ein Lauf ist fertig, wenn die Pr&#252;fungen bestehen</td></tr>
+              <tr><td class="pos">60</td><td class="name">Watchdog auf einem unabh&#228;ngigen Rechner</td><td class="qty opt">Ein Watchdog, der gemeinsam mit dem &#252;berwachten System ausf&#228;llt, meldet genau dann nichts, wenn es darauf ankommt</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Messwerte ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Messwerte · Aus dem System selbst z&#228;hlbar</p>
+          <h2 class="section-title">Was tats&#228;chlich l&#228;uft</h2>
+        </div>
+        <div class="stats-grid reveal">
+          <div class="stat">
+            <div class="value"><span>19</span></div>
+            <div class="label">wiederkehrende Workflows · je genau ein geplanter Owner</div>
+          </div>
+          <div class="stat">
+            <div class="value"><span>3</span></div>
+            <div class="label">LLM-Laufzeiten auf einem Markdown-Regelwerk</div>
+          </div>
+          <div class="stat">
+            <div class="value"><span>5</span></div>
+            <div class="label">Pr&#252;f-Gates bei einem dokumentenerzeugenden Lauf</div>
+          </div>
+          <div class="stat">
+            <div class="value"><span>2</span></div>
+            <div class="label">Scheduler auf zwei unabh&#228;ngigen Rechnern</div>
+          </div>
+        </div>
+        <div class="aside-row" style="margin-top:1.6rem;">
+          <div class="aside-card reveal">
+            <h3>Was die f&#252;nf Gates pr&#252;fen</h3>
+            <p style="margin-top:.6rem;">Dass jede in einem Bericht behauptete Kennung in Registry und Archiv existiert. Dass keine Zeichensatz-Korruption ausgeliefert wurde. Dass ein erzeugtes PDF maschinenlesbar und in der richtigen Lesereihenfolge ist. Dass kein Dokument eine Kompetenz behauptet, die die Quelldatei nicht f&#252;hrt. Dass der Text nicht nach Vorlage klingt.</p>
+          </div>
+          <div class="aside-card reveal">
+            <h3>Wo die Entscheidung beim Menschen bleibt</h3>
+            <p style="margin-top:.6rem;">Nichts wird von einem Agenten versendet, eingereicht oder ver&#246;ffentlicht. Das System bereitet vor, pr&#252;ft und dokumentiert; die Entscheidungen, die andere Menschen erreichen, bleiben meine. Diese Grenze ist eine Regel im selben Markdown, das die Agenten lesen, keine Gewohnheit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Fehlerbilder ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Abweichungen · Im Betrieb gefunden</p>
+          <h2 class="section-title">Die Fehlerbilder sind das eigentliche Ergebnis</h2>
+          <p class="section-lede">Keines davon stammt aus der Literatur. Jedes wurde im Betrieb gefunden und danach so in die Regeln geschrieben, dass es nicht unbemerkt wiederkehren kann.</p>
+        </div>
+        <div class="reveal" style="overflow-x:auto;">
+          <table class="bom">
+            <thead>
+              <tr><th>Nr.</th><th>Fehlerbild</th><th class="opt">Abstellma&#223;nahme</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="pos">01</td><td class="name">Erfundene Kennzahlen</td><td class="qty opt">Ein Assistent erzeugte konkrete, selbstbewusst formulierte, bezifferte Erfolge, die es nie gab, und bot sie als Interviewmaterial an. Regel: eine Zahl ist nur verwendbar, wenn sie in der Quelldatei steht. Gate: jede Angabe mit einer Einheit markieren, die dort nirgends vorkommt. <b>Konkretheit ist das Erscheinungsbild einer erfundenen Kennzahl, kein Gegenbeweis.</b></td></tr>
+              <tr><td class="pos">02</td><td class="name">Echo der Quelle</td><td class="qty opt">Ein schreibender Agent &#252;bernimmt das Vokabular des Ausgangsdokuments in die Beschreibung der Person. Vier Dokumente gingen so hinaus, bevor es ein eigenes Inhalts-Gate gab; die sch&#228;rfste Pr&#252;fung ist dreiseitig und findet Begriffe, die im Entwurf und in der Quelle stehen, in der Stammdatei aber fehlen</td></tr>
+              <tr><td class="pos">03</td><td class="name">Nicht das Substantiv wird aufgewertet, sondern das Verb</td><td class="qty opt">Eine dokumentierte Methode, formuliert als "von mir gef&#252;hrte Untersuchungen", besteht jede Begriffspr&#252;fung, denn die Gates pr&#252;fen Begriffe und die Behauptung steckt im Verb. <b>Kein automatischer Check erkennt diese Klasse.</b> Sie ist als benannte Grenze festgehalten, nicht als gel&#246;stes Problem</td></tr>
+              <tr><td class="pos">04</td><td class="name">Stiller Scheduler-Ausfall</td><td class="qty opt">Ein toter Scheduler und ein gesunder Rechner ohne Netz erzeugen dasselbe Signal. Der Heartbeat muss beide unterscheiden, statt auf Veralterung zu alarmieren, sonst gew&#246;hnt man sich das Wegsehen an</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Grenze + Einschraenkungen ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Abnahme · Benannte Grenzen</p>
+          <h2 class="section-title">Was ich behaupte, und was nicht</h2>
+        </div>
+        <div class="aside-row">
+          <div class="aside-card reveal" style="position:relative;">
+            <h3>Die ehrliche Grenze</h3>
+            <p style="margin-top:.6rem;">Ich habe dieses System <strong>entworfen, spezifiziert und betreibe es</strong>: Architektur, Ownership-Modell, Regeln, Gates und die Diagnose s&#228;mtlicher oben genannter Fehlerbilder stammen von mir. <strong>Der Code entstand weitgehend KI-gest&#252;tzt und wurde nicht von Grund auf getippt.</strong> Zu behaupten, ich h&#228;tte gut hundert Skripte entwickelt, w&#228;re falsch und w&#252;rde in der ersten technischen R&#252;ckfrage zusammenbrechen. F&#252;r eine Aufgabe, in der es darum geht, KI f&#252;r andere nutzbar zu machen, ist die genaue Aussage zugleich die st&#228;rkere.</p>
+            <span class="note insp-note" aria-hidden="true">vorab gesagt</span>
+          </div>
+          <div class="aside-card reveal">
+            <h3>Warum es kein Repository gibt</h3>
+            <p style="margin-top:.6rem;">Das System betreibt einen privaten Wissensspeicher mit pers&#246;nlichen und bewerbungsbezogenen Daten, wird also nicht ver&#246;ffentlicht und bleibt es auch. Live vorf&#252;hrbar ist es per Bildschirmfreigabe: die Workflow-Registry, die datierte Ausgabe eines geplanten Laufs, die Gate-Skripte und ihr Bestanden oder Nicht-bestanden. Die Zahlen auf dieser Seite sind aus dem System selbst z&#228;hlbar und ver&#228;ndern sich, wenn es w&#228;chst.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Freigabeblock ============ -->
+    <section class="section tight">
+      <div class="container">
+        <div class="approval reveal">
+          <div>
+            <h2>Interessant sind die Leitplanken.</h2>
+            <p>Wer selbst Agenten baut, stellt zuerst dieselbe Frage: Wie verhindert man, dass das System unbemerkt das Falsche tut? Genau dar&#252;ber spreche ich lieber, und genau das kann ich im Betrieb zeigen.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="contact.html">Um eine Vorf&#252;hrung bitten <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <a class="btn" href="projects.html">Zur&#252;ck zur St&#252;ckliste</a>
+            </div>
+          </div>
+          <div class="approval-side">
+            <div class="stamp reveal-stamp">Im t&#228;glichen Betrieb<small>PS-03 · Pos. 12</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <svg class="brand-mark" aria-hidden="true"><use href="#i-datum"/></svg>
+          <span class="brand-text"><span class="brand-name">Kasatov</span><span class="brand-sub">KI &amp; Daten</span></span>
+        </a>
+        <p>KI-Automatisierung und Datenanalyse in K&#246;ln, auf 17 Jahren Automobil-Engineering. Verf&#252;gbar ab September 2026.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Seiten</h4>
+        <a href="index.html">Start</a>
+        <a href="projects.html">Projekte</a>
+        <a href="about.html">Profil</a>
+        <a href="contact.html">Kontakt</a>
+      </div>
+      <div class="foot-col">
+        <h4>Anderswo</h4>
+        <a href="https://github.com/sergey-kasatov" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/sergey-kasatov" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://public.tableau.com/app/profile/sergey.kasatov/vizzes" target="_blank" rel="noopener">Tableau Public</a>
+        <a href="mailto:sergey@kasatov.de">sergey@kasatov.de</a>
+      </div>
+    </div>
+    <div class="container foot-bottom">
+      <span>&#169; <span id="year">2026</span> Sergey Kasatov · K&#246;ln, Deutschland</span>
+      <span>keine Cookies · cookiefreie Statistik (GoatCounter) · selbst gehostete Schriften · vanilla HTML/CSS/JS</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

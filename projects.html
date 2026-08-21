@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
-  <title>Projects · Sergey Kasatov | Data Analyst</title>
-  <meta name="description" content="Eleven end-to-end data projects by Sergey Kasatov: demand forecasting, predictive maintenance, NLP, computer vision, LLM workflows, reinforcement learning, and BI dashboards. Two live demos.">
+  <title>Projects · Sergey Kasatov | AI Automation &amp; Data Analytics</title>
+  <meta name="description" content="Twelve end-to-end projects by Sergey Kasatov: a multi-agent system in daily operation, LLM workflows, demand forecasting, predictive maintenance, NLP, computer vision, reinforcement learning, and BI dashboards. Two live demos.">
   <meta name="author" content="Sergey Kasatov">
   <meta name="theme-color" content="#f2efe9">
   <link rel="canonical" href="https://kasatov.de/projects.html">
@@ -15,7 +15,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects · Sergey Kasatov">
-  <meta property="og:description" content="Eleven end-to-end data projects: forecasting, ML, NLP, CV, LLM workflows, RL, and BI. Every metric reproducible; two live demos.">
+  <meta property="og:description" content="Twelve end-to-end projects: a multi-agent system in daily operation, LLM workflows, forecasting, ML, NLP, CV, RL, and BI. Every metric reproducible; two live demos.">
   <meta property="og:url" content="https://kasatov.de/projects.html">
   <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
   <meta property="og:image:width" content="1200">
@@ -59,7 +59,7 @@
         <svg class="brand-mark" aria-hidden="true"><use href="#i-datum"/></svg>
         <span class="brand-text">
           <span class="brand-name">Kasatov</span>
-          <span class="brand-sub">Data Analyst</span>
+          <span class="brand-sub">AI &amp; Data</span>
         </span>
       </a>
       <nav class="nav-links" id="site-nav" aria-label="Main navigation">
@@ -91,7 +91,7 @@
           <span class="anno">Sheet <b>02 / 04</b> · Scale <b>1:1</b></span>
         </div>
         <h1 class="page-title">Parts list: <span class="hl">projects</span></h1>
-        <p class="section-lede">Eleven end-to-end projects: forecasting, machine learning, NLP, computer vision, LLM workflows, reinforcement learning, and BI. Every metric below is reproducible from the linked repositories; two projects run live.</p>
+        <p class="section-lede">Twelve end-to-end projects: agent systems and LLM workflows, forecasting, machine learning, NLP, computer vision, reinforcement learning, and BI. Every metric below is reproducible from the linked repositories, or demonstrable live; two projects run live.</p>
       </div>
     </section>
 
@@ -115,6 +115,7 @@
               <tr><td class="pos">09</td><td class="name"><a href="#p-triage">AI Order Triage Agent</a></td><td class="qty">answer key <b>30/30</b></td><td class="qty opt">n8n · Gemini · Airtable</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">10</td><td class="name"><a href="#p-fx">FX Random Walk Benchmark</a></td><td class="qty">error explained <b>r = 0.97</b></td><td class="qty opt">Python · statsmodels · XGBoost</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">11</td><td class="name"><a href="#p-neuron">Neuron Platformer RL</a></td><td class="qty">held-out success <b>80%</b></td><td class="qty opt">PyTorch · Stable-Baselines3</td><td class="qty">GitHub</td></tr>
+              <tr><td class="pos">12</td><td class="name"><a href="#p-agents">AI-Brain Agent System</a></td><td class="qty">scheduled workflows <b>19</b></td><td class="qty opt">Claude Code · Codex · n8n · Python</td><td class="qty">Private</td></tr>
             </tbody>
           </table>
         </div>
@@ -370,6 +371,28 @@
             </div>
           </article>
 
+          <article class="detail-card reveal" id="p-agents" data-cats="ai">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 12</span> · since Jun 2026</span>
+            </div>
+            <div class="dc-body">
+              <h3>AI-Brain Agent System</h3>
+              <p>A job search, a full-time data programme and a set of personal admin domains all generate the same shape of recurring work: gather from a source, deduplicate against history, judge each item, write the result to the right file, and lose nothing between sessions. Doing it by hand does not scale, and handing it wholesale to a chat assistant fails differently: an assistant has no memory between sessions, will redo work that is already done, and will produce a plausible answer rather than report that it could not get one. So the design question was never "can an agent do this" but "how do you stop it from silently doing the wrong thing". The answer is four rules that everything else follows from. Every recurring job names exactly one scheduled owner and one canonical output path, because several agents write the same files with no database lock. A deterministic Python layer does the fetching, parsing, deduplication and writing, and the model is handed only the judgement that actually needs judgement. Verification gates can fail a run: separate checks assert that every identifier claimed in a report exists in the registry and the archive, that no encoding corruption shipped, that generated PDFs are machine-readable in the right order, that no document claims a skill the source-of-truth file does not carry, and that the prose does not read like a template. And the watchdog runs on a machine that cannot fail together with the machine it watches, because a watchdog sharing fate with its subject reports nothing exactly when it matters. The failure modes are the real result and each one was found by running the thing: fabricated metrics offered as interview material, a drafting agent absorbing the source document's vocabulary into a description of the candidate, and the class no gate catches at all, where a documented method is escalated by the verb rather than the noun. That last one is written down as a stated limit, not as a solved problem.</p>
+              <div class="metric-row">
+                <span class="metric">scheduled workflows <b>19</b></span>
+                <span class="metric">LLM runtimes on one rule set <b>3</b></span>
+                <span class="metric">verification gates <b>5</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Claude Code</span><span class="tag">Codex</span><span class="tag">Gemini</span><span class="tag">n8n</span><span class="tag">Python</span><span class="tag">launchd</span>
+              </div>
+              <div class="dc-links">
+                <a href="case-agent-system.html"><svg class="ic" aria-hidden="true"><use href="#i-sheet"/></svg>Case study</a>
+              </div>
+              <p class="aside-note">No public repository: the system operates a private vault. Designed, specified and operated by me; the code was written largely with AI assistance. Demonstrable live by screen share.</p>
+            </div>
+          </article>
+
         </div>
 
         <p class="projects-foot reveal">More projects and work in progress on <a href="https://github.com/sergey-kasatov" target="_blank" rel="noopener">GitHub</a> and <a href="https://public.tableau.com/app/profile/sergey.kasatov/vizzes" target="_blank" rel="noopener">Tableau Public</a>.</p>
@@ -403,9 +426,9 @@
       <div class="foot-brand">
         <a class="brand" href="index.html">
           <svg class="brand-mark" aria-hidden="true"><use href="#i-datum"/></svg>
-          <span class="brand-text"><span class="brand-name">Kasatov</span><span class="brand-sub">Data Analyst</span></span>
+          <span class="brand-text"><span class="brand-name">Kasatov</span><span class="brand-sub">AI &amp; Data</span></span>
         </a>
-        <p>Data Analyst in Cologne with 17 years of automotive engineering behind the analytics. Open to work from September 2026.</p>
+        <p>AI automation and data analytics in Cologne, on 17 years of automotive engineering. Open to work from September 2026.</p>
       </div>
       <div class="foot-col">
         <h4>Pages</h4>

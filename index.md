@@ -1,4 +1,4 @@
-# Sergey Kasatov - Data Analyst
+# Sergey Kasatov - AI Automation and Data Analytics
 
 Cologne, Germany. Available from September 2026.
 
@@ -8,13 +8,17 @@ HTML pages linked below.
 
 ## TL;DR
 
-- Data Analyst with 17 years of prior automotive engineering on Ford, GM, Opel and
-  Stellantis programs: product development, supplier quality, and launch management.
+- Data analyst and AI automation specialist with 17 years of prior automotive
+  engineering on Ford, GM, Opel and Stellantis programs: product development,
+  supplier quality, and launch management.
 - Retrained into data analytics (Masterschool, Data Analytics Program AZAV,
   Advanced Data Science and AI). Python, SQL, Tableau, machine learning, with a
   preference for interpretable models.
-- Eleven completed portfolio projects, two of them deployed live. Open to Data Analyst,
-  BI Analyst and Operations Analyst roles in Germany from September 2026.
+- Designs and operates a private multi-agent system: 19 recurring workflows, each with
+  exactly one scheduled owner, run by three LLM runtimes and a self-hosted n8n server
+  on one Markdown rule set, across two deliberately independent machines.
+- Twelve completed portfolio projects, two of them deployed live. Open to AI consulting
+  and enablement, automation, and data analyst roles in Germany from September 2026.
 
 ## Contact and profiles
 
@@ -34,10 +38,21 @@ analytics: find the root cause, quantify it, and make the result something a
 non-technical stakeholder can act on. The work was always data work, it just ran on
 Excel pivots, KPI packs and 8D reports instead of Python and SQL.
 
-The strongest fit is analytics in manufacturing, quality or operations, where the
-domain knowledge is not decoration: knowing why a brake-condition signal dominates a
-failure model, or what a launch-phase issue backlog actually costs, is the difference
+The strongest fit is where AI and automation meet an industrial process: designing
+agent workflows a business can trust, judging feasibility, benefit and risk, and
+translating between a technical build and the people who have to rely on it. Analytics
+in manufacturing, quality or operations is the same profile from the other side, where
+the domain knowledge is not decoration: knowing why a brake-condition signal dominates
+a failure model, or what a launch-phase issue backlog actually costs, is the difference
 between a model that scores well and a model someone trusts.
+
+The same instinct now runs on the work itself. Since mid-2026 a private multi-agent
+system handles the recurring parts of a job search, a full-time data programme and
+several admin domains. The design question there was never whether an agent can do the
+task, but how to stop it from silently doing the wrong thing: one scheduled owner per
+workflow, a deterministic layer under the semantic one, agents bounded to a stated set
+of options, verification gates that can fail a run, and a watchdog on a machine that
+cannot fail together with what it watches.
 
 ## Skills
 
@@ -53,7 +68,8 @@ Languages: Russian (native), English (C1), German (B2).
 
 ## Portfolio projects
 
-Eleven completed projects. Every metric below is reproducible from the linked repository.
+Twelve completed projects. Every metric below is reproducible from the linked
+repository, or demonstrable live.
 
 ### 1. FreshMart Demand Planner (live)
 
@@ -199,6 +215,36 @@ than left flattering.
 
 - Code: https://github.com/sergey-kasatov/neuron-platformer-rl
 
+### 12. AI-Brain Agent System (private, in daily operation)
+
+A multi-agent system that runs unattended. 19 recurring workflows, each naming exactly
+one scheduled owner and one canonical output path, because several agents write the
+same files with no database lock and ownership is what stops two runs producing two
+conflicting versions of one report. Three LLM runtimes (Claude Code, OpenAI Codex,
+Google Gemini) plus a self-hosted n8n server read the same canonical Markdown rules, so
+no workflow is tied to one vendor. A deterministic Python layer does the fetching,
+parsing, deduplication and file writing; the model is handed only the judgement that
+needs judgement. Five verification gates can fail a run: identifier consistency against
+the registry and archive, encoding, machine readability of generated PDFs, content
+fidelity against the source-of-truth file, and style. Two schedulers run on two
+deliberately independent machines, so the watchdog cannot fail together with what it
+watches.
+
+The failure modes are the substantive result, each found by operating the system:
+fabricated metrics offered as interview material (specificity is what a fabricated
+metric looks like, not evidence against one); a drafting agent absorbing the source
+document's vocabulary into its description of the person; a silent scheduler outage
+that is indistinguishable from a healthy machine with no network; and the class no gate
+catches, where a documented method is escalated by the verb rather than the noun. That
+last one is recorded as a stated limit, not as a solved problem.
+
+Boundary, stated up front: designed, specified and operated by Sergey Kasatov. The code
+was written largely with AI assistance, not typed from scratch.
+
+- No public repository: the system operates a private vault. Demonstrable live by
+  screen share.
+- Case study: https://kasatov.de/case-agent-system.html
+
 ## Experience
 
 ### SEGULA Technologies - Automotive Consultant
@@ -267,12 +313,12 @@ Oct 2010 - Mar 2013. Master's program, coursework completed, degree not awarded.
 
 Nine certificates with verification links are listed on https://kasatov.de/about.html.
 The most recent is "AI Agents PRO" (Jul 2026), which covers agent workflows; the
-personal knowledge base that AI agents work in daily is the practical result.
+multi-agent system described under project 12 is the practical result.
 
 ## Availability
 
-Open to Data Analyst, BI Analyst and Operations Analyst roles in Germany from
-September 2026. Based in Cologne. On-site, hybrid or remote.
+Open to AI consulting and enablement, automation, and data analyst roles in Germany
+from September 2026. Based in Cologne. On-site, hybrid or remote.
 
 ## About this site
 
