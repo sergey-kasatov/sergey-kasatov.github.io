@@ -307,7 +307,10 @@ modelling; time series, computer vision and NLP with LLMs; AI-assisted analysis
 workflows, AI strategy and governance, and automation with agent concepts.
 
 **Technische Hochschule Ingolstadt** - International Automotive Engineering,
-Oct 2010 - Mar 2013. Master's program, coursework completed, degree not awarded.
+Oct 2010 - Mar 2013. Master's program, 87.5 of 90 ECTS completed, degree not awarded.
+Master's thesis at Ford-Werke GmbH on BIW repair methods for ultra-high-strength steel
+structures, graded 1.3. Focus areas: mathematical modelling and simulation, automotive
+design, car body construction.
 
 ## Certificates
 
