@@ -1,73 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kasatov.de/</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/index.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/"/>
   </url>
   <url>
-    <loc>https://kasatov.de/projects.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/projects.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/projects.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/projects.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/about.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/about.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/about.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/about.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/contact.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/contact.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/contact.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/contact.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/case-freshmart.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/case-freshmart.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/case-freshmart.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/case-freshmart.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/case-maintenance.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/case-maintenance.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/case-maintenance.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/case-maintenance.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/case-agent-system.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/case-agent-system.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/case-agent-system.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/case-agent-system.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/de/index.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/de/index.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/index.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/de/projects.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/de/projects.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/projects.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/projects.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/de/about.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/de/about.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/about.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/about.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/de/contact.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/de/contact.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/contact.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/contact.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/de/case-freshmart.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/de/case-freshmart.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/case-freshmart.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/case-freshmart.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/de/case-maintenance.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/de/case-maintenance.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/case-maintenance.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/case-maintenance.html"/>
   </url>
   <url>
-    <loc>https://kasatov.de/de/case-agent-system.html</loc><lastmod>2026-08-21</lastmod>
+    <loc>https://kasatov.de/de/case-agent-system.html</loc><lastmod>2026-09-03</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/case-agent-system.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/case-agent-system.html"/>
+  </url>
+  <url>
+    <loc>https://kasatov.de/automotive.html</loc><lastmod>2026-09-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/automotive.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/automotive.html"/>
+  </url>
+  <url>
+    <loc>https://kasatov.de/de/automotive.html</loc><lastmod>2026-09-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/automotive.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/automotive.html"/>
+  </url>
+  <url>
+    <loc>https://kasatov.de/impressum.html</loc><lastmod>2026-09-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/impressum.html"/>
+  </url>
+  <url>
+    <loc>https://kasatov.de/de/impressum.html</loc><lastmod>2026-09-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/impressum.html"/>
+  </url>
+  <url>
+    <loc>https://kasatov.de/privacy.html</loc><lastmod>2026-09-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://kasatov.de/de/datenschutz.html</loc><lastmod>2026-09-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kasatov.de/de/datenschutz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasatov.de/privacy.html"/>
   </url>
 </urlset>

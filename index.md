@@ -1,6 +1,6 @@
 # Sergey Kasatov - AI Automation and Data Analytics
 
-Cologne, Germany. Available from September 2026.
+Cologne, Germany. Available now (since September 2026).
 
 This is the machine-readable mirror of https://kasatov.de/. Same information as the
 website, in a format agents can parse directly. The designed version lives at the
@@ -17,8 +17,9 @@ HTML pages linked below.
 - Designs and operates a private multi-agent system: 19 recurring workflows, each with
   exactly one scheduled owner, run by three LLM runtimes and a self-hosted n8n server
   on one Markdown rule set, across two deliberately independent machines.
-- Twelve completed portfolio projects, two of them deployed live. Open to AI consulting
-  and enablement, automation, and data analyst roles in Germany from September 2026.
+- Twelve completed portfolio projects, two of them deployed online. Open to AI consulting
+  and enablement, automation, and data analyst positions in Germany (employment,
+  not freelance services), available now.
 
 ## Contact and profiles
 
@@ -69,9 +70,9 @@ Languages: Russian (native), English (C1), German (B2).
 ## Portfolio projects
 
 Twelve completed projects. Every metric below is reproducible from the linked
-repository, or demonstrable live.
+repository, or demonstrable online.
 
-### 1. FreshMart Demand Planner (live)
+### 1. FreshMart Demand Planner (deployed demo, wakes on request)
 
 Retail sales forecasting end to end: EDA, feature engineering, comparison of 10+
 models across statistical, machine-learning and deep-learning families, HyperOpt
@@ -80,7 +81,7 @@ RMSE 138.0, MAE 93.1, MAPE 21.3 percent, R2 0.43 on a chronological Jan-Mar 2014
 test window. Deployed as a Streamlit planning tool that speaks planning language
 rather than metrics.
 
-- Live app: https://freshmart-demand-planner.streamlit.app
+- Demo app (sleeps after inactivity, wakes in about 30 s): https://freshmart-demand-planner.streamlit.app
 - Code: https://github.com/sergey-kasatov/time-series-forecasting-project
 - Case study: https://kasatov.de/case-freshmart.html
 
@@ -329,3 +330,8 @@ Static HTML, no cookies, self-hosted fonts. The only external request is the
 cookieless GoatCounter visitor counter (no personal data stored, no consent
 banner required). Available in English and German
 (https://kasatov.de/de/index.html). Written and maintained by Sergey Kasatov.
+
+Legal notice: https://kasatov.de/impressum.html · Privacy policy: https://kasatov.de/privacy.html
+(German: https://kasatov.de/de/impressum.html · https://kasatov.de/de/datenschutz.html).
+Automotive-facing profile for launch, quality and supplier-quality roles:
+https://kasatov.de/automotive.html (German: https://kasatov.de/de/automotive.html).

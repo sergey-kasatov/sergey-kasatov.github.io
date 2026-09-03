@@ -31,13 +31,17 @@
   }
 
   /* ---------- Theme toggle: paper <-> blueprint ---------- */
+  /* Blueprint is the default (CSS :root); paper only when the attribute says so. */
   function currentTheme() {
-    return docEl.getAttribute('data-theme') === 'blueprint' ? 'blueprint' : 'paper';
+    return docEl.getAttribute('data-theme') === 'paper' ? 'paper' : 'blueprint';
+  }
+  function setMetaColor(t) {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', t === 'blueprint' ? '#0d1f33' : '#f2efe9');
   }
   function applyTheme(t) {
     docEl.setAttribute('data-theme', t);
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', t === 'blueprint' ? '#0d1f33' : '#f2efe9');
+    setMetaColor(t);
     try { localStorage.setItem('theme', t); } catch (e) {}
   }
   document.querySelectorAll('.theme-toggle').forEach(function (btn) {
@@ -45,7 +49,7 @@
       applyTheme(currentTheme() === 'blueprint' ? 'paper' : 'blueprint');
     });
   });
-  if (currentTheme() === 'blueprint') applyTheme('blueprint');
+  setMetaColor(currentTheme());
 
   /* ---------- Burger menu ---------- */
   var burger = document.querySelector('.nav-burger');
@@ -93,6 +97,7 @@
     var target = parseInt(el.getAttribute('data-count'), 10);
     if (isNaN(target)) return;
     if (reduceMotion) { el.textContent = target; return; }
+    el.textContent = '0';  /* HTML carries the real number; animate only in a browser */
     var start = null, dur = 1100;
     function step(ts) {
       if (!start) start = ts;

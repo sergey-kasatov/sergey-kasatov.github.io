@@ -2,7 +2,7 @@
    Sergey Kasatov · personal site v4 · "The Engineering Drawing"
    Design thesis: the site is a set of engineering drawing sheets
    documenting one part: S. KASATOV, DATA ANALYST.
-   Paper theme (default) = technical paper; dark theme = blueprint.
+   Blueprint theme (default since 2026-09-03) = dark drawing; paper = light alternative.
    No gradients, no glass, no rounded pills. Hairlines, stamps,
    dimension lines, mono annotations, one redline accent.
    ============================================================ */
@@ -49,36 +49,6 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  --paper:#f2efe9;
-  --paper-2:#ece8df;
-  --paper-3:#e4dfd3;
-  --ink:#1c1b17;
-  --ink-2:#585245;
-  --line:#a8a190;
-  --line-soft:#cfc9ba;
-  --accent:#c2311f;
-  --accent-soft:rgba(194,49,31,.08);
-  --grid-minor:rgba(28,27,23,.05);
-  --grid-major:rgba(28,27,23,.10);
-  --frame:rgba(28,27,23,.65);
-  --shadow:rgba(28,27,23,.9);
-
-  --f-display:'Saira Condensed','Arial Narrow',sans-serif;
-  --f-body:'IBM Plex Sans',system-ui,sans-serif;
-  --f-mono:'IBM Plex Mono',ui-monospace,'Cascadia Mono',monospace;
-  --f-note:'Caveat',cursive;
-
-  --container:1880px;
-  --pad:clamp(1.25rem, 3.4vw, 4.5rem);
-  --frame-inset:10px;
-
-  --fs-hero:clamp(4rem, 11.5vw, 13rem);
-  --fs-title:clamp(2.1rem, 3.4vw, 4rem);
-  --fs-lede:clamp(1.02rem, 1.15vw, 1.3rem);
-  --fs-body:clamp(.98rem, 1.02vw, 1.14rem);
-  --fs-mono:clamp(.72rem, .78vw, .84rem);
-}
-[data-theme="blueprint"] {
   --paper:#0d1f33;
   --paper-2:#122740;
   --paper-3:#17304d;
@@ -92,6 +62,36 @@
   --grid-major:rgba(219,231,243,.09);
   --frame:rgba(219,231,243,.55);
   --shadow:rgba(0,0,0,.9);
+
+  --f-display:'Saira Condensed','Arial Narrow',sans-serif;
+  --f-body:'IBM Plex Sans',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,'Cascadia Mono',monospace;
+  --f-note:'Caveat',cursive;
+
+  --container:1880px;
+  --pad:clamp(1.25rem, 3.4vw, 4.5rem);
+  --frame-inset:10px;
+
+  --fs-hero:clamp(3.4rem, 7.6vw, 8.6rem);
+  --fs-title:clamp(2.1rem, 3.4vw, 4rem);
+  --fs-lede:clamp(1.02rem, 1.15vw, 1.3rem);
+  --fs-body:clamp(.98rem, 1.02vw, 1.14rem);
+  --fs-mono:clamp(.72rem, .78vw, .84rem);
+}
+[data-theme="paper"] {
+  --paper:#f2efe9;
+  --paper-2:#ece8df;
+  --paper-3:#e4dfd3;
+  --ink:#1c1b17;
+  --ink-2:#585245;
+  --line:#a8a190;
+  --line-soft:#cfc9ba;
+  --accent:#c2311f;
+  --accent-soft:rgba(194,49,31,.08);
+  --grid-minor:rgba(28,27,23,.05);
+  --grid-major:rgba(28,27,23,.10);
+  --frame:rgba(28,27,23,.65);
+  --shadow:rgba(28,27,23,.9);
 }
 
 /* ---------- Reset / base ---------- */
@@ -180,9 +180,10 @@ button { font:inherit; color:inherit; background:none; border:none; cursor:point
 }
 .theme-toggle:hover { color:var(--ink); border-color:var(--ink); }
 .theme-toggle .ic { width:1.15rem; height:1.15rem; }
-[data-theme="paper"] .icon-paper, :root:not([data-theme="blueprint"]) .icon-paper { display:none; }
-[data-theme="blueprint"] .icon-blueprint { display:none; }
-[data-theme="blueprint"] .icon-paper { display:block; }
+.icon-blueprint { display:none; }
+.icon-paper { display:block; }
+[data-theme="paper"] .icon-paper { display:none; }
+[data-theme="paper"] .icon-blueprint { display:block; }
 .nav-burger { display:none; width:42px; height:42px; border:1.5px solid var(--line); place-items:center; }
 
 /* ---------- Buttons (press-plate, hard shadow, square) ---------- */
@@ -198,6 +199,7 @@ button { font:inherit; color:inherit; background:none; border:none; cursor:point
 .btn:active { transform:translate(0,0); box-shadow:1px 1px 0 var(--accent); }
 .btn-primary { background:var(--ink); color:var(--paper); }
 .btn-sm { padding:.7em 1.2em; font-size:.74rem; }
+.btn-quiet { border-color:var(--line); color:var(--ink-2); background:transparent; }
 
 /* ---------- Annotations, labels, stamps ---------- */
 .anno { font-family:var(--f-mono); font-size:var(--fs-mono); font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-2); }
@@ -325,6 +327,7 @@ button { font:inherit; color:inherit; background:none; border:none; cursor:point
 .badge-live { display:inline-flex; align-items:center; gap:.45em; font-family:var(--f-mono); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.22em .6em; }
 .badge-live .dot { width:.45em; height:.45em; border-radius:50%; background:var(--accent); animation:pulse 1.8s ease infinite; }
 @keyframes pulse { 50% { opacity:.35; } }
+.badge-demo { display:inline-flex; align-items:center; gap:.45em; font-family:var(--f-mono); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); border:1px solid var(--line); padding:.22em .6em; }
 .dc-body { padding:1.3rem 1.2rem 1.4rem; display:flex; flex-direction:column; gap:1rem; flex:1; }
 .dc-body h3 { font-family:var(--f-display); font-weight:600; text-transform:uppercase; font-size:clamp(1.3rem,1.6vw,1.75rem); letter-spacing:.02em; line-height:1.1; }
 .dc-metric { display:flex; align-items:baseline; gap:.8rem; border-block:1px solid var(--line-soft); padding-block:.7rem; }
@@ -380,7 +383,7 @@ button { font:inherit; color:inherit; background:none; border:none; cursor:point
 .site-footer { border-top:1.5px solid var(--frame); background:var(--paper-2); margin-top:clamp(3rem,7vh,6rem); }
 .foot-grid { display:grid; grid-template-columns:minmax(0,1.6fr) auto auto; gap:clamp(2rem,4vw,6rem); padding-block:clamp(2.2rem,4.5vh,4rem); }
 .foot-brand p { color:var(--ink-2); max-width:44ch; margin-top:1rem; font-size:.95em; }
-.foot-col h4 { font-family:var(--f-mono); font-size:.66rem; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+.foot-col h3, .foot-col h4 { font-family:var(--f-mono); font-size:.66rem; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
 .foot-col a { display:block; text-decoration:none; color:var(--ink-2); padding-block:.28rem; font-size:.95em; }
 .foot-col a:hover { color:var(--ink); }
 .foot-bottom { border-top:1px solid var(--line-soft); padding-block:1rem 1.4rem; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-family:var(--f-mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); }
@@ -398,14 +401,15 @@ button { font:inherit; color:inherit; background:none; border:none; cursor:point
 .filter-btn.active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
 .projects-foot { margin-top:2rem; color:var(--ink-2); }
 .projects-foot a { color:var(--ink); }
+.projects-grid:not(.show-all) .detail-card.card-more { display:none; }
 .card-hidden { display:none; }
 
 /* ---------- About: figure / portrait ---------- */
 .about-grid { display:grid; grid-template-columns:minmax(300px,1.25fr) minmax(0,1.45fr); gap:clamp(2rem,4.5vw,5.5rem); align-items:stretch; }
 .about-grid > .reveal { height:100%; display:flex; flex-direction:column; }
 .figure { position:relative; border:1.5px solid var(--frame); background:var(--paper-2); padding:1rem; height:100%; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box; }
-.figure img { filter:contrast(1.03); border:1px solid var(--line-soft); flex:1; height:100%; object-fit:cover; }
-[data-theme="blueprint"] .figure img { filter:contrast(1.03) brightness(.95); }
+.figure img { filter:contrast(1.03) brightness(.95); border:1px solid var(--line-soft); flex:1; height:100%; object-fit:cover; }
+[data-theme="paper"] .figure img { filter:contrast(1.03); }
 .figure figcaption { display:flex; justify-content:space-between; gap:.8rem; padding-top:.85rem; flex-wrap:wrap; }
 .fig-ticks { position:absolute; inset:0; pointer-events:none; }
 .about-copy p { margin-bottom:1.2rem; max-width:none; }
@@ -511,7 +515,7 @@ a.contact-item:hover .ci-icon { border-color:var(--accent); color:var(--accent);
   :root {
     --container:2380px;
     --pad:clamp(2rem, 4vw, 6rem);
-    --fs-hero:clamp(5rem, 12vw, 15rem);
+    --fs-hero:clamp(4rem, 8vw, 10rem);
     --fs-title:clamp(2.5rem, 3.8vw, 4.8rem);
     --fs-lede:clamp(1.15rem, 1.25vw, 1.45rem);
     --fs-body:clamp(1.08rem, 1.1vw, 1.28rem);
@@ -565,6 +569,8 @@ a.contact-item:hover .ci-icon { border-color:var(--accent); color:var(--accent);
   .bom .opt { display:none; }
   .insp-note { display:none; }
   .fig-note { display:none; }
+  .hero-annos, .hero-part, .hero-dim { display:none; }
+  .hero-title { margin-top:.15em; }
 }
 
 /* ---------- Reduced motion ---------- */
@@ -590,6 +596,17 @@ a.contact-item:hover .ci-icon { border-color:var(--accent); color:var(--accent);
 .split-figure .bar.alt { background:transparent; }
 .split-figure .cap { font-family:var(--f-mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); white-space:nowrap; }
 .split-figure .cap b { color:var(--ink); }
+
+/* ---------- Legal pages (impressum, privacy) ---------- */
+.legal-body { max-width:76ch; }
+.legal-body h2 { font-family:var(--f-display); font-weight:600; text-transform:uppercase; font-size:clamp(1.25rem,1.6vw,1.7rem); letter-spacing:.02em; margin:2.2rem 0 .6rem; }
+.legal-body h2:first-child { margin-top:0; }
+.legal-body p { color:var(--ink-2); text-align:left; margin-bottom:1rem; }
+.legal-body a { color:var(--ink); }
+.legal-body code { font-family:var(--f-mono); font-size:.9em; }
+.legal-body .aside-note { margin-top:2.4rem; }
+.legal-body .aside-note a { color:var(--ink-2); }
+.todo { background:var(--accent-soft); color:var(--accent); font-family:var(--f-mono); font-size:.9em; padding:0 .3em; }
 
 /* ---------- Badges and Milestones Row ---------- */
 .badges-row { margin-top: 2.2rem; margin-bottom: 0; display: flex; gap: 2.2rem; flex-wrap: wrap; justify-content: start; align-items: center; }
