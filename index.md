@@ -330,6 +330,10 @@ Static HTML, no cookies, self-hosted fonts. The only external request is the
 cookieless GoatCounter visitor counter (no personal data stored, no consent
 banner required). Available in English and German
 (https://kasatov.de/de/index.html). Written and maintained by Sergey Kasatov.
+Every project card carries a figure taken from the project itself: a figure
+committed in its repository, or a same-day screenshot of the online demo; the
+private agent system (Pos. 12) is drawn as an architecture schematic, not shown
+as a screenshot. Per-image provenance: https://kasatov.de/assets/img/_sources.md
 
 Legal notice: https://kasatov.de/impressum.html · Privacy policy: https://kasatov.de/privacy.html
 (German: https://kasatov.de/de/impressum.html · https://kasatov.de/de/datenschutz.html).

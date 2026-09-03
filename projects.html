@@ -144,6 +144,10 @@
               <span class="anno"><span class="pos">Pos. 01</span> · Apr&#8211;May 2026</span>
               <span class="badge-demo">Demo · wakes in ~30 s</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-freshmart.webp" width="960" height="600" alt="Screenshot of the FreshMart Demand Planner Streamlit app after Generate forecast: five KPI tiles (total forecasted sales 6,779, average daily 484, peak day 2014-01-05, peak sales 768, demand level high) above a line chart of recent sales and the 14-day forecast"></div>
+              <figcaption><b>Fig. 01</b><span>Streamlit app, forecast screen · captured 2026-09-03</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>FreshMart Demand Planner</h3>
               <p>End-to-end retail demand forecasting: EDA, feature engineering, 10+ models compared (SARIMAX, Prophet, XGBoost, LSTM), HyperOpt tuning, and MLflow experiment tracking. Deployed as a Streamlit planning tool that speaks the language of store managers: total demand, peak day, average daily forecast.</p>
@@ -167,6 +171,10 @@
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 02</span> · Apr&#8211;May 2026</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-maintenance.webp" width="960" height="600" alt="Horizontal bar chart of the 20 most important features by mean absolute SHAP value; Brake_Condition dominates at about 2.8, every other feature is below 0.2"></div>
+              <figcaption><b>Fig. 02</b><span>Mean |SHAP| feature importance, XGBoost · repository figure</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>Predictive Maintenance: Fleet Risk &amp; Cost</h3>
               <p>Three business questions answered on a 92,000-row logistics fleet dataset: which vehicles need maintenance (classification), what it will cost (regression), and how to segment the fleet by risk (clustering). SHAP analysis identified brake condition as the dominant failure predictor, exactly what 17 years in vehicle engineering would suggest.</p>
@@ -189,6 +197,10 @@
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 03</span> · Jun 2026</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-nlp.webp" width="960" height="600" alt="Two bar charts of the tuned logistic regression: words pushing toward disaster (hiroshima, fire, wildfire, kill, storm) and words pushing toward not disaster (upheaval, traumatise, love); held-out test split of 1,523 tweets"></div>
+              <figcaption><b>Fig. 03</b><span>Largest logistic-regression coefficients · repository figure</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>NLP: Disaster Tweets Classification</h3>
               <p>Does a tweet report a real disaster, or is "this album is fire" just slang? I shipped an interpretable TF-IDF + Logistic Regression classifier and stress-tested it against a from-scratch CNN and a fine-tuned DistilBERT. The explainable model won the trade-off: every flagged tweet can be defended word by word, which matters more than the last two points of accuracy.</p>
@@ -210,6 +222,10 @@
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 04</span> · May 2026</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-cifar.webp" width="960" height="600" alt="Bar chart of four runs: baseline 10K 66.0 percent, best 10K 76.9 percent, baseline 50K 76.4 percent, best 50K 82.7 percent, with training times from 2 min 43 s to 14 min 27 s and the 10 percent random baseline as a dashed line" loading="lazy" decoding="async"></div>
+              <figcaption><b>Fig. 04</b><span>Ablation: test accuracy and training time · repository figure</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>CIFAR-10 Transfer Learning Study</h3>
               <p>A controlled ablation study with ResNet50: isolating the impact of dataset size, augmentation, learning-rate scheduling, and partial unfreezing, tested individually and combined. Grad-CAM visualizations show what the model actually attends to. The same mechanism drives automated visual inspection in manufacturing.</p>
@@ -230,6 +246,10 @@
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 05</span> · Mar&#8211;Apr 2026</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-traveltide.webp" width="960" height="600" alt="Bar chart of user counts per rule-based segment: exclusive discounts about 1,390, free hotel meal about 1,260, no cancellation fees about 1,250, free hotel night with flight about 1,130, free checked bag about 970" loading="lazy" decoding="async"></div>
+              <figcaption><b>Fig. 05</b><span>Rule-based segment sizes · notebook output</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>TravelTide: Customer Segmentation</h3>
               <p>Retention targeting for a travel platform: a SQL pipeline in Databricks aggregated 49,211 sessions into 30+ behavioral features for 5,998 users, then a rule-based perk-fit score assigned each user the most relevant reward. K-Means and DBSCAN served as benchmarks; the interpretable approach won on stability and deployment readiness.</p>
@@ -253,6 +273,10 @@
               <span class="anno"><span class="pos">Pos. 06</span> · Feb 2026</span>
               <span class="badge-live"><span class="dot" aria-hidden="true"></span>Live</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-dashboard.webp" width="960" height="600" alt="Screenshot of the Retail KPI Dashboard on Tableau Public: four KPI tiles with sparklines (quantity 37,873, sales 2,297,355 dollars, profit 286,347 dollars, average discount 15.62 percent), a top and bottom five products by profit table, a US map of regional profit by product category, and region, year and category filters" loading="lazy" decoding="async"></div>
+              <figcaption><b>Fig. 06</b><span>Tableau Public, Main Dashboard · captured 2026-09-03</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>Retail KPI Dashboard</h3>
               <p>Interactive Tableau dashboard tracking sales, profit, discount, and orders with drill-downs by region, product category, and time. LOD expressions and dashboard actions give non-technical users self-service analysis, the same logic as a quality trend board in a plant.</p>
@@ -274,6 +298,10 @@
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 07</span> · Jul 2026</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-iatf.webp" width="960" height="600" alt="PowerShell window listing seven report files, each with verdict PASS, the number of gap markers found and the sections they were marked in, ending with 7 of 7 passed" loading="lazy" decoding="async"></div>
+              <figcaption><b>Fig. 07</b><span>Marker checker run, 7 of 7 passed · repository screenshot</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>IATF Quality Report Prompt</h3>
               <p>Can a language model be stopped from filling a gap in a controlled record? A three-zone prompt drafts German ISO 9001 / IATF 16949 quality reports and is forbidden to derive any figure it was not given: in a QMS record a derived figure is an audit finding even when the arithmetic is right. A negative-control test withheld one figure and left both operands in as bait. No run computed it; the gap marker appeared in both required places in only 5 of 7 runs, and that weaker number is published as found, prompt deliberately unfixed.</p>
@@ -295,6 +323,10 @@
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 08</span> · Jul 2026</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-carprice.webp" width="960" height="600" alt="Grouped bar chart titled Does the range actually contain the price: share of cars inside the range per price band, one global multiplier versus calibrated per band, against the 80 percent target line" loading="lazy" decoding="async"></div>
+              <figcaption><b>Fig. 08</b><span>Interval coverage per price band · repository figure</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>Car Price Estimator</h3>
               <p>A pricing tool that returns a calibrated price range instead of a single number, built on 56,244 used-car listings. Two of the three required model families lost to a dealer-style lookup table; XGBoost won, and its real gain sits on cars the lookup has never seen: 46% better. The finding worth arguing about after 17 years in automotive: mileage barely predicts price once age is known, at 2.2% of permutation importance against 62.5% for age.</p>
@@ -316,6 +348,10 @@
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 09</span> · Jul 2026</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-triage.webp" width="960" height="600" alt="n8n canvas excerpt: Assemble Order Context, the Volta Order Classifier Agent with Gemini as its model, Parse Agent Classification, a Switch routing to Standard, Needs Review and Needs Clarification, each branch logging to Airtable and notifying via Gmail draft or Slack" loading="lazy" decoding="async"></div>
+              <figcaption><b>Fig. 09</b><span>n8n workflow, decision zone · repository screenshot</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>AI Order Triage Agent</h3>
               <p>A 26-node n8n workflow that triages free-text wholesale orders in English and Portuguese. Deterministic Airtable lookups gather every fact first; one bounded LLM agent makes the single call a rule cannot express; logic routes and logs every order, and a human stays the sender: the workflow never contacts a customer. Across three runs of each of the ten sample orders, all 30 recorded classifications matched the course answer key, and no input ever produced two different classifications. Built on a fictional wholesale case, Volta Coffee Roasters in Porto.</p>
@@ -337,6 +373,10 @@
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 10</span> · Jul 2026</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-fx.webp" width="960" height="600" alt="Bar chart of every model's RMSE divided by the naive RMSE for CNY and SGD per USD at horizons 1 and 5; the line at 1.0 is the random walk and no model sits below it" loading="lazy" decoding="async"></div>
+              <figcaption><b>Fig. 10</b><span>RMSE ratio to the random walk, horizons 1 and 5 · repository figure</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>FX Random Walk Benchmark</h3>
               <p>A banking brief asked for an exchange-rate forecaster. The project asked the question the brief did not: compared to what? Twenty years of daily SGD/USD and CNY/USD, the naive "tomorrow equals today" baseline built first, then ARIMA, SARIMA and gradient boosting scored against it across 42,924 walk-forward forecasts. Not one beat the baseline at any significance level, AIC selected ARIMA(0,1,0), which is the random walk itself, and a purpose-built move_ratio measure explains every model's error at r = 0.97. The no-leakage claim is not an assurance but a mechanical proof: rewrite every observation after the cut date and the earlier features must come back byte-identical.</p>
@@ -358,6 +398,10 @@
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 11</span> · Jul&#8211;Aug 2026</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-neuron.webp" width="960" height="600" alt="Two rows of three panels: the rendered level, the 84x84 stacked-frame CNN input, and the Grad-CAM attention map highlighting platform edges and gaps" loading="lazy" decoding="async"></div>
+              <figcaption><b>Fig. 11</b><span>Grad-CAM saliency on held-out levels · repository figure</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>Neuron Platformer RL</h3>
               <p>Reinforcement learning demos usually run inside somebody else's environment, which hides the hard parts: reward design, observation design, and whether the task is solvable at all. Here the whole stack is built, including a level generator whose every gap is capped by the exact jump physics and an audit that re-proves solvability across 1,200 seeds. Then the real question: an agent reading raw 84x84 pixels, with no coordinates, velocities or object lists, beats the hand-crafted state-vector baseline 80% to 27% on 200 held-out levels, and a difficulty curriculum carries it to 52% medium and 55% hard. Grad-CAM shows where it looks: platform edges before a jump, the gap, the enemy. A fourth phase replaces the frame stack with an LSTM reading one frame at a time: recurrence does learn the game, but lands behind the frame stack on every tier - 29.5% medium against the curriculum's 52%. Getting these numbers honest took three extra experiments: doubling the LSTM's budget refuted the write-up's own excuse (typical performance rose, the peak did not), a noise analysis showed a 30-episode evaluation is worth about plus or minus 14 points, and a 200-seed re-measurement of all four models replaced every headline figure - the state baseline's published 50% was really 27%. The write-up was rewritten rather than left flattering.</p>
@@ -379,6 +423,31 @@
             <div class="dc-head">
               <span class="anno"><span class="pos">Pos. 12</span> · since Jun 2026</span>
             </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><svg class="sch" viewBox="0 0 960 600" role="img" aria-label="Architecture schematic of the AI-Brain agent system: a synced Markdown rule set on top, three LLM runtimes and a self-hosted n8n reading it, two schedulers on a Windows laptop and a MacBook Air joined by a heartbeat watchdog, 19 recurring workflows, and a chain of five verification gates that can fail a run" style="font-size:19px">
+                <defs><marker id="sch-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="var(--ink-2)"/></marker></defs>
+                <rect class="box" x="60" y="34" width="840" height="54"/>
+                <text x="480" y="68" text-anchor="middle" style="font-size:19px">Markdown rule set and state, one copy per machine, synced</text>
+                <path class="wire" d="M200 88 V128" marker-end="url(#sch-arrow)"/><path class="wire" d="M420 88 V128" marker-end="url(#sch-arrow)"/><path class="wire" d="M640 88 V128" marker-end="url(#sch-arrow)"/><path class="wire" d="M830 88 V128" marker-end="url(#sch-arrow)"/>
+                <rect class="box-soft" x="110" y="130" width="180" height="44"/><text x="200" y="158" text-anchor="middle" style="font-size:19px">Claude Code</text>
+                <rect class="box-soft" x="330" y="130" width="180" height="44"/><text x="420" y="158" text-anchor="middle" style="font-size:19px">OpenAI Codex</text>
+                <rect class="box-soft" x="550" y="130" width="180" height="44"/><text x="640" y="158" text-anchor="middle" style="font-size:19px">Google Gemini</text>
+                <rect class="box-soft" x="750" y="130" width="160" height="44"/><text x="830" y="157" text-anchor="middle" style="font-size:14px">n8n (Docker)</text>
+                
+                <path class="wire" d="M200 174 V226 H260 V262" marker-end="url(#sch-arrow)"/><path class="wire" d="M420 174 V226 H260"/><path class="wire" d="M640 174 V226 H700 V262" marker-end="url(#sch-arrow)"/><path class="wire" d="M420 226 H700"/><path class="wire" d="M830 174 V262" marker-end="url(#sch-arrow)"/>
+                <rect class="box" x="60" y="264" width="360" height="90"/>
+                <text x="240" y="302" text-anchor="middle" style="font-size:19px">Windows laptop</text><text x="240" y="332" text-anchor="middle" class="t2" style="font-size:14px">Task Scheduler</text>
+                <rect class="box" x="540" y="264" width="360" height="90"/>
+                <text x="720" y="302" text-anchor="middle" style="font-size:19px">MacBook Air</text><text x="720" y="332" text-anchor="middle" class="t2" style="font-size:14px">launchd</text>
+                <path class="wire-hot" d="M540 322 H420"/><text x="480" y="312" text-anchor="middle" class="t2" style="font-size:12px">heartbeat watchdog</text>
+                <text x="480" y="386" text-anchor="middle" style="font-size:19px">19 recurring workflows, exactly one scheduled owner each</text>
+                <path class="wire" d="M240 354 V440" marker-end="url(#sch-arrow)"/><path class="wire" d="M720 354 V440" marker-end="url(#sch-arrow)"/>
+                <text x="480" y="464" text-anchor="middle" class="t2" style="font-size:14px">five gates that can fail a run</text>
+                <rect class="box-hot" x="60" y="482" width="152" height="40"/><text x="136" y="507" text-anchor="middle" class="hot" style="font-size:13px">IDs exist</text><path class="wire" d="M212 502 H232" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="232" y="482" width="152" height="40"/><text x="308" y="507" text-anchor="middle" class="hot" style="font-size:13px">encoding</text><path class="wire" d="M384 502 H404" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="404" y="482" width="152" height="40"/><text x="480" y="507" text-anchor="middle" class="hot" style="font-size:13px">PDF order</text><path class="wire" d="M556 502 H576" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="576" y="482" width="152" height="40"/><text x="652" y="507" text-anchor="middle" class="hot" style="font-size:13px">no invented skill</text><path class="wire" d="M728 502 H748" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="748" y="482" width="152" height="40"/><text x="824" y="507" text-anchor="middle" class="hot" style="font-size:13px">not a template</text>
+                <text x="480" y="562" text-anchor="middle" class="t2" style="font-size:14px">nothing is sent or published by an agent</text>
+              </svg></div>
+              <figcaption><b>Fig. 12</b><span>Architecture schematic, not a screenshot · the vault is private</span></figcaption>
+            </figure>
             <div class="dc-body">
               <h3>AI-Brain Agent System</h3>
               <p>A job search, a full-time data programme and a set of personal admin domains all generate the same shape of recurring work: gather from a source, deduplicate against history, judge each item, write the result to the right file, and lose nothing between sessions. Doing it by hand does not scale, and handing it wholesale to a chat assistant fails differently: an assistant has no memory between sessions, will redo work that is already done, and will produce a plausible answer rather than report that it could not get one. So the design question was never "can an agent do this" but "how do you stop it from silently doing the wrong thing". The answer is four rules that everything else follows from. Every recurring job names exactly one scheduled owner and one canonical output path, because several agents write the same files with no database lock. A deterministic Python layer does the fetching, parsing, deduplication and writing, and the model is handed only the judgement that actually needs judgement. Verification gates can fail a run: separate checks assert that every identifier claimed in a report exists in the registry and the archive, that no encoding corruption shipped, that generated PDFs are machine-readable in the right order, that no document claims a skill the source-of-truth file does not carry, and that the prose does not read like a template. And the watchdog runs on a machine that cannot fail together with the machine it watches, because a watchdog sharing fate with its subject reports nothing exactly when it matters. The failure modes are the real result and each one was found by running the thing: fabricated metrics offered as interview material, a drafting agent absorbing the source document's vocabulary into a description of the candidate, and the class no gate catches at all, where a documented method is escalated by the verb rather than the noun. That last one is written down as a stated limit, not as a solved problem.</p>

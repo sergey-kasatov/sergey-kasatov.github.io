@@ -164,6 +164,35 @@
             <div class="label">Scheduler auf zwei unabh&#228;ngigen Rechnern</div>
           </div>
         </div>
+        <figure class="fig-card reveal" style="margin-top:1.6rem;">
+          <div class="fig-head">
+            <span class="anno"><b>Abb. 1</b> · Architekturschema · kein Screenshot</span>
+            <span class="anno">das Vault ist privat</span>
+          </div>
+          <div class="fig-body" style="padding:.6rem;"><svg class="sch" viewBox="0 0 960 600" role="img" aria-label="Architekturschema des AI-Brain-Agentensystems: ein synchronisiertes Markdown-Regelwerk oben, drei LLM-Laufzeiten und ein selbst gehostetes n8n, die es lesen, zwei Scheduler auf einem Windows-Laptop und einem MacBook Air mit Heartbeat-Watchdog, 19 wiederkehrende Workflows und eine Kette von f&#252;nf Pr&#252;f-Gates, die einen Lauf scheitern lassen k&#246;nnen" style="font-size:13px">
+                <defs><marker id="sch-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="var(--ink-2)"/></marker></defs>
+                <rect class="box" x="60" y="34" width="840" height="54"/>
+                <text x="480" y="68" text-anchor="middle" style="font-size:13px">Markdown-Regelwerk und Zustand, eine Kopie je Rechner, synchronisiert</text>
+                <path class="wire" d="M200 88 V128" marker-end="url(#sch-arrow)"/><path class="wire" d="M420 88 V128" marker-end="url(#sch-arrow)"/><path class="wire" d="M640 88 V128" marker-end="url(#sch-arrow)"/><path class="wire" d="M830 88 V128" marker-end="url(#sch-arrow)"/>
+                <rect class="box-soft" x="110" y="130" width="180" height="44"/><text x="200" y="158" text-anchor="middle" style="font-size:13px">Claude Code</text>
+                <rect class="box-soft" x="330" y="130" width="180" height="44"/><text x="420" y="158" text-anchor="middle" style="font-size:13px">OpenAI Codex</text>
+                <rect class="box-soft" x="550" y="130" width="180" height="44"/><text x="640" y="158" text-anchor="middle" style="font-size:13px">Google Gemini</text>
+                <rect class="box-soft" x="750" y="130" width="160" height="44"/><text x="830" y="157" text-anchor="middle" style="font-size:11px">n8n, selbst gehostet (Docker)</text>
+                <text x="420" y="200" text-anchor="middle" class="t2">drei LLM-Laufzeiten lesen dieselben Dateien</text>
+                <text x="480" y="410" text-anchor="middle" class="t2">Heartbeat-Watchdog, unabh&#228;ngig vom Ausfall</text>
+                <path class="wire" d="M200 174 V226 H260 V262" marker-end="url(#sch-arrow)"/><path class="wire" d="M420 174 V226 H260"/><path class="wire" d="M640 174 V226 H700 V262" marker-end="url(#sch-arrow)"/><path class="wire" d="M420 226 H700"/><path class="wire" d="M830 174 V262" marker-end="url(#sch-arrow)"/>
+                <rect class="box" x="60" y="264" width="360" height="90"/>
+                <text x="240" y="302" text-anchor="middle" style="font-size:13px">Windows-Laptop</text><text x="240" y="332" text-anchor="middle" class="t2" style="font-size:11px">Task Scheduler</text>
+                <rect class="box" x="540" y="264" width="360" height="90"/>
+                <text x="720" y="302" text-anchor="middle" style="font-size:13px">MacBook Air</text><text x="720" y="332" text-anchor="middle" class="t2" style="font-size:11px">launchd</text>
+                <path class="wire-hot" d="M540 322 H420"/><text x="480" y="312" text-anchor="middle" class="t2" style="font-size:10px">Heartbeat-Watchdog</text>
+                <text x="480" y="386" text-anchor="middle" style="font-size:13px">19 wiederkehrende Workflows, je genau ein geplanter Owner</text>
+                <path class="wire" d="M240 354 V440" marker-end="url(#sch-arrow)"/><path class="wire" d="M720 354 V440" marker-end="url(#sch-arrow)"/>
+                <text x="480" y="464" text-anchor="middle" class="t2" style="font-size:11px">f&#252;nf Gates, die einen Lauf scheitern lassen</text>
+                <rect class="box-hot" x="60" y="482" width="152" height="40"/><text x="136" y="507" text-anchor="middle" class="hot" style="font-size:13px">IDs vorhanden</text><path class="wire" d="M212 502 H232" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="232" y="482" width="152" height="40"/><text x="308" y="507" text-anchor="middle" class="hot" style="font-size:13px">Kodierung</text><path class="wire" d="M384 502 H404" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="404" y="482" width="152" height="40"/><text x="480" y="507" text-anchor="middle" class="hot" style="font-size:13px">PDF-Reihenfolge</text><path class="wire" d="M556 502 H576" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="576" y="482" width="152" height="40"/><text x="652" y="507" text-anchor="middle" class="hot" style="font-size:13px">Skills belegt</text><path class="wire" d="M728 502 H748" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="748" y="482" width="152" height="40"/><text x="824" y="507" text-anchor="middle" class="hot" style="font-size:13px">keine Schablone</text>
+                <text x="480" y="562" text-anchor="middle" class="t2" style="font-size:11px">kein Agent sendet oder ver&#246;ffentlicht</text>
+              </svg></div>
+        </figure>
         <div class="aside-row" style="margin-top:1.6rem;">
           <div class="aside-card reveal">
             <h3>Was die f&#252;nf Gates pr&#252;fen</h3>
