@@ -88,7 +88,7 @@ operator a filled form instead of signing it, so the response-time KPI still
 measures the plant and not the agent. A live emitter raises a real re-timed incident
 every eight to twelve minutes and a simulated crew works it. The executive view is a
 Tableau workbook generated as XML from the same status API and published on Tableau
-Public. 7 ML models, 5 n8n workflows deployed, 130 tests in CI. The code repository
+Public. 7 ML models, 6 n8n workflows deployed, 130 tests in CI. The code repository
 is not public yet; the plant, its crew and the incident stream are simulated and
 labelled so, the models, the datasets, every timestamp and the n8n, Langflow,
 Streamlit and Tableau layers are real.
