@@ -283,17 +283,40 @@
         <div class="section-head reveal">
           <p class="section-eyebrow">Parts list · Featured</p>
           <h2 class="section-title">Work that ships and keeps running</h2>
-          <p class="section-lede">Every metric is reproducible from the linked repositories or demonstrable online: a live Tableau dashboard and a Streamlit demo app.</p>
+          <p class="section-lede">Every metric is reproducible from the linked repositories or demonstrable online: two live Tableau dashboards and a Streamlit demo app.</p>
         </div>
         <div class="featured-grid">
 
           <article class="detail-card reveal">
             <div class="dc-head">
-              <span class="anno"><span class="pos">Pos. 12</span> · since Jun 2026</span>
+              <span class="anno"><span class="pos">Pos. 01</span> · Jul&#8211;Sep 2026</span>
+              <span class="badge-live"><span class="dot" aria-hidden="true"></span>Live</span>
+            </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-arkon.webp" width="960" height="600" alt="Screenshot of the Arkon Quality Steering Cell Executive view on Tableau Public, as of 6 Sep 2026 16:12 on the plant clock: the status sentence (20 of 50 open incidents open more than three days, the 6 raised in the last hour worked inside window), four KPI cards (overdue 14 of 50 open, 28 percent; open 50 with 169 raised, 113 closed and 6 resolved; time to acknowledge 48.7 min median against a window of 15 min for P1 and 60 min for P2; time to close 144.1 min median over 113 closed), open incidents by age band stacked by priority with the part past its window in red, the six slowest acknowledgements as a multiple of each incident's own window, and the six most recent transitions with who acted" loading="lazy" decoding="async"></div>
+              <figcaption><b>Fig. 01</b><span>Executive view on Tableau Public, as of 2026-09-06 16:12 · captured 2026-09-06</span></figcaption>
+            </figure>
+            <div class="dc-body">
+              <h3>Arkon Manufacturing AI</h3>
+              <div class="dc-metric"><span class="num">7</span><span class="cap">ML models behind one Quality Steering Cell</span></div>
+              <p>An Industry 4.0 quality platform for a fictional heavy manufacturer, deployed on a NAS and running: seven models on real public datasets publish one twelve-field risk event, an n8n Quality Steering Cell triages it and puts a Telegram card in front of a named person, a Streamlit cockpit is the only surface that moves an incident, a Langflow assistant explains without acting, and a Tableau executive view generated from the same store is published on Tableau Public.</p>
+              <div class="tag-row">
+                <span class="tag">XGBoost</span><span class="tag">PyTorch</span><span class="tag">n8n</span><span class="tag">Langflow</span><span class="tag">Tableau</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://public.tableau.com/views/ArkonQualitySteeringCell/ArkonExecutiveView" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Executive view on Tableau Public</a>
+                <a href="projects.html#p-arkon"><svg class="ic" aria-hidden="true"><use href="#i-sheet"/></svg>Card in the parts list</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="detail-card reveal">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 02</span> · since Jun 2026</span>
             </div>
             <figure class="dc-fig">
               <div class="dc-fig-box"><img src="assets/img/p-agents.webp" width="960" height="600" alt="Screenshot of the Vault Mission Control board, worker grid only: 25 tiles, each with the worker name, its schedule, last run, 30-day run history and status; WARN states shown as found" loading="lazy" decoding="async"></div>
-              <figcaption><b>Fig. 12</b><span>Mission Control, the live status board · captured 2026-09-03</span></figcaption>
+              <figcaption><b>Fig. 02</b><span>Mission Control, the live status board · captured 2026-09-03</span></figcaption>
             </figure>
             <div class="dc-body">
               <h3>AI-Brain Agent System</h3>
@@ -310,12 +333,12 @@
 
           <article class="detail-card reveal">
             <div class="dc-head">
-              <span class="anno"><span class="pos">Pos. 01</span> · Detail view</span>
+              <span class="anno"><span class="pos">Pos. 03</span> · Detail view</span>
               <span class="badge-demo">Demo · wakes in ~30 s</span>
             </div>
             <figure class="dc-fig">
               <div class="dc-fig-box"><img src="assets/img/p-freshmart.webp" width="960" height="600" alt="Screenshot of the FreshMart Demand Planner Streamlit app after Generate forecast: five KPI tiles (total forecasted sales 6,779, average daily 484, peak day 2014-01-05, peak sales 768, demand level high) above a line chart of recent sales and the 14-day forecast" loading="lazy" decoding="async"></div>
-              <figcaption><b>Fig. 01</b><span>Streamlit app, forecast screen · captured 2026-09-03</span></figcaption>
+              <figcaption><b>Fig. 03</b><span>Streamlit app, forecast screen · captured 2026-09-03</span></figcaption>
             </figure>
             <div class="dc-body">
               <h3>FreshMart Demand Planner</h3>
@@ -328,28 +351,6 @@
                 <a href="case-freshmart.html"><svg class="ic" aria-hidden="true"><use href="#i-sheet"/></svg>Case study</a>
                 <a href="https://freshmart-demand-planner.streamlit.app" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Open demo</a>
                 <a href="https://github.com/sergey-kasatov/time-series-forecasting-project" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="detail-card reveal">
-            <div class="dc-head">
-              <span class="anno"><span class="pos">Pos. 02</span> · Detail view</span>
-            </div>
-            <figure class="dc-fig">
-              <div class="dc-fig-box"><img src="assets/img/p-maintenance.webp" width="960" height="600" alt="Horizontal bar chart of the 20 most important features by mean absolute SHAP value; Brake_Condition dominates at about 2.8, every other feature is below 0.2" loading="lazy" decoding="async"></div>
-              <figcaption><b>Fig. 02</b><span>Mean |SHAP| feature importance, XGBoost · repository figure</span></figcaption>
-            </figure>
-            <div class="dc-body">
-              <h3>Predictive Maintenance ML</h3>
-              <div class="dc-metric"><span class="num">0.902</span><span class="cap">PR-AUC · classification</span></div>
-              <p>Which fleet vehicles need maintenance, what it will cost, and how to segment risk: classification, regression, and clustering on 92,000 rows, explained with SHAP.</p>
-              <div class="tag-row">
-                <span class="tag">XGBoost</span><span class="tag">SHAP</span><span class="tag">SQL</span><span class="tag">Clustering</span>
-              </div>
-              <div class="dc-links">
-                <a href="case-maintenance.html"><svg class="ic" aria-hidden="true"><use href="#i-sheet"/></svg>Case study</a>
-                <a href="https://github.com/sergey-kasatov/predictive-maintenance-ml" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code &amp; notebooks</a>
               </div>
             </div>
           </article>
