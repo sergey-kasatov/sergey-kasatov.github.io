@@ -7,6 +7,8 @@ are the committed PNGs, the two online demos are CDP screenshots taken the same 
 (`capture_site_figures_2026_09_03.py`). The AI-Brain schematic (Pos. 12) is inline SVG in the pages,
 an architecture drawing and not a screenshot, and is labelled as such in its caption.
 
+Added 2026-09-06 by `agent_scripts/_oneoff/build_arkon_card_image_2026_09_06.py`: `p-arkon.webp`, the Arkon Manufacturing AI card on Pos. 13 (Sergey's decision the same evening: thirteen cards, the AI Order Triage Agent stays on Pos. 09 with `p-triage.webp`). The figure is a same-day CDP capture of the platform's own Streamlit cockpit on the live plant, not of the published Tableau Public view: that view's web renderer printed hashes in two KPI cards on the day of capture.
+
 | File | Kind | Source | Source size | Crop (source px) | Output | Weight | What it shows |
 |---|---|---|---|---|---|---|---|
 | `p-freshmart.webp` | card | CDP capture `streamlit_forecast_tall.png` (2026-09-03) | 2880x3400 | (760, 1195, 2717, 2170) | 960x600 | 30 KB, q85 | Streamlit app after Generate forecast (cutoff 2014-01-01, 14-day horizon), CDP capture at 1440 px, 2x; KPI tiles and the forecast chart |
@@ -24,3 +26,4 @@ an architecture drawing and not a screenshot, and is labelled as such in its cap
 | `case-maintenance.webp` | fig | `https://github.com/sergey-kasatov/predictive-maintenance-ml` `images/23_pr_curves.png` | 820x700 | none | 820x700 | 19 KB, q85 | repository figure: precision-recall curves of the three classifiers on the test set |
 | `p-agents.webp` | card | CDP capture `mission_control_2x.png` (2026-09-03) | 2880x3000 | (0, 596, 2880, 1940) | 960x600 | 47 KB, q85 | Vault Mission Control, same capture and crop as case-agent-mc, fitted to 16:10 (dark bands top and bottom are the board's own background) |
 | `case-agent-mc.webp` | figwide | CDP capture `mission_control_2x.png` (2026-09-03) | 2880x3000 | (0, 596, 2880, 1940) | 1920x896 | 286 KB, qlossless | Vault Mission Control (localhost:8137, serve_heartbeat.py), CDP capture at 1440 px, 2x, 14:18 CEST; the worker grid only, WARN states as found; everything above the first tile row (infrastructure tiles with host, user and pid, the KPI row, the filter chips and action buttons) cropped out |
+| `p-arkon.webp` | card | CDP capture `cockpit_exec_2x.png` (2026-09-06) | 3200x2000 | (160, 38, 3040, 1658) | 960x600 | 46 KB, q85 | Streamlit cockpit, Executive page (http://AK2101:8303/executive) on the live plant, CDP capture at 1600 px, 2x, 16:37 CEST; the panel only, padded to 16:10 in its own off-white; status sentence, four KPI cards, five charts and the transition feed as found |

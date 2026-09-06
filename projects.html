@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
   <title>Projects · Sergey Kasatov | AI Automation &amp; Data Analytics</title>
-  <meta name="description" content="Twelve end-to-end projects by Sergey Kasatov: a multi-agent system in daily operation, LLM workflows, demand forecasting, predictive maintenance, NLP, computer vision, reinforcement learning, and BI dashboards. Two online demos.">
+  <meta name="description" content="Thirteen end-to-end projects by Sergey Kasatov: a multi-agent system in daily operation, LLM workflows, demand forecasting, predictive maintenance, NLP, computer vision, reinforcement learning, and BI dashboards. Three online demos.">
   <meta name="author" content="Sergey Kasatov">
   <meta name="theme-color" content="#0d1f33">
   <link rel="canonical" href="https://kasatov.de/projects.html">
@@ -15,7 +15,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects · Sergey Kasatov">
-  <meta property="og:description" content="Twelve end-to-end projects: a multi-agent system in daily operation, LLM workflows, forecasting, ML, NLP, CV, RL, and BI. Every metric reproducible; two online demos.">
+  <meta property="og:description" content="Thirteen end-to-end projects: a multi-agent system in daily operation, LLM workflows, forecasting, ML, NLP, CV, RL, and BI. Every metric reproducible; three online demos.">
   <meta property="og:url" content="https://kasatov.de/projects.html">
   <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
   <meta property="og:image:width" content="1200">
@@ -95,7 +95,7 @@
           <span class="anno">Sheet <b>02 / 04</b> · Scale <b>1:1</b></span>
         </div>
         <h1 class="page-title">Parts list: <span class="hl">projects</span></h1>
-        <p class="section-lede">Twelve end-to-end projects: agent systems and LLM workflows, forecasting, machine learning, NLP, computer vision, reinforcement learning, and BI. Every metric below is reproducible from the linked repositories, or demonstrable online; two projects are deployed.</p>
+        <p class="section-lede">Thirteen end-to-end projects: agent systems and LLM workflows, forecasting, machine learning, NLP, computer vision, reinforcement learning, and BI. Every metric below is reproducible from the linked repositories, or demonstrable online; three projects are deployed.</p>
       </div>
     </section>
 
@@ -120,6 +120,7 @@
               <tr><td class="pos">10</td><td class="name"><a href="#p-fx">FX Random Walk Benchmark</a></td><td class="qty">error explained <b>r = 0.97</b></td><td class="qty opt">Python · statsmodels · XGBoost</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">11</td><td class="name"><a href="#p-neuron">Neuron Platformer RL</a></td><td class="qty">held-out success <b>80%</b></td><td class="qty opt">PyTorch · Stable-Baselines3</td><td class="qty">GitHub</td></tr>
               <tr><td class="pos">12</td><td class="name"><a href="#p-agents">AI-Brain Agent System</a></td><td class="qty">scheduled workflows <b>19</b></td><td class="qty opt">Claude Code · Codex · n8n · Python</td><td class="qty">Private</td></tr>
+              <tr><td class="pos">13</td><td class="name"><a href="#p-arkon">Arkon Manufacturing AI</a></td><td class="qty">ML models <b>7</b></td><td class="qty opt">XGBoost · PyTorch · n8n · Langflow · Tableau</td><td class="qty"><b>Live</b></td></tr>
             </tbody>
           </table>
         </div>
@@ -445,10 +446,38 @@
             </div>
           </article>
 
+          <article class="detail-card reveal card-more" id="p-arkon" data-cats="ai ml analytics live">
+            <div class="dc-head">
+              <span class="anno"><span class="pos">Pos. 13</span> · Jul&#8211;Sep 2026</span>
+              <span class="badge-live"><span class="dot" aria-hidden="true"></span>Live</span>
+            </div>
+            <figure class="dc-fig">
+              <div class="dc-fig-box"><img src="assets/img/p-arkon.webp" width="960" height="600" alt="Screenshot of the Arkon cockpit's Executive page on the live plant: the status sentence (20 of 51 open incidents open more than three days, the 6 raised in the last hour worked inside window), four KPI cards (overdue 14 of 51, open 51 with 171 raised and 115 closed, time to acknowledge 49.3 min, time to close 147.3 min), open incidents by age and priority, raised against cleared by hour, time to acknowledge against the window allowed, open incidents by model, and the last five transitions with who acted" loading="lazy" decoding="async"></div>
+              <figcaption><b>Fig. 13</b><span>Streamlit cockpit, Executive page on the live plant · captured 2026-09-06</span></figcaption>
+            </figure>
+            <div class="dc-body">
+              <h3>Arkon Manufacturing AI</h3>
+              <p>An Industry 4.0 quality platform for a fictional heavy manufacturer, deployed on a NAS and running. Seven machine-learning models on real public datasets (remaining useful life of test engines, fleet fault classification, four kinds of visual inspection, a text model over consumer complaints) publish one twelve-field risk event, so nothing downstream knows which model spoke. A Quality Steering Cell on n8n validates the contract, suppresses repeats, writes an append-only incident store, assigns by department and puts a Telegram card in front of a named person for a P1 or P2. A Streamlit cockpit is the only surface that moves an incident; a Langflow assistant answers why, grounded in ten documents and the live store, and hands the operator a filled form instead of signing it, so the response-time KPI still measures the plant and not the agent. A live emitter raises a real re-timed incident every eight to twelve minutes and a simulated crew works it. The executive view is a Tableau workbook generated as XML from the same status API and published on Tableau Public.</p>
+              <div class="metric-row">
+                <span class="metric">ML models on public datasets <b>7</b></span>
+                <span class="metric">n8n workflows deployed <b>5</b></span>
+                <span class="metric">tests in CI <b>130</b></span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">XGBoost</span><span class="tag">PyTorch</span><span class="tag">n8n</span><span class="tag">Langflow</span><span class="tag">Streamlit</span><span class="tag">Tableau</span>
+              </div>
+              <div class="dc-links">
+                <a href="https://public.tableau.com/views/ArkonQualitySteeringCell/ArkonExecutiveView" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Executive view on Tableau Public</a>
+                <a href="https://public.tableau.com/views/ArkonQualitySteeringCell/ArkonExploreView" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Explore view</a>
+              </div>
+              <p class="aside-note">The code repository is not public yet. The plant, its crew and the incident stream are simulated and labelled so; the models, the datasets, every timestamp and the n8n, Langflow, Streamlit and Tableau layers are real.</p>
+            </div>
+          </article>
+
         </div>
 
         <div class="section-cta reveal">
-          <button class="btn" type="button" id="show-all-projects">Show all 12 projects <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="btn" type="button" id="show-all-projects">Show all 13 projects <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
         </div>
 
         <p class="projects-foot reveal">More projects and work in progress on <a href="https://github.com/sergey-kasatov" target="_blank" rel="noopener">GitHub</a> and <a href="https://public.tableau.com/app/profile/sergey.kasatov/vizzes" target="_blank" rel="noopener">Tableau Public</a>.</p>

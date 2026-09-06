@@ -17,7 +17,7 @@ HTML pages linked below.
 - Designs and operates a private multi-agent system: 19 recurring workflows, each with
   exactly one scheduled owner, run by three LLM runtimes and a self-hosted n8n server
   on one Markdown rule set, across two deliberately independent machines.
-- Twelve completed portfolio projects, two of them deployed online. Open to AI consulting
+- Thirteen completed portfolio projects, three of them deployed online. Open to AI consulting
   and enablement, automation, and data analyst positions in Germany (employment,
   not freelance services), available now.
 
@@ -69,7 +69,7 @@ Languages: Russian (native), English (C1), German (B2).
 
 ## Portfolio projects
 
-Twelve completed projects. Every metric below is reproducible from the linked
+Thirteen completed projects. Every metric below is reproducible from the linked
 repository, or demonstrable online.
 
 ### 1. FreshMart Demand Planner (deployed demo, wakes on request)
@@ -246,6 +246,29 @@ was written largely with AI assistance, not typed from scratch.
   screen share.
 - Case study: https://kasatov.de/case-agent-system.html
 
+### 13. Arkon Manufacturing AI (live executive view on Tableau Public)
+
+An Industry 4.0 quality platform for a fictional heavy manufacturer, deployed on a
+NAS and running. Seven machine-learning models on real public datasets (remaining
+useful life of test engines, fleet fault classification, four kinds of visual
+inspection, a text model over consumer complaints) publish one twelve-field risk
+event, so nothing downstream knows which model spoke. A Quality Steering Cell on n8n
+validates the contract, suppresses repeats, writes an append-only incident store,
+assigns by department and puts a Telegram card in front of a named person for a P1
+or P2. A Streamlit cockpit is the only surface that moves an incident; a Langflow
+assistant answers why, grounded in ten documents and the live store, and hands the
+operator a filled form instead of signing it, so the response-time KPI still
+measures the plant and not the agent. A live emitter raises a real re-timed incident
+every eight to twelve minutes and a simulated crew works it. The executive view is a
+Tableau workbook generated as XML from the same status API and published on Tableau
+Public. 7 ML models, 5 n8n workflows deployed, 130 tests in CI. The code repository
+is not public yet; the plant, its crew and the incident stream are simulated and
+labelled so, the models, the datasets, every timestamp and the n8n, Langflow,
+Streamlit and Tableau layers are real.
+
+- Executive view (Tableau Public): https://public.tableau.com/views/ArkonQualitySteeringCell/ArkonExecutiveView
+- Explore view (Tableau Public): https://public.tableau.com/views/ArkonQualitySteeringCell/ArkonExploreView
+
 ## Experience
 
 ### SEGULA Technologies - Automotive Consultant
@@ -331,9 +354,10 @@ cookieless GoatCounter visitor counter (no personal data stored, no consent
 banner required). Available in English and German
 (https://kasatov.de/de/index.html). Written and maintained by Sergey Kasatov.
 Every project card carries a figure taken from the project itself: a figure
-committed in its repository, or a same-day screenshot of the online demo; the
-private agent system (Pos. 12) is drawn as an architecture schematic, not shown
-as a screenshot. Per-image provenance: https://kasatov.de/assets/img/_sources.md
+committed in its repository, or a same-day screenshot of the online demo or of the
+running system (the private agent system on Pos. 12 shows its live status board,
+the Arkon platform on Pos. 13 its live cockpit). Per-image provenance:
+https://kasatov.de/assets/img/_sources.md
 
 Legal notice: https://kasatov.de/impressum.html · Privacy policy: https://kasatov.de/privacy.html
 (German: https://kasatov.de/de/impressum.html · https://kasatov.de/de/datenschutz.html).
