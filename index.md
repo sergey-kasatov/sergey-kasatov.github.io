@@ -355,8 +355,8 @@ banner required). Available in English and German
 (https://kasatov.de/de/index.html). Written and maintained by Sergey Kasatov.
 Every project card carries a figure taken from the project itself: a figure
 committed in its repository, or a same-day screenshot of the online demo or of the
-running system (the private agent system on Pos. 12 shows its live status board,
-the Arkon platform on Pos. 13 its live cockpit). Per-image provenance:
+running system (the private agent system on Pos. 12 shows its live status board).
+Per-image provenance:
 https://kasatov.de/assets/img/_sources.md
 
 Legal notice: https://kasatov.de/impressum.html · Privacy policy: https://kasatov.de/privacy.html
