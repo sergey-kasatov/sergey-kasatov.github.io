@@ -180,8 +180,10 @@ A 2D platformer built from scratch as a custom Gymnasium environment, with a lev
 generator whose every gap is capped by the exact jump-physics envelope: an audit
 re-proves solvability across 1,200 seeds, finding 0 impossible transitions in 11,619.
 A PPO agent reading raw 84x84 pixels, with no coordinates, velocities or object lists,
-beats the hand-crafted 19-feature state-vector baseline 80 percent to 27 percent on
-200 held-out seeds; a difficulty curriculum then carries it to 52 percent on medium
+beats the hand-crafted 19-feature state-vector baseline 80 percent to 64 percent at equal
+training budget on 200 held-out seeds (the first published 27 percent was the baseline at
+a fifth of the budget, a confound found and corrected a month later); a difficulty
+curriculum then carries it to 52 percent on medium
 and 55 percent on hard. Grad-CAM over the policy CNN shows attention on platform
 edges, gaps and enemies. Four classic RL failure modes are documented rather than
 hidden. A fourth phase replaces the frame stack with an LSTM reading one frame at a
