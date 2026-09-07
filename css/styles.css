@@ -427,7 +427,10 @@ button { font:inherit; color:inherit; background:none; border:none; cursor:point
 .about-grid { display:grid; grid-template-columns:minmax(300px,1.25fr) minmax(0,1.45fr); gap:clamp(2rem,4.5vw,5.5rem); align-items:stretch; }
 .about-grid > .reveal { height:100%; display:flex; flex-direction:column; }
 .figure { position:relative; border:1.5px solid var(--frame); background:var(--paper-2); padding:1rem; height:100%; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box; }
-.figure img { filter:contrast(1.03) brightness(.95); border:1px solid var(--line-soft); flex:1; height:100%; object-fit:cover; }
+/* width:100% is required: the img's width="723" attribute acts as a presentational
+   width:723px, so above a 723px frame the portrait stopped growing and left dead
+   space on its right (visible from roughly 1900px viewport up). */
+.figure img { filter:contrast(1.03) brightness(.95); border:1px solid var(--line-soft); flex:1; width:100%; height:100%; object-fit:cover; }
 [data-theme="paper"] .figure img { filter:contrast(1.03); }
 .figure figcaption { display:flex; justify-content:space-between; gap:.8rem; padding-top:.85rem; flex-wrap:wrap; }
 .fig-ticks { position:absolute; inset:0; pointer-events:none; }
