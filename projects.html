@@ -151,11 +151,12 @@
             </figure>
             <div class="dc-body">
               <h3>Arkon Manufacturing AI</h3>
-              <p>An Industry 4.0 quality platform for a fictional heavy manufacturer, deployed on a NAS and running. Seven machine-learning models on real public datasets (remaining useful life of test engines, fleet fault classification, four kinds of visual inspection, a text model over consumer complaints) publish one twelve-field risk event, so nothing downstream knows which model spoke. A Quality Steering Cell on n8n validates the contract, suppresses repeats, writes an append-only incident store, assigns by department and puts a Telegram card in front of a named person for a P1 or P2. A Streamlit cockpit is the only surface that moves an incident; a Langflow assistant answers why, grounded in ten documents and the live store, and hands the operator a filled form instead of signing it, so the response-time KPI still measures the plant and not the agent. A live emitter raises a real re-timed incident every eight to twelve minutes and a simulated crew works it. The executive view is a Tableau workbook generated as XML from the same status API and published on Tableau Public.</p>
+              <p>An Industry 4.0 quality platform for a fictional heavy manufacturer, deployed on a NAS and running. Seven machine-learning models on real public datasets (remaining useful life of test engines, fleet fault classification, four kinds of visual inspection, a text model over consumer complaints) publish one twelve-field risk event, so nothing downstream knows which model spoke. A Quality Steering Cell on n8n validates the contract, suppresses repeats, writes an append-only incident store, assigns by department and puts a Telegram card in front of a named person for a P1 or P2. A Streamlit cockpit is the only surface that moves an incident; a Langflow assistant answers why, grounded in ten documents and the live store, and hands the operator a filled form instead of signing it, so the response-time KPI still measures the plant and not the agent. <b>Two agents face opposite ways</b>: the Langflow assistant inward, to the plant, and an n8n Customer Quality Desk outward, to the customer, which answers an OEM asking after a quality notice by its reference. They meet in exactly one file and the traffic runs one way: eight customer-safe fields out for one reference, no write endpoint back, and a guardrail in front of the desk and a sanitizer behind it. A live emitter raises a real re-timed incident every eight to twelve minutes and a simulated crew works it. The executive view is a Tableau workbook generated as XML from the same status API and published on Tableau Public.</p>
               <div class="metric-row">
                 <span class="metric">ML models on public datasets <b>7</b></span>
-                <span class="metric">n8n workflows deployed <b>8</b></span>
-                <span class="metric">tests in CI <b>143</b></span>
+                <span class="metric">AI agents, facing opposite ways <b>2</b></span>
+                <span class="metric">n8n workflows deployed <b>12</b></span>
+                <span class="metric">tests in CI <b>203</b></span>
               </div>
               <div class="tag-row">
                 <span class="tag">XGBoost</span><span class="tag">PyTorch</span><span class="tag">n8n</span><span class="tag">Langflow</span><span class="tag">Streamlit</span><span class="tag">Tableau</span>
@@ -163,8 +164,10 @@
               <div class="dc-links">
                 <a href="https://public.tableau.com/views/ArkonQualitySteeringCell/ArkonExecutiveView" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Executive view on Tableau Public</a>
                 <a href="https://public.tableau.com/views/ArkonQualitySteeringCell/ArkonExploreView" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Explore view</a>
+                <a href="https://ugreen-nas.tail90586f.ts.net:8443/webhook/arkon-desk" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Customer Quality Desk, live demo</a>
+                <a href="https://ugreen-nas.tail90586f.ts.net:10000/" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Quality Assistant, live demo</a>
               </div>
-              <p class="aside-note">The code repository is not public yet. The plant, its crew and the incident stream are simulated and labelled so; the models, the datasets, every timestamp and the n8n, Langflow, Streamlit and Tableau layers are real.</p>
+              <p class="aside-note">Both demos ask for a login, and it is a demo credential for a fictional company rather than an authentication of anyone: user <b>arkon</b>, password <b>ArkonDesk-2026</b> for the desk and <b>ArkonAssistant-2026</b> for the assistant. They run on a course-issued OpenRouter key that ends in mid-September 2026; after that the pages still load and the agents answer nothing, while the two Tableau views need no key at all. The code repository is not public yet. The plant, its crew and the incident stream are simulated and labelled so; the models, the datasets, every timestamp and the n8n, Langflow, Streamlit and Tableau layers are real.</p>
             </div>
           </article>
 
