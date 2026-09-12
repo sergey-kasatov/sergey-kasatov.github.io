@@ -168,7 +168,7 @@
                 <a href="https://ugreen-nas.tail90586f.ts.net:8443/webhook/arkon-desk" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Customer Quality Desk, live demo</a>
                 <a href="https://ugreen-nas.tail90586f.ts.net:10000/" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Quality Assistant, live demo</a>
               </div>
-              <p class="aside-note">Both demos ask for a login, and it is a demo credential for a fictional company rather than an authentication of anyone: user <b>arkon</b>, password <b>ArkonDesk-2026</b> for the desk and <b>ArkonAssistant-2026</b> for the assistant. They run on a course-issued OpenRouter key that ends in mid-September 2026; after that the pages still load and the agents answer nothing, while the two Tableau views need no key at all. The plant, its crew and the incident stream are simulated and labelled so; the models, the datasets, every timestamp and the n8n, Langflow, Streamlit and Tableau layers are real.</p>
+              <p class="aside-note">Both demos ask for a login, and it is a demo credential for a fictional company rather than an authentication of anyone: user <b>arkon</b>, password <b>ArkonDesk-2026</b> for the desk and <b>ArkonAssistant-2026</b> for the assistant. They run on an OpenRouter key that expires in mid-September 2026; after that the pages still load and the agents answer nothing, while the two Tableau views need no key at all. The plant, its crew and the incident stream are simulated and labelled so; the models, the datasets, every timestamp and the n8n, Langflow, Streamlit and Tableau layers are real.</p>
             </div>
           </article>
 
@@ -262,7 +262,7 @@
             </figure>
             <div class="dc-body">
               <h3>AI Order Triage Agent</h3>
-              <p>A 26-node n8n workflow that triages free-text wholesale orders in English and Portuguese. Deterministic Airtable lookups gather every fact first; one bounded LLM agent makes the single call a rule cannot express; logic routes and logs every order, and a human stays the sender: the workflow never contacts a customer. Across three runs of each of the ten sample orders, all 30 recorded classifications matched the course answer key, and no input ever produced two different classifications. Built on a fictional wholesale case, Volta Coffee Roasters in Porto.</p>
+              <p>A 26-node n8n workflow that triages free-text wholesale orders in English and Portuguese. Deterministic Airtable lookups gather every fact first; one bounded LLM agent makes the single call a rule cannot express; logic routes and logs every order, and a human stays the sender: the workflow never contacts a customer. Across three runs of each of the ten sample orders, all 30 recorded classifications matched the reference answer key, and no input ever produced two different classifications. Built on a fictional wholesale case, Volta Coffee Roasters in Porto.</p>
               <div class="metric-row">
                 <span class="metric">answer-key match <b>30 / 30</b></span>
                 <span class="metric">AI steps <b>2 of 8</b></span>
