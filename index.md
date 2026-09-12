@@ -347,8 +347,8 @@ multi-agent system described under project 12 is the practical result.
 
 ## Availability
 
-Open to AI consulting and enablement, automation, and data analyst roles in Germany
-from September 2026. Based in Cologne. On-site, hybrid or remote.
+Open to AI consulting and enablement, automation, and data analyst roles in Germany,
+available now. Based in Cologne. On-site, hybrid or remote.
 
 ## About this site
 
