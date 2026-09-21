@@ -60,7 +60,7 @@ cannot fail together with what it watches.
 Technical: SQL, Python, pandas, Tableau, Excel and Power Query, machine learning,
 NLP, deep learning, AI agent workflows (n8n), prompt engineering and structured LLM
 outputs, AI strategy and governance, data cleaning, exploratory data analysis,
-KPI design, dashboards, DBeaver, Jupyter.
+KPI design, dashboards, Jupyter.
 
 Domain: automotive quality engineering, 8D problem solving, SPC, PPAP, APQP,
 launch management, body in white and closures, supplier quality.
