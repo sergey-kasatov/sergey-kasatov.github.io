@@ -331,7 +331,8 @@ programs. Owned SOP readiness for 2 vehicle programs.
 Data Science and AI. Sep 2025 - Sep 2026, full time. Python, SQL and pandas on large
 datasets; Tableau and Matplotlib for BI reporting; statistical analysis and predictive
 modelling; time series, computer vision and NLP with LLMs; AI-assisted analysis
-workflows, AI strategy and governance, and automation with agent concepts.
+workflows, AI strategy and governance, and automation with agent concepts. Certificate
+of Completion received Oct 2026.
 
 **Technische Hochschule Ingolstadt** - International Automotive Engineering,
 Oct 2010 - Mar 2013. Master's program, 87.5 of 90 ECTS completed, degree not awarded.
