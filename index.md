@@ -14,7 +14,7 @@ HTML pages linked below.
 - Retrained into data analytics (Masterschool, Data Analytics Program AZAV,
   Advanced Data Science and AI). Python, SQL, Tableau, machine learning, with a
   preference for interpretable models.
-- Designs and operates a private multi-agent system: 19 recurring workflows, each with
+- Designs and operates a private multi-agent system: 20+ recurring workflows, each with
   exactly one scheduled owner, run by three LLM runtimes and a self-hosted n8n server
   on one Markdown rule set, across two deliberately independent machines.
 - Thirteen completed portfolio projects, three of them deployed online. Open to AI consulting
@@ -98,7 +98,7 @@ Streamlit and Tableau layers are real.
 
 ### 2. AI-Brain Agent System (private, in daily operation)
 
-A multi-agent system that runs unattended. 19 recurring workflows, each naming exactly
+A multi-agent system that runs unattended. 20+ recurring workflows, each naming exactly
 one scheduled owner and one canonical output path, because several agents write the
 same files with no database lock and ownership is what stops two runs producing two
 conflicting versions of one report. Three LLM runtimes (Claude Code, OpenAI Codex,

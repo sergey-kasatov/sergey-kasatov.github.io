@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
   <title>KI-Agentensystem (AI-Brain) · Fallstudie | Sergey Kasatov</title>
-  <meta name="description" content="Fallstudie Multi-Agenten-System: 19 wiederkehrende Workflows mit je genau einem geplanten Owner, drei LLM-Laufzeitumgebungen auf einem Markdown-Regelwerk, zwei unabh&#228;ngige Scheduler und f&#252;nf Pr&#252;f-Gates, die einen Lauf scheitern lassen k&#246;nnen.">
+  <meta name="description" content="Fallstudie Multi-Agenten-System: 20+ wiederkehrende Workflows mit je genau einem geplanten Owner, drei LLM-Laufzeitumgebungen auf einem Markdown-Regelwerk, zwei unabh&#228;ngige Scheduler und f&#252;nf Pr&#252;f-Gates, die einen Lauf scheitern lassen k&#246;nnen.">
   <meta name="author" content="Sergey Kasatov">
   <meta name="theme-color" content="#0d1f33">
   <link rel="canonical" href="https://kasatov.de/de/case-agent-system.html">
@@ -93,7 +93,7 @@
         </div>
         <p class="anno case-crumb"><a href="projects.html">02 Projekte</a> / Arbeitsplan PS-03</p>
         <h1 class="page-title">KI-Agentensystem <span class="hl">(AI-Brain)</span></h1>
-        <p class="section-lede">Ein privates Multi-Agenten-System im t&#228;glichen Betrieb: 19 wiederkehrende Workflows mit je genau einem geplanten Owner, ausgef&#252;hrt von drei LLM-Laufzeitumgebungen und einem selbst gehosteten n8n-Server auf einem einzigen Markdown-Regelwerk, verteilt auf zwei bewusst unabh&#228;ngige Rechner.</p>
+        <p class="section-lede">Ein privates Multi-Agenten-System im t&#228;glichen Betrieb: 20+ wiederkehrende Workflows mit je genau einem geplanten Owner, ausgef&#252;hrt von drei LLM-Laufzeitumgebungen und einem selbst gehosteten n8n-Server auf einem einzigen Markdown-Regelwerk, verteilt auf zwei bewusst unabh&#228;ngige Rechner.</p>
       </div>
     </section>
 
@@ -148,7 +148,7 @@
         </div>
         <div class="stats-grid reveal">
           <div class="stat">
-            <div class="value"><span>19</span></div>
+            <div class="value"><span>20+</span></div>
             <div class="label">wiederkehrende Workflows · je genau ein geplanter Owner</div>
           </div>
           <div class="stat">
@@ -169,7 +169,7 @@
             <span class="anno"><b>Abb. 1</b> · Architekturschema · kein Screenshot</span>
             <span class="anno">das Vault ist privat</span>
           </div>
-          <div class="fig-body" style="padding:.6rem;"><svg class="sch" viewBox="0 0 960 600" role="img" aria-label="Architekturschema des AI-Brain-Agentensystems: ein synchronisiertes Markdown-Regelwerk oben, drei LLM-Laufzeiten und ein selbst gehostetes n8n, die es lesen, zwei Scheduler auf einem Windows-Laptop und einem MacBook Air mit Heartbeat-Watchdog, 19 wiederkehrende Workflows und eine Kette von f&#252;nf Pr&#252;f-Gates, die einen Lauf scheitern lassen k&#246;nnen" style="font-size:13px">
+          <div class="fig-body" style="padding:.6rem;"><svg class="sch" viewBox="0 0 960 600" role="img" aria-label="Architekturschema des AI-Brain-Agentensystems: ein synchronisiertes Markdown-Regelwerk oben, drei LLM-Laufzeiten und ein selbst gehostetes n8n, die es lesen, zwei Scheduler auf einem Windows-Laptop und einem MacBook Air mit Heartbeat-Watchdog, 20+ wiederkehrende Workflows und eine Kette von f&#252;nf Pr&#252;f-Gates, die einen Lauf scheitern lassen k&#246;nnen" style="font-size:13px">
                 <defs><marker id="sch-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="var(--ink-2)"/></marker></defs>
                 <rect class="box" x="60" y="34" width="840" height="54"/>
                 <text x="480" y="68" text-anchor="middle" style="font-size:13px">Markdown-Regelwerk und Zustand, eine Kopie je Rechner, synchronisiert</text>
@@ -186,7 +186,7 @@
                 <rect class="box" x="540" y="264" width="360" height="90"/>
                 <text x="720" y="302" text-anchor="middle" style="font-size:13px">MacBook Air</text><text x="720" y="332" text-anchor="middle" class="t2" style="font-size:11px">launchd</text>
                 <path class="wire-hot" d="M540 322 H420"/><text x="480" y="312" text-anchor="middle" class="t2" style="font-size:10px">Heartbeat-Watchdog</text>
-                <text x="480" y="386" text-anchor="middle" style="font-size:13px">19 wiederkehrende Workflows, je genau ein geplanter Owner</text>
+                <text x="480" y="386" text-anchor="middle" style="font-size:13px">20+ wiederkehrende Workflows, je genau ein geplanter Owner</text>
                 <path class="wire" d="M240 354 V440" marker-end="url(#sch-arrow)"/><path class="wire" d="M720 354 V440" marker-end="url(#sch-arrow)"/>
                 <text x="480" y="464" text-anchor="middle" class="t2" style="font-size:11px">f&#252;nf Gates, die einen Lauf scheitern lassen</text>
                 <rect class="box-hot" x="60" y="482" width="152" height="40"/><text x="136" y="507" text-anchor="middle" class="hot" style="font-size:13px">IDs vorhanden</text><path class="wire" d="M212 502 H232" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="232" y="482" width="152" height="40"/><text x="308" y="507" text-anchor="middle" class="hot" style="font-size:13px">Kodierung</text><path class="wire" d="M384 502 H404" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="404" y="482" width="152" height="40"/><text x="480" y="507" text-anchor="middle" class="hot" style="font-size:13px">PDF-Reihenfolge</text><path class="wire" d="M556 502 H576" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="576" y="482" width="152" height="40"/><text x="652" y="507" text-anchor="middle" class="hot" style="font-size:13px">Skills belegt</text><path class="wire" d="M728 502 H748" marker-end="url(#sch-arrow)"/><rect class="box-hot" x="748" y="482" width="152" height="40"/><text x="824" y="507" text-anchor="middle" class="hot" style="font-size:13px">keine Schablone</text>
