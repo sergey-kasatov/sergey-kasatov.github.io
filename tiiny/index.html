@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<title>Tiiny Benchmark Check</title>
+<style>
+/* Fonts: the site's self-hosted files, no request to a third party */
+@font-face { font-family:'Saira Condensed'; font-style:normal; font-weight:600; font-display:swap; src:url(../assets/fonts/saira-cond-600-latin.woff2) format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212; }
+@font-face { font-family:'Saira Condensed'; font-style:normal; font-weight:600; font-display:swap; src:url(../assets/fonts/saira-cond-600-latin-ext.woff2) format('woff2'); unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF; }
+@font-face { font-family:'Saira Condensed'; font-style:normal; font-weight:700; font-display:swap; src:url(../assets/fonts/saira-cond-700-latin.woff2) format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212; }
+@font-face { font-family:'Saira Condensed'; font-style:normal; font-weight:700; font-display:swap; src:url(../assets/fonts/saira-cond-700-latin-ext.woff2) format('woff2'); unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF; }
+@font-face { font-family:'IBM Plex Sans'; font-style:normal; font-weight:400; font-display:swap; src:url(../assets/fonts/plex-sans-400-latin.woff2) format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212; }
+@font-face { font-family:'IBM Plex Sans'; font-style:normal; font-weight:400; font-display:swap; src:url(../assets/fonts/plex-sans-400-latin-ext.woff2) format('woff2'); unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF; }
+@font-face { font-family:'IBM Plex Sans'; font-style:normal; font-weight:600; font-display:swap; src:url(../assets/fonts/plex-sans-600-latin.woff2) format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212; }
+@font-face { font-family:'IBM Plex Sans'; font-style:normal; font-weight:600; font-display:swap; src:url(../assets/fonts/plex-sans-600-latin-ext.woff2) format('woff2'); unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF; }
+@font-face { font-family:'IBM Plex Mono'; font-style:normal; font-weight:400; font-display:swap; src:url(../assets/fonts/plex-mono-400.woff2) format('woff2'); }
+@font-face { font-family:'IBM Plex Mono'; font-style:normal; font-weight:500; font-display:swap; src:url(../assets/fonts/plex-mono-500.woff2) format('woff2'); }
+/* Layout: one reading column, a verdict strip, then two charts and a dense table, like a test report from a lab bench */
+:root {
+  --bg: #f5f6f4; --surface: #ffffff; --fg: #1d2420; --muted: #5b665f; --line: #d8ddd8;
+  --ours: #1f6f5c; --ref: #a9b4ad; --good: #1f7a3d; --warn: #a3650a; --bad: #b3261e;
+  --display: "Saira Condensed", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141816; --surface: #1c211e; --fg: #e6ebe7; --muted: #9aa69f; --line: #2e3531;
+  --ours: #4fb89a; --ref: #5d6862; --good: #5cc27e; --warn: #e0a548; --bad: #ef7a70; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141816; --surface: #1c211e; --fg: #e6ebe7; --muted: #9aa69f; --line: #2e3531;
+  --ours: #4fb89a; --ref: #5d6862; --good: #5cc27e; --warn: #e0a548; --bad: #ef7a70; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font: 15px/1.55 var(--body); }
+.wrap { max-width: none; margin: 0; padding-inline: clamp(16px, 2vw, 40px); padding-block: 28px 48px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+h1 { font: 700 clamp(26px, 4vw, 36px)/1.1 var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font: 600 19px/1.25 var(--display); margin: 0 0 6px; text-wrap: balance; }
+.eyebrow { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+p { margin: 0; max-width: none; }
+.lede { color: var(--muted); margin-top: 8px; max-width: 90ch; font-size: 16px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px 28px; margin: 18px 0 0; }
+.facts div { border-top: 1px solid var(--line); padding-top: 8px; min-width: 0; }
+.facts dt { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.facts dd { margin: 2px 0 0; }
+.verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.v { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px; display: grid; gap: 4px; min-width: 0; align-content: start; }
+.v .name { font-weight: 600; }
+.v .num { font: 500 22px var(--mono); font-variant-numeric: tabular-nums; }
+.v .num small { font-size: 13px; color: var(--muted); }
+.pill { justify-self: start; font: 500 12px var(--mono); padding: 2px 8px; border-radius: 99px; border: 1px solid currentColor; }
+.good { color: var(--good); } .warn { color: var(--warn); } .bad { color: var(--bad); }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -1px; margin-right: 6px; }
+.chart { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 12px; overflow-x: auto; }
+.chart svg { display: block; width: 100%; min-width: 520px; max-width: 980px; height: auto; }
+.chart text { fill: var(--fg); font: 12px var(--body); }
+.chart .tick { fill: var(--muted); font: 11px var(--mono); }
+.tablebox { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14px; }
+th, td { text-align: right; padding: 8px 12px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+th:first-child, td:first-child { text-align: left; }
+th { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+td.ref { color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+ul { margin: 6px 0 0; padding-left: 20px; max-width: none; columns: 58ch 3; column-gap: 56px; } li { margin: 0 0 8px; break-inside: avoid; }
+.note { font-size: 13px; color: var(--muted); }
+.section { display: grid; gap: 12px; }
+.texttable th, .texttable td { text-align: left; }
+.verdicts.chat { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.section > .eyebrow:not(:first-child) { margin-top: 14px; }
+tr.rev td:first-child { padding-left: 30px; }
+tr.rev td:first-child::before { content: "\21B3"; margin-left: -18px; margin-right: 6px; color: var(--muted); }
+table.wide { min-width: 1080px; }
+table.wide td:last-child, table.wide th:last-child { min-width: 300px; }
+.cmp { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr)); gap: 14px; }
+.cmpcard { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.cmpcard h3 { font: 600 17px/1.25 var(--display); margin: 0; }
+.cmpbox { overflow-x: auto; }
+.cmpcard table { min-width: 0; font-size: 14px; }
+.cmpcard th, .cmpcard td { padding: 7px 8px; text-align: left; vertical-align: top; }
+.cmpcard th { text-transform: none; letter-spacing: 0; font: 500 12px/1.35 var(--mono); }
+.cmpcard td:first-child { color: var(--muted); }
+.cmpcard td.d { font: 500 12.5px var(--mono); }
+table.main { min-width: 1280px; }
+table.main td { vertical-align: top; }
+th.t, td.t { text-align: left; }
+td.t { min-width: 200px; }
+table.main td:nth-child(2) { white-space: nowrap; }
+.dl { display: block; font: 500 11.5px var(--mono); margin-top: 2px; }
+.dl.ref { color: var(--muted); }
+table.main .pill { white-space: nowrap; }
+.tg { font: 600 14px var(--mono); width: 24px; height: 24px; margin-right: 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--fg); cursor: pointer; vertical-align: 1px; }
+.tg:hover, .tgall:hover { border-color: var(--ours); }
+.tgall { font: 500 13px var(--body); padding: 6px 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--fg); cursor: pointer; }
+tr.best td { font-weight: 600; }
+tr.best .bld { padding-left: 32px; }
+.bld { display: block; font: 500 11px var(--mono); color: var(--muted); letter-spacing: 0.02em; }
+td.pend { color: var(--muted); font-style: italic; }
+body { margin: 0; }
+.foot { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.foot a { color: inherit; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Tiiny Pocket Lab, 80 GB &middot; TiinyBench 0.1.11 &middot; 2026-10-05 to 13</div>
+    <h1>How Unit 1 compares with the community</h1>
+    <p class="lede">Speed and answer quality of every model on one Tiiny Pocket Lab, measured the same way each time and set beside the community's own figures.</p>
+    <dl class="facts">
+      <div><dt>Measured</dt><dd>22 chat models, each also given the same seven quality tasks; 35 utility models: images, image editing, picture to 3D, music, speech recognition, speech output, embeddings, reranking, OCR; and 4 imported fine-tunes</dd></div>
+      <div><dt>Setup</dt><dd>TiinyBench on Unit 1, TiinyOS 0.1.35, over LAN, 100 W charger, 5 minutes cool-down between models</dd></div>
+      <div><dt>Unit</dt><dd>Unit 1 is the first device, measured from 5 October 2026; a second device will be measured the same way and shown beside it as Unit 2</dd></div>
+      <div><dt>Compared with</dt><dd>the community reference run of 2026-09-19 on TiinyOS 0.1.34; models newer than that run are compared with the model they replace</dd></div>
+      <div><dt>Order</dt><dd>cards, charts and tables are sorted fastest first; every card and chart figure is a 100 W run; a card's pill compares with the community reference unless it names a build; every model has a card, grouped by kind with one measure per group</dd></div>
+      <div><dt>65 W runs</dt><dd>the first four chat models were also run on the 65 W adapter on the first morning; those runs stay in the table, marked 65 W</dd></div>
+      <div><dt>Builds</dt><dd>a model measured on more than one build has one card and one chart bar, for its best build, and the pill on that card compares it with its previous best build; all builds open with the plus sign in the tables below</dd></div>
+      <div><dt>Added later</dt><dd>ten chat models on 6 October; the four chat models of the 9 October store update, measured 10 October</dd></div>
+    </dl>
+  </header>
+
+  <div class="eyebrow">Chat models &middot; tok/s on one 1,500-token answer, higher is better</div>
+  <section class="verdicts chat" aria-label="Verdict per chat model">
+    <div class="v"><span class="name">Qwen3.6-35B-A3B-Turbo</span><span class="num">34.7 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; build 28 Sep &middot; reference 32.5</span><span class="pill good">+7 % vs build 14 Sep</span></div>
+    <div class="v"><span class="name">Ornith-1.5-35B-A3B-Turbo</span><span class="num">32.9 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; no community reference</span><span class="pill good">+51 % against Ornith-1.0</span></div>
+    <div class="v"><span class="name">Qwen3.5-9B-Turbo</span><span class="num">31.1 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; no community reference</span><span class="pill good">+74 % against Qwen3.5-9B</span></div>
+    <div class="v"><span class="name">BigBang-v1-Turbo (36B)</span><span class="num">30.6 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; no community reference</span><span class="pill warn">no reference</span></div>
+    <div class="v"><span class="name">Qwen3-Coder-30B-A3B-Instruct</span><span class="num">27.3 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 29.2</span><span class="pill good">&minus;7 %, in range</span></div>
+    <div class="v"><span class="name">Qwen3.5-35B-A3B</span><span class="num">26.7 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 28.8</span><span class="pill good">&minus;7 %, in range</span></div>
+    <div class="v"><span class="name">Qwen3.6-35B-A3B</span><span class="num">26.4 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; factory build &middot; reference 24.9</span><span class="pill good">+14 % vs build 7 Sep</span></div>
+    <div class="v"><span class="name">Qwen3-30B-A3B-Thinking</span><span class="num">26.1 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 29.2</span><span class="pill warn">&minus;11 %</span></div>
+    <div class="v"><span class="name">gpt-oss-20b</span><span class="num">25.3 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 30.9</span><span class="pill warn">&minus;18 %</span></div>
+    <div class="v"><span class="name">Qwen3-30B-A3B-Instruct</span><span class="num">24.6 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 29.3</span><span class="pill warn">&minus;16 %</span></div>
+    <div class="v"><span class="name">Qwen3-Coder-30B-A3B-Instruct-Turbo</span><span class="num">24.4 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 29.4</span><span class="pill warn">&minus;17 %, confirmed</span></div>
+    <div class="v"><span class="name">Ornith-1.0-35B</span><span class="num">21.8 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 22.5</span><span class="pill good">&minus;3 %, matches</span></div>
+    <div class="v"><span class="name">gemma-4-26B-A4B-it</span><span class="num">20.2 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 21.7</span><span class="pill good">&minus;7 %, in range</span></div>
+    <div class="v"><span class="name">Qwen3-Coder-Next</span><span class="num">19.6 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 20.1</span><span class="pill good">&minus;2 %, matches</span></div>
+    <div class="v"><span class="name">Qwen3-8B</span><span class="num">18.9 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; no decode reference</span><span class="pill warn">no reference</span></div>
+    <div class="v"><span class="name">Qwen3.5-9B</span><span class="num">17.9 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 20.9</span><span class="pill warn">&minus;15 %, confirmed</span></div>
+    <div class="v"><span class="name">Qwen3-4B-Instruct-2507</span><span class="num">17.7 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; no decode reference</span><span class="pill warn">no reference</span></div>
+    <div class="v"><span class="name">gpt-oss-120b</span><span class="num">16.8 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 18.8, older build</span><span class="pill warn">&minus;11 %, new build</span></div>
+    <div class="v"><span class="name">Qwen3.8-27B</span><span class="num">15.1 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 11.4</span><span class="pill good">+32 %, faster</span></div>
+    <div class="v"><span class="name">GLM-4.7-Flash</span><span class="num">13.9 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 14.9</span><span class="pill good">&minus;7 %, in range</span></div>
+    <div class="v"><span class="name">Qwen3.6-27B-Turbo</span><span class="num">11.1 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 13.4</span><span class="pill warn">&minus;17 %</span></div>
+    <div class="v"><span class="name">Qwen3.6-27B (dense)</span><span class="num">6.2 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; reference 6.4</span><span class="pill good">&minus;3 %, matches</span></div>
+  </section>
+
+  <section class="section" aria-label="Verdict per utility and imported model">
+    <div class="eyebrow">Image generation &middot; seconds per 512 x 512 image, lower is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">Z-Image-Turbo</span><span class="num">8.40 <small>s</small></span><span class="note">factory build &middot; reference 7.9</span><span class="pill good">0.9 s quicker than build 13 Aug</span></div>
+      <div class="v"><span class="name">FLUX.2-klein-4B</span><span class="num">8.45 <small>s</small></span><span class="note">reference 8.0</span><span class="pill good">6 % slower, in range</span></div>
+      <div class="v"><span class="name">Qwen-Image-2.1</span><span class="num">8.65 <small>s</small></span><span class="note">no community reference</span><span class="pill warn">no reference</span></div>
+      <div class="v"><span class="name">ERNIE-Image-Turbo</span><span class="num">13.71 <small>s</small></span><span class="note">reference 12.83</span><span class="pill good">7 % slower, in range</span></div>
+    </div>
+    <div class="eyebrow">Image styles &middot; seconds per 512 x 512 image, lower is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">Z-Image-Turbo-Children-Drawing</span><span class="num">9.30 <small>s</small></span><span class="note">plain Z-Image 8.40</span><span class="pill good">works</span></div>
+      <div class="v"><span class="name">Z-Image-Turbo-Creating-Realistic</span><span class="num">9.33 <small>s</small></span><span class="note">plain Z-Image 8.40</span><span class="pill good">works</span></div>
+      <div class="v"><span class="name">Z-Image-Turbo-CharacterDesignSheet</span><span class="num">9.37 <small>s</small></span><span class="note">plain Z-Image 8.40</span><span class="pill good">works</span></div>
+    </div>
+    <div class="eyebrow">Image editing &middot; seconds per edit of a 512 x 512 photo, lower is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">FLUX.2-klein-4B-Background-Remove</span><span class="num">16.8 <small>s</small></span><span class="note">8.43 s without a photo</span><span class="pill warn">works, traces left</span></div>
+      <div class="v"><span class="name">FLUX.2-klein-4B-Outpaint</span><span class="num">16.8 <small>s</small></span><span class="note">8.71 s without a photo</span><span class="pill good">works, exact prompt</span></div>
+      <div class="v"><span class="name">FLUX.2-klein-4B-Object-Remove</span><span class="num">16.9 <small>s</small></span><span class="note">8.49 s without a photo</span><span class="pill good">works</span></div>
+      <div class="v"><span class="name">FLUX.2-klein-4B-Zoom</span><span class="num">16.9 <small>s</small></span><span class="note">8.52 s without a photo</span><span class="pill good">works, exact prompt</span></div>
+    </div>
+    <div class="eyebrow">Picture to 3D &middot; minutes per model, lower is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">Hunyuan3d-2.1</span><span class="num">11-12 <small>min</small></span><span class="note">one object on a plain background</span><span class="pill good">works, API only</span></div>
+    </div>
+    <div class="eyebrow">Speech recognition &middot; times faster than real time on real speech, higher is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">Parakeet-TDT-0.6B-V3</span><span class="num">about 16 <small>x</small></span><span class="note">German errors 5.9 %</span><span class="pill good">the pick</span></div>
+      <div class="v"><span class="name">Fun-ASR-MLT-Nano</span><span class="num">5.3-6.3 <small>x</small></span><span class="note">build 28 Sep &middot; German errors 5.9-10.5 %</span><span class="pill warn">German, Russian better than build 2 Aug</span></div>
+      <div class="v"><span class="name">Fun-ASR-Nano</span><span class="num">4.2-6.5 <small>x</small></span><span class="note">build 28 Sep &middot; English errors 5.9 %</span><span class="pill warn">English only, faster than build 2 Aug</span></div>
+      <div class="v"><span class="name">Qwen3-ASR-1.7B</span><span class="num">3.1-3.5 <small>x</small></span><span class="note">build 28 Sep &middot; German errors 3.3-6.5 %</span><span class="pill good">+18 % vs build 2 Aug</span></div>
+      <div class="v"><span class="name">Whisper-large-v3-turbo</span><span class="num">1.2-1.4 <small>x</small></span><span class="note">German errors 13.1-17.0 %</span><span class="pill warn">adds unspoken phrases</span></div>
+    </div>
+    <div class="eyebrow">Speech output &middot; times faster than real time, higher is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">supertonic-3</span><span class="num">1.95 <small>x</small></span><span class="note">reference 2.10x</span><span class="pill bad">text lost</span></div>
+      <div class="v"><span class="name">Qwen3-CustomVoice-1.7B</span><span class="num">1.52 <small>x</small></span><span class="note">reference 1.58x</span><span class="pill good">&minus;4 %, matches</span></div>
+      <div class="v"><span class="name">Qwen3-VoiceDesign-1.7B</span><span class="num">1.44-1.52 <small>x</small></span><span class="note">no community reference</span><span class="pill warn">undocumented field</span></div>
+      <div class="v"><span class="name">Qwen3-VoiceClone-1.7B</span><span class="num">1.42 <small>x</small></span><span class="note">no community reference</span><span class="pill warn">undocumented fields</span></div>
+    </div>
+    <div class="eyebrow">Music &middot; seconds per clip, lower is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">Foundation-1</span><span class="num">63 <small>s</small></span><span class="note">20-second clip whatever is asked</span><span class="pill warn">fixed clip length</span></div>
+      <div class="v"><span class="name">SongGeneration-v2-large</span><span class="num">n/a <small></small></span><span class="note">every reply empty</span><span class="pill bad">no result via API</span></div>
+    </div>
+    <div class="eyebrow">Embeddings and reranking &middot; texts per second in a batch of 32, higher is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">Qwen3-Reranker-0.6B</span><span class="num">21.2 <small>pairs/s</small></span><span class="note">right passage first 10 of 10 &middot; reference 22.4</span><span class="pill good">&minus;5 %, matches</span></div>
+      <div class="v"><span class="name">Qwen3-Embedding-0.6B</span><span class="num">19.9 <small>emb/s</small></span><span class="note">8 of 10 &middot; reference 22.2</span><span class="pill warn">&minus;10 %</span></div>
+      <div class="v"><span class="name">R3-embedding-0.6b</span><span class="num">18.7 <small>emb/s</small></span><span class="note">8 of 10 &middot; no community reference</span><span class="pill warn">no reference</span></div>
+      <div class="v"><span class="name">Qwen3-VL-Embedding-2B</span><span class="num">10.0 <small>emb/s</small></span><span class="note">9 of 10 &middot; no community reference</span><span class="pill warn">no reference</span></div>
+      <div class="v"><span class="name">Nemotron-3-Embed-1B</span><span class="num">9.8 <small>emb/s</small></span><span class="note">6 of 10 &middot; no community reference</span><span class="pill warn">no reference</span></div>
+      <div class="v"><span class="name">Qwen3-Embedding-4b</span><span class="num">6.5 <small>emb/s</small></span><span class="note">10 of 10 &middot; reference 6.9</span><span class="pill good">&minus;6 %, in range</span></div>
+      <div class="v"><span class="name">Qwen3-Embedding-8B</span><span class="num">4.6 <small>emb/s</small></span><span class="note">9 of 10 &middot; no community reference</span><span class="pill warn">no reference</span></div>
+      <div class="v"><span class="name">Nemotron-3-Embed-8B</span><span class="num">2.1 <small>emb/s</small></span><span class="note">10 of 10 &middot; reference 2.2</span><span class="pill good">&minus;5 %, matches</span></div>
+    </div>
+    <div class="eyebrow">Document reading (OCR) &middot; seconds per page, lower is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">PP-OCRv6-Small</span><span class="num">1.9 <small>s</small></span><span class="note">German and English</span><span class="pill warn">no Cyrillic</span></div>
+      <div class="v"><span class="name">PP-OCRv6-Medium</span><span class="num">4.2 <small>s</small></span><span class="note">German and English</span><span class="pill warn">no Cyrillic</span></div>
+      <div class="v"><span class="name">GLM-OCR</span><span class="num">n/a <small></small></span><span class="note">every reply empty</span><span class="pill bad">no result via API</span></div>
+      <div class="v"><span class="name">PP-DocLayoutV3</span><span class="num">n/a <small></small></span><span class="note">every reply empty</span><span class="pill bad">no result via API</span></div>
+    </div>
+    <div class="eyebrow">Imported fine-tunes &middot; tok/s, higher is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">Qwen3.6-35B-A3B Claude-4.7-Opus distil</span><span class="num">24.9 <small>tok/s</small></span><span class="note">base Qwen3.6-35B-A3B 23.2</span><span class="pill good">+7 % vs its base</span></div>
+      <div class="v"><span class="name">Qwen3.5-9B Claude-4.6-Opus distil</span><span class="num">19.1 <small>tok/s</small></span><span class="note">base Qwen3.5-9B 17.9</span><span class="pill good">+7 % vs its base</span></div>
+      <div class="v"><span class="name">Qwythos-9B Claude-Mythos distil</span><span class="num">18.1 <small>tok/s</small></span><span class="note">base Qwen3.5-9B 17.9</span><span class="pill bad">weaker than its base</span></div>
+      <div class="v"><span class="name">WEBGEN-4B-Preview</span><span class="num">17.3 <small>tok/s</small></span><span class="note">base Qwen3-4B-Instruct-2507 17.7</span><span class="pill warn">&minus;2 % vs its base</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Generation speed</h2>
+    <p class="note">One unbroken 1,500-token answer (gemma stopped at 1,308). Higher is better. Qwen3.6-35B-A3B-Turbo is shown with its build of 28 September; the reference bar was measured on the build before it.</p>
+    <div class="legend"><span><span class="sw" style="background:var(--ours)"></span>Unit 1</span><span><span class="sw" style="background:var(--ref)"></span>Community reference</span></div>
+    <div class="chart" id="decode"></div>
+  </section>
+
+  <section>
+    <h2>Reading a long prompt</h2>
+    <p class="note">Prefill rate at about 6,260 prompt tokens: how fast a long document is read before the first word comes back. Higher is better. Qwen3.6-35B-A3B-Turbo is shown with its build of 28 September (640); the build before it read 675.</p>
+    <div class="legend"><span><span class="sw" style="background:var(--ours)"></span>Unit 1</span><span><span class="sw" style="background:var(--ref)"></span>Community reference</span></div>
+    <div class="chart" id="prefill"></div>
+  </section>
+
+  <section>
+    <h2>All chat figures</h2>
+    <p class="note">Power: "100 W" = UGREEN 100 W charger with the stock cable, used from 11:59 on 5 October for every later run; "65 W" = the EU 65 W adapter with the network dock attached, used for the morning runs (09:50-11:52), which it throttled. The charts above show the 100 W runs only.</p>
+    <p class="note">How to read the tables: a model measured on more than one build shows its best build, and the plus sign opens its other builds, newest release first. Under a value of another build stands how it compares with the best build: a green arrow up is better, an amber arrow down is worse, "=" the same. Grey lines are builds that are in the store but not installed yet. NPU units are what a model reserves of the 100 units of the box's processor while it is loaded: fewer units leave more room for a second model beside it. They were read from the box on 13 October for every model installed then; for a model deleted earlier the figure is the one noted when it was measured. Ornith-1.5 against Ornith-1.0 and Qwen3.5-9B-Turbo against Qwen3.5-9B are different models, not builds of one model.</p>
+    <p><button class="tgall" type="button">Show all builds</button></p>
+    <div class="tablebox">
+      <table class="main">
+        <thead><tr><th>Model</th><th>Power</th><th>NPU units</th><th>Load s</th><th>Decode tok/s</th><th>Ref</th><th>Prefill tok/s</th><th>Ref</th><th>Thinking off / on s</th><th>Ref</th><th class="t">Status</th></tr></thead>
+        <tbody>
+          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="c1" title="Show or hide the other builds">+</button>Qwen3.6-35B-A3B-Turbo<span class="bld">build 28 Sep &middot; measured 10 Oct</span></td><td>100 W</td><td>46</td><td>22</td><td>34.7</td><td class="ref">n/a</td><td>640</td><td class="ref">n/a</td><td>13.2 / 15.2</td><td class="ref">n/a</td><td class="t"><span class="pill good">best of 2 measured</span><span class="dl ref">installed now</span></td></tr>
+          <tr class="rev" data-g="c1" hidden><td>build 14 Sep &middot; measured 5 Oct</td><td>100 W</td><td class="ref">not recorded</td><td>26<span class="dl warn">&#9660; 4 s more</span></td><td>32.5<span class="dl warn">&#9660; 6 % slower</span></td><td class="ref">32.5</td><td>675<span class="dl good">&#9650; 5 % faster</span></td><td class="ref">718</td><td>12.8 / 17.3</td><td class="ref">12.4 / 15.4</td><td class="t ref">replaced on 9 Oct</td></tr>
+          <tr><td>Ornith-1.5-35B-A3B-Turbo, 10 Oct</td><td>100 W</td><td>54</td><td>30</td><td>32.9</td><td class="ref">n/a</td><td>761</td><td class="ref">n/a</td><td>12.0 / 16.4</td><td class="ref">n/a</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3.5-9B-Turbo, 10 Oct</td><td>100 W</td><td>28</td><td>27</td><td>31.1</td><td class="ref">n/a</td><td>1,404</td><td class="ref">n/a</td><td>8.1 / 14.0</td><td class="ref">n/a</td><td class="t ref">installed now</td></tr>
+          <tr><td>BigBang-v1-Turbo (36B), 10 Oct</td><td>100 W</td><td>54</td><td>26</td><td>30.6</td><td class="ref">n/a</td><td>758</td><td class="ref">n/a</td><td>10.6 / 11.3</td><td class="ref">n/a</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3-Coder-30B-A3B-Instruct, 6 Oct</td><td>100 W</td><td>55</td><td>14</td><td>27.3</td><td class="ref">29.2</td><td>886</td><td class="ref">n/a</td><td>11.7 / 10.3</td><td class="ref">no effect</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3.5-35B-A3B, 6 Oct</td><td>100 W</td><td>45</td><td>55</td><td>26.7</td><td class="ref">28.8</td><td>659</td><td class="ref">695</td><td>21.5 / 26.3</td><td class="ref">20.2 / 24.3</td><td class="t ref">installed now</td></tr>
+          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="c2" title="Show or hide the other builds">+</button>Qwen3.6-35B-A3B<span class="bld">factory build 10 Aug &middot; measured 5 Oct</span></td><td>100 W</td><td>47</td><td>51</td><td>26.4</td><td class="ref">24.9</td><td>702</td><td class="ref">719</td><td>24.1 / 26.1</td><td class="ref">22.6 / 28.3</td><td class="t"><span class="pill good">best of 2 measured</span><span class="dl ref">replaced on 7 Oct</span></td></tr>
+          <tr class="rev" data-g="c2" hidden><td>build 7 Sep &middot; measured 7 Oct, an afternoon that ran 9 % slow</td><td>100 W</td><td>55<span class="dl warn">&#9660; 8 more</span></td><td>18<span class="dl good">&#9650; 33 s less</span></td><td>23.2<span class="dl warn">&#9660; 12 % slower, about 3 % real</span></td><td class="ref">24.9</td><td>726<span class="dl good">&#9650; 3 % faster</span></td><td class="ref">719</td><td>23.4 / 29.8</td><td class="ref">22.6 / 28.3</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3-30B-A3B-Thinking, 6 Oct</td><td>100 W</td><td>58</td><td>14</td><td>26.1</td><td class="ref">29.2</td><td>898</td><td class="ref">968</td><td>26.2 / 26.1</td><td class="ref">no effect</td><td class="t ref">installed now</td></tr>
+          <tr><td>gpt-oss-20b</td><td>100 W</td><td>27</td><td>10</td><td>25.3</td><td class="ref">30.9</td><td>1,270</td><td class="ref">1,068</td><td>27.3 / 24.8</td><td class="ref">20.0 / 17.9</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3-30B-A3B-Instruct</td><td>100 W</td><td>55</td><td>14</td><td>24.6</td><td class="ref">29.3</td><td>898</td><td class="ref">978</td><td>15.4 / 15.2</td><td class="ref">no effect</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3-Coder-30B-A3B-Instruct-Turbo</td><td>100 W</td><td>55</td><td>51</td><td>24.4</td><td class="ref">29.4</td><td>903</td><td class="ref">960</td><td>7.0 / 6.8</td><td class="ref">5.5 / 6.3</td><td class="t ref">deleted from the box</td></tr>
+          <tr><td>Qwen3-Coder-30B-A3B-Instruct-Turbo, re-run</td><td>100 W</td><td>55</td><td>47</td><td>24.3</td><td class="ref">29.4</td><td>899</td><td class="ref">960</td><td>6.0 / 6.0</td><td class="ref">5.5 / 6.3</td><td class="t ref">deleted from the box</td></tr>
+          <tr><td>Ornith-1.0-35B</td><td>100 W</td><td>50</td><td>71</td><td>21.8</td><td class="ref">22.5</td><td>704</td><td class="ref">740</td><td>26.6 / 27.7</td><td class="ref">n/a / 29.6</td><td class="t ref">deleted from the box</td></tr>
+          <tr><td>gemma-4-26B-A4B-it</td><td>100 W</td><td>78</td><td>14</td><td>20.2</td><td class="ref">21.7</td><td>835</td><td class="ref">1,254</td><td>16.5 / 36.8</td><td class="ref">15.7 / 32.1</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3-Coder-Next, 6 Oct</td><td>100 W</td><td>94</td><td>119</td><td>19.6</td><td class="ref">20.1</td><td>428</td><td class="ref">447</td><td>16.7 / 16.5</td><td class="ref">no effect</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3-8B, 6 Oct</td><td>100 W</td><td>28</td><td>22</td><td>18.9</td><td class="ref">n/a</td><td>1,331</td><td class="ref">1,419</td><td>25.9 / 35.6</td><td class="ref">n/a</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3.5-9B</td><td>100 W</td><td>29<span class="dl ref">reference run 16</span></td><td>26</td><td>17.9</td><td class="ref">20.9</td><td>1,342</td><td class="ref">1,356</td><td>30.3 / 39.2</td><td class="ref">22.3 / 34.0</td><td class="t ref">deleted from the box</td></tr>
+          <tr><td>Qwen3.5-9B, re-run</td><td>100 W</td><td>29</td><td>30</td><td>17.8</td><td class="ref">20.9</td><td>1,334</td><td class="ref">1,356</td><td>34.4 / 39.5</td><td class="ref">22.3 / 34.0</td><td class="t ref">deleted from the box</td></tr>
+          <tr><td>Qwen3-4B-Instruct-2507, 6 Oct</td><td>100 W</td><td>25</td><td>22</td><td>17.7</td><td class="ref">n/a</td><td>1,490</td><td class="ref">1,590</td><td>21.9 / 22.7</td><td class="ref">no effect</td><td class="t ref">installed now</td></tr>
+          <tr><td>gpt-oss-120b, alone on the box</td><td>100 W</td><td>100</td><td>103</td><td>16.8</td><td class="ref">18.8</td><td>560</td><td class="ref">581</td><td>29.5 / 40.6</td><td class="ref">35.6 / 25.2</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3.8-27B, 6 Oct</td><td>100 W</td><td>52<span class="dl ref">reference run 55</span></td><td>30</td><td>15.1</td><td class="ref">11.4</td><td>391</td><td class="ref">453</td><td>32.1 / 16.4</td><td class="ref">34.5 / 17.8</td><td class="t ref">installed now</td></tr>
+          <tr><td>GLM-4.7-Flash, 6 Oct</td><td>100 W</td><td>57</td><td>55</td><td>13.9</td><td class="ref">14.9</td><td>274</td><td class="ref">286</td><td>17.7 / 48.6</td><td class="ref">14.8 / 45.3</td><td class="t ref">deleted from the box</td></tr>
+          <tr><td>Qwen3.6-27B-Turbo, 6 Oct</td><td>100 W</td><td>55</td><td>34</td><td>11.1</td><td class="ref">13.4</td><td>434</td><td class="ref">480</td><td>26.7 / 34.9</td><td class="ref">33.8 / 34.7</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3.6-27B (dense), 6 Oct</td><td>100 W</td><td class="ref">not recorded</td><td>43</td><td>6.2</td><td class="ref">6.4</td><td>442</td><td class="ref">n/a</td><td>104.7 / 113.1</td><td class="ref">n/a</td><td class="t ref">deleted from the box</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, run 1 (Wi-Fi, downloads running)</td><td>65 W</td><td>47</td><td>54</td><td>25.2</td><td class="ref">24.9</td><td>687</td><td class="ref">719</td><td>23.3 / 27.9</td><td class="ref">22.6 / 28.3</td><td class="t ref">factory build, replaced on 7 Oct</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, run 2 (LAN)</td><td>65 W</td><td>47</td><td>59</td><td>23.3</td><td class="ref">24.9</td><td>687</td><td class="ref">719</td><td>25.0 / 29.8</td><td class="ref">22.6 / 28.3</td><td class="t ref">factory build, replaced on 7 Oct</td></tr>
+          <tr><td>Qwen3.6-35B-A3B-Turbo</td><td>65 W</td><td class="ref">not recorded</td><td>22</td><td>26.7</td><td class="ref">32.5</td><td>672</td><td class="ref">718</td><td>17.5 / 19.5</td><td class="ref">12.4 / 15.4</td><td class="t ref">build 14 Sep, replaced on 9 Oct</td></tr>
+          <tr><td>gpt-oss-20b</td><td>65 W</td><td>27</td><td>10</td><td>22.5</td><td class="ref">30.9</td><td>1,243</td><td class="ref">1,068</td><td>14.7 / 24.6</td><td class="ref">20.0 / 17.9</td><td class="t ref">installed now</td></tr>
+          <tr><td>gemma-4-26B-A4B-it</td><td>65 W</td><td>78</td><td>14</td><td>19.0</td><td class="ref">21.7</td><td>813</td><td class="ref">1,254</td><td>21.6 / 39.2</td><td class="ref">15.7 / 32.1</td><td class="t ref">installed now</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:8px">Parallel calls (1, 2, 4, 8 at once) gave a flat total of about 16-24 tok/s on every model, with no failures, the same pattern the community reports.</p>
+  </section>
+
+  <section class="section">
+    <h2>Quality: the same seven tasks for every chat model</h2>
+    <p class="note">Added on 6 October. Speed alone says nothing about whether an answer is right, so all nineteen chat models got the same seven prompts, one model loaded at a time; the four chat models of the 9 October update got them on 10 October and are in the table too. Five are graded by a machine: a pandas function and a SQL window query (running total, previous value, a rank that does not skip) run against test data, a function with two bugs to fix checked by four tests, a scrap-rate sum (2,073 parts, EUR 25,705.20) and a tool call. Two are graded by reading: a German follow-up mail and a three-point Russian summary of a German meeting protocol with ten facts in it. Answers cut off by the length limit were asked again with a limit of 12,000 tokens.</p>
+    <div class="tablebox">
+      <table class="main">
+        <thead><tr><th>Model</th><th>Machine-graded, first run</th><th>Code tasks over three runs</th><th>German mail</th><th>Russian summary</th><th>Seconds, 7 tasks</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3.6-27B-Turbo</td><td>5/5</td><td>9/9 <span class="note">(pandas 3/3, SQL 3/3, bug fix 3/3)</span></td><td class="good">A</td><td class="good">A</td><td>127</td><td class="note"></td></tr>
+          <tr><td>Qwen3-Coder-Next</td><td>5/5</td><td>9/9 <span class="note">(pandas 3/3, SQL 3/3, bug fix 3/3)</span></td><td class="warn">B</td><td class="good">A-</td><td>66</td><td class="note">one German grammar slip</td></tr>
+          <tr><td>Qwen3-30B-A3B-Thinking</td><td>5/5</td><td>8/9 <span class="note">(pandas 2/3, SQL 3/3, bug fix 3/3)</span></td><td class="good">A</td><td class="good">A</td><td>563</td><td class="note">thinks on every task</td></tr>
+          <tr><td>gpt-oss-20b</td><td>5/5</td><td>8/9 <span class="note">(pandas 2/3, SQL 3/3, bug fix 3/3)</span></td><td class="good">A</td><td class="bad">C</td><td>316</td><td class="note">faulty Russian</td></tr>
+          <tr><td>gemma-4-26B-A4B-it</td><td>5/5</td><td>7/9 <span class="note">(pandas 3/3, SQL 1/3, bug fix 3/3)</span></td><td class="good">A</td><td class="good">A</td><td>177</td><td class="note"></td></tr>
+          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="q1" title="Show or hide the other builds">+</button>Qwen3.6-35B-A3B-Turbo<span class="bld">build 28 Sep &middot; 10 Oct &middot; installed now</span></td><td>5/5</td><td>7/9 <span class="note">(pandas 2/3, SQL 2/3, bug fix 3/3)</span></td><td class="good">A</td><td class="good">A-</td><td>278</td><td class="note">reasoning needed the longer limit</td></tr>
+          <tr class="rev" data-g="q1" hidden><td>build 14 Sep &middot; 6 Oct &middot; replaced on 9 Oct</td><td>4/5<span class="dl warn">&#9660; one fewer</span></td><td>5/9 <span class="note">(pandas 2/3, SQL 0/3, bug fix 3/3)</span><span class="dl warn">&#9660; two fewer</span></td><td class="good">A<span class="dl ref">= same</span></td><td class="good">A<span class="dl good">&#9650; slightly better</span></td><td>75<span class="dl good">&#9650; quicker, thinks less</span></td><td class="note"></td></tr>
+          <tr><td>Qwen3.6-27B</td><td>5/5</td><td class="ref">not repeated, model deleted</td><td class="good">A</td><td class="good">A</td><td>509</td><td class="note">slowest model on the box</td></tr>
+          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="q2" title="Show or hide the other builds">+</button>Qwen3.6-35B-A3B<span class="bld">factory build 10 Aug &middot; 6 Oct &middot; replaced on 7 Oct</span></td><td>4/5</td><td>6/9 <span class="note">(pandas 2/3, SQL 1/3, bug fix 3/3; first run on this build, the two repeats on the 7 Sep build)</span></td><td class="good">A</td><td class="good">A</td><td>462</td><td class="note"></td></tr>
+          <tr class="rev" data-g="q2" hidden><td>build 7 Sep &middot; 7 Oct &middot; installed now</td><td>3/5<span class="dl warn">&#9660; one fewer, one run</span></td><td class="ref">its two repeats are counted in the row above</td><td class="good">A-<span class="dl warn">&#9660; slightly weaker</span></td><td class="warn">B+<span class="dl warn">&#9660; weaker</span></td><td>123<span class="dl good">&#9650; quicker, one run</span></td><td class="note">pandas failed in its single first run</td></tr>
+          <tr><td>Qwen3.5-35B-A3B</td><td>4/5</td><td>6/9 <span class="note">(pandas 3/3, SQL 0/3, bug fix 3/3)</span></td><td class="warn">B</td><td class="warn">B</td><td>167</td><td class="note">grammar slips, an English word in the Russian</td></tr>
+          <tr><td>Ornith-1.5-35B-A3B-Turbo (10 Oct)</td><td>4/5</td><td>6/9 <span class="note">(pandas 2/3, SQL 1/3, bug fix 3/3)</span></td><td class="warn">B</td><td class="warn">B-</td><td>94</td><td class="note">calls a pending request approved</td></tr>
+          <tr><td>Qwen3.5-9B-Turbo (10 Oct)</td><td>4/5</td><td>6/9 <span class="note">(pandas 1/3, SQL 2/3, bug fix 3/3)</span></td><td class="bad">C</td><td class="bad">C</td><td>236</td><td class="note">"three days" for three weeks, mixed languages</td></tr>
+          <tr><td>BigBang-v1-Turbo (10 Oct)</td><td>4/5</td><td>5/9 <span class="note">(pandas 2/3, SQL 0/3, bug fix 3/3)</span></td><td class="good">A-</td><td class="good">A</td><td>110</td><td class="note">ranks with gaps in SQL every time</td></tr>
+          <tr><td>gpt-oss-120b</td><td>4/5</td><td>5/9 <span class="note">(pandas 0/3, SQL 2/3, bug fix 3/3)</span></td><td class="good">A-</td><td class="warn">B</td><td>240</td><td class="note">leaves German terms untranslated</td></tr>
+          <tr><td>Qwen3-Coder-30B-A3B-Instruct</td><td>4/5</td><td>5/9 <span class="note">(pandas 2/3, SQL 0/3, bug fix 3/3)</span></td><td class="warn">B</td><td class="warn">B+</td><td>42</td><td class="note"></td></tr>
+          <tr><td>Qwen3-8B</td><td>4/5</td><td>5/9 <span class="note">(pandas 2/3, SQL 0/3, bug fix 3/3)</span></td><td class="warn">B-</td><td class="bad">C</td><td>216</td><td class="note">distorted the summary</td></tr>
+          <tr><td>Qwen3.5-9B</td><td>4/5</td><td class="ref">not repeated, model deleted</td><td class="bad">C</td><td class="bad">C</td><td>560</td><td class="note">invented details</td></tr>
+          <tr><td>Qwen3.8-27B</td><td>3/5</td><td>5/9 <span class="note">(pandas 2/3, SQL 0/3, bug fix 3/3)</span></td><td class="good">A</td><td class="good">A-</td><td>132</td><td class="note">solved the pandas task in the 10:30 check</td></tr>
+          <tr><td>Qwen3-4B-Instruct-2507</td><td>3/5</td><td>5/9 <span class="note">(pandas 2/3, SQL 0/3, bug fix 3/3)</span></td><td class="bad">C</td><td class="bad">F</td><td>55</td><td class="note">answered the Russian task in German</td></tr>
+          <tr><td>Qwen3-30B-A3B-Instruct</td><td>3/5</td><td>3/9 <span class="note">(pandas 0/3, SQL 0/3, bug fix 3/3)</span></td><td class="warn">B+</td><td class="good">A</td><td>42</td><td class="note"></td></tr>
+          <tr><td>Ornith-1.0-35B</td><td>3/5</td><td class="ref">not repeated, model deleted</td><td class="good">A</td><td class="good">A-</td><td>212</td><td class="note">forgot <code>import pandas</code></td></tr>
+          <tr><td>Qwen3-Coder-30B-A3B-Instruct-Turbo</td><td>3/5</td><td class="ref">not repeated, model deleted</td><td class="warn">B-</td><td class="bad">C</td><td>40</td><td class="note">invented facts in the summary</td></tr>
+          <tr><td>GLM-4.7-Flash</td><td>3/5</td><td class="ref">not repeated, model deleted</td><td class="bad">C</td><td class="warn">B-</td><td>159</td><td class="note">broken German sentences</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Sorted by quality: machine-graded answers of the first run, then the code score over three runs, then the two reading grades together, then the time for the seven tasks; the five models without repeats stand last in their group. A model measured on more than one build shows its best build; the plus sign opens its other builds. Reading grades: A usable as is, B usable after an edit, C poor, F wrong task. The three-run column repeats the pandas, SQL and bug-fix tasks with a different seed per run (two more runs on 6, 10, 11 and 12 October); five models were deleted from the box before their repeats and have the first run only; without a seed the box can hand back the identical answer, so an unseeded repeat proves nothing. "Seconds" includes thinking and any re-asked answer. Every model got the tool call and the bug fix right; the most common miss was ranking with RANK where the task asked for ranks without gaps.</p>
+  </section>
+
+  <section class="section">
+    <h2>Images, speech and embeddings</h2>
+    <p class="note">Measured 12:46-12:58 on the 100 W charger over LAN, one model resident at a time.</p>
+    <div class="tablebox">
+      <table class="main">
+        <thead><tr><th>Model</th><th>NPU units</th><th>Load s</th><th>Measure</th><th>Unit 1</th><th>Ref</th><th>Each run</th><th>Ref</th><th class="t">Quality check</th><th class="t">Status</th></tr></thead>
+        <tbody>
+          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="i1" title="Show or hide the other builds">+</button>Z-Image-Turbo<span class="bld">factory build &middot; measured 5 Oct</span></td><td>32</td><td>14</td><td>s per 512 x 512 image, 8 steps</td><td>8.40</td><td class="ref">7.9</td><td>9.26 / 8.40 / 8.40</td><td class="ref">8.32 / 7.90 / 7.88</td><td class="t">German poster word broken ("PR&Uuml;FI- BRICHT"); its bicycle picture is the reference</td><td class="t"><span class="pill good">best of 2 measured</span><span class="dl ref">replaced on 7 Oct</span></td></tr>
+          <tr class="rev" data-g="i1" hidden><td>build 18 Sep</td><td>26<span class="dl good">&#9650; 6 fewer, store figure</span></td><td class="pend">to measure</td><td>s per 512 x 512 image, 8 steps</td><td class="pend">to measure</td><td class="ref">7.9</td><td class="pend">to measure</td><td class="ref">8.32 / 7.90 / 7.88</td><td class="t pend">to check</td><td class="t ref">in the store, not installed; vendor: "faster, less memory, quicker startup"</td></tr>
+          <tr class="rev" data-g="i1" hidden><td>build 13 Aug &middot; measured 7 Oct</td><td>26<span class="dl good">&#9650; 6 fewer</span></td><td>55<span class="dl warn">&#9660; 41 s more</span></td><td>s per 512 x 512 image, 8 steps</td><td>9.28<span class="dl warn">&#9660; 10 % slower, about equal in real terms</span></td><td class="ref">7.9</td><td class="ref">n/a</td><td class="ref">8.32 / 7.90 / 7.88</td><td class="t">German poster word one letter short ("PR&Uuml;FBEICHT")<span class="dl ref">= still wrong</span>bicycle picture, same seed: nearly identical<span class="dl ref">= same</span></td><td class="t ref">installed now</td></tr>
+          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="i2" title="Show or hide the other builds">+</button>Qwen3-ASR-1.7B<span class="bld">build 28 Sep &middot; measured 13 Oct</span></td><td>7</td><td>12.4</td><td>x real time, 2 / 5 / 10 s clips</td><td>6.35</td><td class="ref">7.03</td><td>3.12 / 6.35 / 9.83</td><td class="ref">3.3 / 7.0 / 10.4</td><td class="t">real speech 3.1-3.5x; word errors German 3.3-6.5 %, Russian 7.4 %, English 0.7-1.3 %</td><td class="t"><span class="pill good">best of 3 measured</span><span class="dl ref">installed now</span></td></tr>
+          <tr class="rev" data-g="i2" hidden><td>build 2 Aug, downloaded again &middot; measured 7 Oct</td><td>7<span class="dl ref">= same</span></td><td class="ref">n/a</td><td>x real time, 2 / 5 / 10 s clips</td><td>6.32<span class="dl ref">= about equal</span></td><td class="ref">7.03</td><td class="ref">n/a</td><td class="ref">3.3 / 7.0 / 10.4</td><td class="t">real speech 2.6-3.0x<span class="dl warn">&#9660; about 15 % slower</span>German 3.3-4.6 %<span class="dl ref">= same within the spread</span>Russian 9.6-10.3 %<span class="dl warn">&#9660; more errors</span>English 2.6-3.3 %<span class="dl warn">&#9660; more errors</span></td><td class="t ref">replaced on 13 Oct</td></tr>
+          <tr class="rev" data-g="i2" hidden><td>build 2 Aug, factory download &middot; measured 5 Oct</td><td>7<span class="dl ref">= same</span></td><td>18<span class="dl warn">&#9660; 5.6 s more</span></td><td>x real time, 2 / 5 / 10 s clips</td><td>6.11<span class="dl warn">&#9660; 4 % slower</span></td><td class="ref">7.03</td><td>2.9 / 6.1 / 9.9</td><td class="ref">3.3 / 7.0 / 10.4</td><td class="t">real speech 2.6-3.0x<span class="dl warn">&#9660; about 15 % slower</span>German 4.6-6.5 %<span class="dl ref">= same within the spread</span>Russian 8.8-14.0 %<span class="dl warn">&#9660; more errors</span>English 2.6-3.3 %<span class="dl warn">&#9660; more errors</span></td><td class="t ref">replaced on 7 Oct</td></tr>
+          <tr><td>Qwen3-Embedding-0.6B</td><td>1</td><td>6</td><td>emb/s, batch 1 / 8 / 32</td><td>19.9</td><td class="ref">22.2</td><td>4.8 / 18.5 / 19.9</td><td class="ref">7.4 / 20.4 / 22.2</td><td class="t">right passage first 8 of 10</td><td class="t ref">installed now, protected</td></tr>
+          <tr><td>Qwen3-Embedding-4b, after warm-up</td><td>23</td><td>10</td><td>emb/s, batch 1 / 8 / 32</td><td>6.5</td><td class="ref">6.9</td><td>4.6 / 6.3 / 6.5</td><td class="ref">4.0 / 6.7 / 6.9</td><td class="t">right passage first 10 of 10</td><td class="t ref">installed now</td></tr>
+          <tr><td>Qwen3-Reranker-0.6B, after warm-up</td><td>2</td><td>6</td><td>pairs/s, 4 / 16 / 64 docs</td><td>21.2</td><td class="ref">22.4</td><td>12.9 / 20.5 / 21.2</td><td class="ref">14.5 / 21.8 / 22.4</td><td class="t">right passage first 10 of 10</td><td class="t ref">installed now</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">TiinyBench sends a beeping tone instead of speech, so no text comes back and its figure measures audio throughput only. With real speech (60-83 s clips with a known text) the model also writes the text and runs 2.6-3.0x faster than real time, the same in the morning and in a re-run with no download on the box. That lower rate is the one to plan with: an hour of audio takes about 20-23 minutes on the build of 2 Aug (morning and re-run columns, 5 October) and about 17-19 minutes on the build of 28 Sep (3.1-3.5x, last two columns, measured 13 October, two passes).</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Real speech</th><th>Clip s</th><th>Speed, morning</th><th>Speed, re-run</th><th>Word errors, morning</th><th>Word errors, re-run</th><th>Speed, build 28 Sep</th><th>Word errors, build 28 Sep</th></tr></thead>
+        <tbody>
+          <tr><td>German</td><td>75</td><td>2.7x</td><td>2.64x / 2.61x</td><td>5.2 %</td><td>4.6 % / 6.5 %</td><td>3.09x / 3.12x</td><td>6.5 % / 3.3 %</td></tr>
+          <tr><td>Russian</td><td>83</td><td>2.7x</td><td>2.63x / 2.67x</td><td>8.8 %</td><td>13.2 % / 14.0 %</td><td>3.21x / 3.09x</td><td>7.4 % / 7.4 %</td></tr>
+          <tr><td>English</td><td>63</td><td>3.1x</td><td>2.98x / 3.03x</td><td>3.3 %</td><td>3.3 % / 2.6 %</td><td>3.52x / 3.47x</td><td>1.3 % / 0.7 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Speech recognition and OCR compared</h2>
+    <p class="note">The same three real-speech clips (German 75 s, Russian 83 s, English 63 s), two passes each, word errors counted the same way for every model. Downloaded and measured 15:21-16:01, with no download running during the tests. The rows of build 28 Sep were measured on 13 October, 22:10-22:30, with the same clips and the same count; the transcripts of the builds of 2 Aug were counted again with it and gave the figures shown.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Speech model</th><th>NPU units</th><th>Speed</th><th>German</th><th>Russian</th><th>English</th></tr></thead>
+        <tbody>
+          <tr><td>Parakeet-TDT-0.6B-V3</td><td>5</td><td>about 16x</td><td>5.9 %</td><td>7.4-8.1 %</td><td>3.9-8.6 %</td></tr>
+          <tr><td>Qwen3-ASR-1.7B, build 28 Sep (13 Oct)</td><td>7</td><td>3.1-3.5x</td><td>3.3-6.5 %</td><td>7.4 %</td><td>0.7-1.3 %</td></tr>
+          <tr><td>Qwen3-ASR-1.7B, build 2 Aug (5 Oct)</td><td>7</td><td>2.5-3.0x</td><td>2.6-6.5 %</td><td>7.4-14.7 %</td><td>2.0-3.3 %</td></tr>
+          <tr><td>Whisper-large-v3-turbo</td><td>5</td><td>1.2-1.4x</td><td>13.1-17.0 %</td><td>17.6-32.4 %</td><td>10.5-11.8 %</td></tr>
+          <tr><td>Fun-ASR-MLT-Nano, build 28 Sep (13 Oct)</td><td>6</td><td>5.3-6.3x</td><td>5.9-10.5 %</td><td>30.9-44.1 %</td><td>28.3-40.1 %, Spanish phrases added</td></tr>
+          <tr><td>Fun-ASR-MLT-Nano, build 2 Aug (6 Oct)</td><td>6</td><td>7.1x, tone clips only</td><td>15.7 %</td><td>no Russian returned</td><td>34.9 %, Spanish phrases added</td></tr>
+          <tr><td>Fun-ASR-Nano, build 28 Sep (13 Oct)</td><td>7</td><td>4.2-6.5x</td><td>82-90 %, unusable</td><td>126-135 %, unusable</td><td>5.9 %</td></tr>
+          <tr><td>Fun-ASR-Nano, build 2 Aug (6 Oct)</td><td>7</td><td>2.9-4.0x</td><td>117 %, unusable</td><td>140 %, unusable</td><td>4.6 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Word-error ranges cover every pass of the day. Parakeet failed one German call of six with a server error. Whisper as served here pads its output with phrases nobody said ("vielen Dank" ten times, "thank you", the familiar Russian subtitle credit), which is most of its error.</p>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>OCR model</th><th>NPU units</th><th>Per page</th><th>German and English</th><th>Russian line</th><th>Scan-like copy</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3.6-35B-A3B (vision chat, thinking off)</td><td>47</td><td>11-13 s</td><td>no errors, table as Markdown</td><td>letter for letter</td><td>no errors, table in order</td></tr>
+          <tr><td>PP-OCRv6-Medium</td><td>1</td><td>4.2 s</td><td>no errors, table complete</td><td>not read, no Cyrillic</td><td>text right, table cells out of order</td></tr>
+          <tr><td>PP-OCRv6-Small (6 Oct)</td><td>0</td><td>1.9 s</td><td>11.8 % character errors (Medium 10.6 %)</td><td>not read, no Cyrillic</td><td>22.8 % (Medium 21.4 %)</td></tr>
+          <tr><td>GLM-OCR</td><td>4</td><td>n/a</td><td colspan="3">empty reply to every call through the API</td></tr>
+          <tr><td>PP-DocLayoutV3 (6 Oct)</td><td>20</td><td>n/a</td><td colspan="3">empty reply to every call through the API</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2 style="margin-top:12px">Image sizes</h2>
+    <p class="note">Z-Image-Turbo through the API, 8 steps, one prompt, one run per size, 19:45. TiinyBench's code says 512 x 512 is the only size the firmware renders; on Unit 1 every requested size came back at that size, as a real render rather than an enlarged 512 image.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Requested</th><th>Returned</th><th>Seconds</th><th>File KB</th></tr></thead>
+        <tbody>
+          <tr><td>512 x 512</td><td>512 x 512</td><td>9.5</td><td>575</td></tr>
+          <tr><td>768 x 768</td><td>768 x 768</td><td>46.9</td><td>1,281</td></tr>
+          <tr><td>1024 x 1024</td><td>1024 x 1024</td><td>38.7</td><td>2,290</td></tr>
+          <tr><td>1024 x 576</td><td>1024 x 576</td><td>37.7</td><td>1,266</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The OCR test page is fictional: a German letter with a price table, one Russian and one English line, once clean and once rotated, blurred and noisy like a scan.</p>
+  </section>
+
+  <section class="section">
+    <h2>Voice and search models</h2>
+    <p class="note">Added on 6 October. Speech output was checked by reading each clip back with two speech recognition models: the fewer word errors, the clearer the speech. The same German, English and Russian sentence for every model.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Speech output</th><th>NPU units</th><th>Real time</th><th>Ref</th><th>German errors</th><th>English errors</th><th>Russian errors</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3-CustomVoice-1.7B</td><td>7</td><td>1.52x</td><td class="ref">1.58x</td><td>5-14 %</td><td>5 %</td><td>31 %, strong accent</td></tr>
+          <tr><td>Qwen3-VoiceClone-1.7B</td><td>5</td><td>1.42x</td><td class="ref">not measured</td><td>10-14 %</td><td>n/a</td><td>13 % (Parakeet)</td></tr>
+          <tr><td>supertonic-3</td><td>0</td><td>1.95x</td><td class="ref">2.10x</td><td colspan="3">text lost after the first words in all three languages</td></tr>
+          <tr><td>Qwen3-VoiceDesign-1.7B (6 Oct)</td><td>5</td><td>1.44-1.52x</td><td class="ref">not measured</td><td>4.8 %</td><td>0 %</td><td>125 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The voice clone copied a voice made by CustomVoice, not a real person's. VoiceDesign takes a voice described in words, but only through the request field <code>instruct</code>, which is not documented yet (or <code>instructions</code>); its Russian is the least clear of all. Qwen3-ASR could not read either model's Russian at all and answered in other scripts, so the Russian figures come from Parakeet only.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Embedding model</th><th>NPU units</th><th>Per second, batch 32</th><th>Ref</th><th>Vector size</th><th>Right passage first, of 10</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3-Embedding-0.6B</td><td>1</td><td>19.9</td><td class="ref">22.2</td><td>1,024</td><td>8</td></tr>
+          <tr><td>Qwen3-Embedding-4b</td><td>23</td><td>6.5</td><td class="ref">6.9</td><td>2,560</td><td>10</td></tr>
+          <tr><td>Qwen3-Embedding-8B</td><td>18</td><td>4.6</td><td class="ref">n/a</td><td>4,096</td><td>9</td></tr>
+          <tr><td>Nemotron-3-Embed-8B</td><td>20</td><td>2.1</td><td class="ref">2.2</td><td>4,096</td><td>10</td></tr>
+          <tr><td>Qwen3-VL-Embedding-2B (text only)</td><td>8</td><td>10.0</td><td class="ref">n/a</td><td>2,048</td><td>9</td></tr>
+          <tr><td>Nemotron-3-Embed-1B (6 Oct)</td><td>7</td><td>9.8</td><td class="ref">n/a</td><td>2,048</td><td>6 (2 without the instruction)</td></tr>
+          <tr><td>R3-embedding-0.6b (6 Oct)</td><td>4</td><td>18.7</td><td class="ref">n/a</td><td>1,024</td><td>8</td></tr>
+          <tr><td>Qwen3-Reranker-0.6B (reranks all 20 passages)</td><td>2</td><td>21.2 pairs</td><td class="ref">22.4</td><td>n/a</td><td>10</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Retrieval test: 20 short passages in German, English and Russian, half of them near-topic distractors, and 10 questions, each in a different language from its answer. Foundation-1 (music) returns a 20-second clip whatever length is asked, in about 63 seconds. Fun-ASR-MLT-Nano (speech recognition, NPU 6) ran 7.1x real time in TiinyBench but is not suitable here: no Russian at all, 16 % errors in German and Spanish phrases that were not spoken in the English clip. That was the build of 2 Aug. On the build of 28 Sep (13 October) it runs 10.18x in TiinyBench and 5.3-6.3x on real speech: German at 5.9-10.5 % word errors, Russian returned but with 31-44 % errors, English unchanged at 28-40 % with the Spanish phrases still added.</p>
+  </section>
+
+  <section class="section">
+    <h2>Image generators compared</h2>
+    <p class="note">Added on 6 October. The same prompts and seed on each model, 8 steps, one model loaded at a time. The posters were read back by PP-OCRv6-Medium and checked by eye.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Model</th><th>NPU units</th><th>512 x 512</th><th>Ref</th><th>1024 x 1024</th><th>"DATA REPORT 2026"</th><th>"PR&Uuml;FBERICHT M&Auml;RZ"</th></tr></thead>
+        <tbody>
+          <tr><td>Z-Image-Turbo</td><td>32</td><td>8.4-9.2 s</td><td class="ref">7.9 s</td><td>39-47 s</td><td>right</td><td>word broken ("PR&Uuml;FI- BRICHT")</td></tr>
+          <tr><td>FLUX.2-klein-4B</td><td>26</td><td>8.45 s</td><td class="ref">8.0 s</td><td>43 s</td><td>right</td><td>right</td></tr>
+          <tr><td>ERNIE-Image-Turbo</td><td>27</td><td>13.71 s</td><td class="ref">12.83 s</td><td>85 s</td><td>right</td><td>right</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Style and editing models</h2>
+    <p class="note">Added on 7 October: the last eight store models, so all 52 are now measured. Speed from TiinyBench at 512 x 512, 8 steps; the style check used the bicycle prompt and seed of the 6 October test, the editing check one photo of that bicycle and one prompt per model.</p>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Model</th><th>NPU units</th><th>512 x 512</th><th>Load s</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Z-Image-Turbo-CharacterDesignSheet</td><td>26</td><td>9.37 s</td><td>55</td><td class="good">works: a clean character sheet (two views, three asked)</td></tr>
+          <tr><td>Z-Image-Turbo-Children-Drawing</td><td>26</td><td>9.30 s</td><td>43</td><td class="good">works: a convincing crayon drawing</td></tr>
+          <tr><td>Z-Image-Turbo-Creating-Realistic</td><td>26</td><td>9.33 s</td><td>42</td><td class="good">works: photographic people and scenes</td></tr>
+          <tr><td>FLUX.2-klein-4B-Object-Remove</td><td>26</td><td>8.49 s, 16.9 s with a photo</td><td>103</td><td class="good">removed the bicycle and rebuilt the wall</td></tr>
+          <tr><td>FLUX.2-klein-4B-Background-Remove</td><td>26</td><td>8.43 s, 16.8 s with a photo</td><td>103</td><td class="warn">clean cut-out of a clear subject; traces left between bicycle spokes</td></tr>
+          <tr><td>FLUX.2-klein-4B-Outpaint</td><td>26</td><td>8.71 s, 16.8 s with a photo</td><td>111</td><td class="good">fills the green border, with its trigger prompt</td></tr>
+          <tr><td>FLUX.2-klein-4B-Zoom</td><td>26</td><td>8.52 s, 16.9 s with a photo</td><td>103</td><td class="good">enlarges the boxed region, with its trigger prompt</td></tr>
+          <tr><td>SongGeneration-v2-large</td><td>28</td><td colspan="2">n/a</td><td class="bad">no audio through the API: every accepted request returns an empty reply</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The style models cost about 11 % more time than plain Z-Image (8.40 s). The editors take the photo only in the request field <code>image</code>, which is not in the vendor's documentation yet; the fields <code>init_image</code> and <code>images</code> are ignored without an error. Each editor needs the exact prompt from its model card (for example "Fill the green spaces according to the image"); with free wording Outpaint and Zoom did nothing useful. Keep 8 steps: 28 steps took 3.3 times as long and gave worse results. Larger inputs are slow: 768 x 512 took 95 s against 17 s for 512 x 512 (and for 512 x 384).</p>
+  </section>
+
+  <section class="section">
+    <h2>Newer builds waiting in the store</h2>
+    <p class="note">Read from the box on 13 October at 16:50, after the vendor's update of that day: 21 of the 55 installed models had a newer build in the store. The three speech models were updated and measured on 13 October in the evening (first three rows, both builds shown); 17 builds wait, and one more model is flagged at an equal build number. For a waiting build the last column is the figure of the build now on the box, measured on 5 to 7 October and shown in the tables above; each newer build gets the same test and goes under its model there.</p>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Model</th><th>Build on the box</th><th>Build in the store</th><th>Figure of the build on the box (both builds once updated)</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3-ASR-1.7B</td><td>28 Sep, installed 13 Oct (2 Aug before)</td><td>28 Sep</td><td>build 2 Aug 6.32x, build 28 Sep 6.35x; real speech 2.6-3.0x, now 3.1-3.5x; word errors in the table on images, speech and embeddings</td></tr>
+          <tr><td>Fun-ASR-MLT-Nano</td><td>28 Sep, installed 13 Oct (2 Aug before)</td><td>28 Sep</td><td>build 2 Aug 7.1x; German 16 %, no Russian, adds Spanish phrases. Build 28 Sep 10.18x; German 5.9-10.5 %, Russian 31-44 %, still adds Spanish phrases</td></tr>
+          <tr><td>Fun-ASR-Nano</td><td>28 Sep, installed 13 Oct (2 Aug before)</td><td>28 Sep</td><td>build 2 Aug 2.9-4.0x; English 4.6 %, German and Russian unusable. Build 28 Sep 4.2-6.5x; English 5.9 %, German and Russian unusable</td></tr>
+          <tr><td>Z-Image-Turbo</td><td>13 Aug</td><td>18 Sep</td><td>9.28 s per 512 image</td></tr>
+          <tr><td>ERNIE-Image-Turbo</td><td>13 Aug</td><td>18 Sep</td><td>13.71 s per 512 image, 85 s at 1024</td></tr>
+          <tr><td>FLUX.2-klein-4B</td><td>13 Aug</td><td>18 Sep</td><td>8.45 s per 512 image, 43 s at 1024</td></tr>
+          <tr><td>FLUX.2-klein-4B-Background-Remove</td><td>13 Aug</td><td>22 Sep</td><td>8.43 s, 16.8 s with a photo</td></tr>
+          <tr><td>FLUX.2-klein-4B-Object-Remove</td><td>13 Aug</td><td>22 Sep</td><td>8.49 s, 16.9 s with a photo (not on the vendor's list)</td></tr>
+          <tr><td>FLUX.2-klein-4B-Outpaint</td><td>13 Aug</td><td>22 Sep</td><td>8.71 s, 16.8 s with a photo</td></tr>
+          <tr><td>FLUX.2-klein-4B-Zoom</td><td>13 Aug</td><td>22 Sep</td><td>8.52 s, 16.9 s with a photo</td></tr>
+          <tr><td>Z-Image-Turbo-Creating-Realistic</td><td>13 Aug</td><td>22 Sep</td><td>9.33 s</td></tr>
+          <tr><td>Z-Image-Turbo-Children-Drawing</td><td>13 Aug</td><td>22 Sep</td><td>9.30 s</td></tr>
+          <tr><td>Z-Image-Turbo-CharacterDesignSheet</td><td>13 Aug</td><td>22 Sep</td><td>9.37 s</td></tr>
+          <tr><td>Qwen3-Embedding-4b</td><td>13 Aug</td><td>22 Sep</td><td>6.5 per second; right passage first 10 of 10</td></tr>
+          <tr><td>Qwen3-Embedding-8b</td><td>13 Aug</td><td>22 Sep</td><td>4.6 per second; 9 of 10</td></tr>
+          <tr><td>Nemotron-3-Embed-8b</td><td>13 Aug</td><td>22 Sep</td><td>2.1 per second; 10 of 10</td></tr>
+          <tr><td>Nemotron-3-Embed-1B</td><td>13 Aug</td><td>22 Sep</td><td>9.8 per second; 6 of 10</td></tr>
+          <tr><td>R3-embedding-0.6b</td><td>13 Aug</td><td>22 Sep</td><td>18.7 per second; 8 of 10</td></tr>
+          <tr><td>Qwen3-Reranker-0.6B</td><td>13 Aug</td><td>22 Sep</td><td>21.2 pairs per second; 10 of 10</td></tr>
+          <tr><td>Qwen3-Vl-Embedding-2b</td><td>3 Sep</td><td>22 Sep</td><td>10.0 per second; 9 of 10</td></tr>
+          <tr><td>Qwen3-Embedding-0.6B (protected, cannot be deleted)</td><td>9 Jun</td><td>9 Jun, flagged all the same</td><td>19.9 per second; 8 of 10</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Factory models updated</h2>
+    <p class="note">Added on 7 October. Four models came pre-installed from the factory, and the box itself reports that the store has newer builds of them (the app does not show this). Three were deleted and downloaded again, then measured with the same tests as before; the fourth, the small embedding model, is protected and cannot be deleted. Box on the new network adapter.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Model</th><th>Build</th><th>Factory build</th><th>New build</th><th>Ref</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3.6-35B-A3B, tok/s</td><td>Aug 10 &rarr; Sep 7</td><td>26.4</td><td>23.2</td><td class="ref">24.9</td></tr>
+          <tr><td>Z-Image-Turbo, s per 512 image</td><td>factory &rarr; Aug 13</td><td>8.40</td><td>9.28</td><td class="ref">7.9</td></tr>
+          <tr><td>Qwen3-ASR-1.7B, x real time</td><td>same number</td><td>6.11</td><td>6.32</td><td class="ref">7.03</td></tr>
+          <tr><td>Control: Qwen3.6-35B-A3B-Turbo, not updated</td><td>unchanged</td><td>32.5</td><td>29.6</td><td class="ref">32.5</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The control model, which was not updated, also ran 9 % slower in the same afternoon, so most of the drop comes from the setup that day, not from the new builds. Quality is much the same: the document reader still reads both test pages word for word, speech recognition makes as few or fewer word errors, and Z-Image still misspells the German poster word, now as "PR&Uuml;FBEICHT". The new Qwen3.6 build failed the pandas task in its single run (the old build passed it once) and wrote a slightly weaker Russian summary; one run each is within the normal spread.</p>
+  </section>
+
+  <section class="section">
+    <h2>Imported models</h2>
+    <p class="note">Added on 7 October. TiinyOS can import fine-tuned versions of a few base models from Hugging Face once the base model on the box is the latest build. Three imports from the vendor's tested list and one other Qwen3.5-9B fine-tune, each measured like the store models and compared with its base.</p>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Import</th><th>Base</th><th>tok/s</th><th>Base tok/s</th><th>Machine-graded</th><th>What stands out</th></tr></thead>
+        <tbody>
+          <tr><td>WEBGEN-4B-Preview (web pages)</td><td>Qwen3-4B-Instruct-2507</td><td>17.3</td><td>17.7</td><td>3/5 (base 3/5)</td><td class="warn">nicer-looking pages, but its buttons render invisible and it invents details; answers the Russian task in Russian, the base did not</td></tr>
+          <tr><td>Qwen3.5-9B Claude-4.6-Opus reasoning distil</td><td>Qwen3.5-9B</td><td>19.1</td><td>17.9</td><td>4/5 (base 4/5)</td><td class="good">over four runs 12 of 16 machine-graded answers right against 10 for the base; the reasoning task right every time after 33-40 s of thinking instead of 250-480 s; cleaner German and Russian</td></tr>
+          <tr><td>Qwen3.6-35B-A3B Claude-4.7-Opus reasoning distil (text only)</td><td>Qwen3.6-35B-A3B</td><td>24.9</td><td>23.2</td><td>4/5 (base 3/5)</td><td class="good">over four runs 12 of 16 machine-graded answers right against 10 for the base (pandas 4 of 4 against 1, SQL still missed); the reasoning task right every time after 10-36 s of thinking instead of 61-76 s; all seven tasks in 68 s against 123 s; weaker Russian (wrong month, odd wording), so keep the base for Russian text</td></tr>
+          <tr><td>Qwythos-9B Claude-Mythos distil (text only)</td><td>Qwen3.5-9B</td><td>18.1</td><td>17.9</td><td>2/5 (base 4/5)</td><td class="bad">worse than its base: pandas and SQL wrong, the reasoning task gave no answer (cut off at 3,000 tokens, and an empty reply after 8 minutes at 12,000), and it wrote the Russian summary in German. Weaker than its base in this test</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">An import downloads the original weights and converts them on the box: 8 GB took 15 minutes, 18 GB about 33-35. The imported model then loads and serves like any store model, at the speed of its base. WEBGEN was run once; both reasoning distils and their bases were repeated three more times with different seeds (pandas, reasoning, SQL and bug fix), and both leads held.</p>
+  </section>
+
+  <section class="section">
+    <h2>Model update of 9 October</h2>
+    <p class="note">Added on 10 October. The vendor shipped a new build of Qwen3.6-35B-A3B-Turbo and three new chat models. Each got the same speed run and the same seven quality tasks as the models above, once. The updated Qwen3.8-27B was already on the box (the fast build measured on 6 October). Qwen-Image-2.1 and Hunyuan3d-2.1 are in the second table.</p>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Model</th><th>tok/s</th><th>Before</th><th>Machine-graded</th><th>German mail</th><th>Russian summary</th><th>What stands out</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3.6-35B-A3B-Turbo, new build</td><td>34.7</td><td>32.5 (old build)</td><td>5/5 (old build 4/5)</td><td class="good">A</td><td class="good">A-</td><td class="good">7 % faster. Over three runs 7 of 9 code answers right against 5 of 9 for the old build: SQL right in 2 of 3 (old build 0 of 3), pandas still only 2 of 3. Reasoning right in all four runs, 67-73 s in the repeats</td></tr>
+          <tr><td>Ornith-1.5-35B-A3B-Turbo</td><td>32.9</td><td>21.8 (Ornith-1.0)</td><td>4/5</td><td class="warn">B</td><td class="warn">B-</td><td class="warn">half again as fast as Ornith-1.0. Over three runs 6 of 9 code answers: pandas right in 2 of 3 (a fraction instead of percent in the first run), SQL right once and ranked with gaps in every repeat. Reasoning right in all four runs, 63-119 s in the repeats; the summary calls a pending request approved</td></tr>
+          <tr><td>Qwen3.5-9B-Turbo</td><td>31.1</td><td>17.9 (Qwen3.5-9B)</td><td>4/5</td><td class="bad">C</td><td class="bad">C</td><td class="warn">74 % faster than the plain 9B. Over three runs 6 of 9 code answers: pandas right in only 1 of 3 (the code crashes), SQL in 2 of 3. Reasoning right in all four runs, 106-150 s in the repeats against 4 to 8 minutes for the plain 9B; "three days" for three weeks, mixed languages in the summary</td></tr>
+          <tr><td>BigBang-v1-Turbo (36B)</td><td>30.6</td><td class="ref">new</td><td>4/5</td><td class="good">A-</td><td class="good">A</td><td class="warn">best Russian summary of the four and the quickest thinker on the box: reasoning right in all four runs, 15-27 s in the repeats. Over three runs 5 of 9 code answers: SQL ranked with gaps every time</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">All four were repeated three more times with different seeds (Ornith-1.5 and the 9B Turbo on 11 October); "three runs" counts the first run and two seeds, as in the quality table above. Answers cut off at 3,000 tokens were asked again with 12,000, as before.</p>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Model</th><th>Speed</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen-Image-2.1 (pictures and editing)</td><td>8.65 s per 512 x 512, 46 s per 1024 x 1024</td><td class="warn">German poster text spelled right but in outline letters; English poster misspelled; real transparent backgrounds; recolours an object in a photo in 25-31 s. Refuses 1536 x 1536 although the store card offers it; 1536 x 960 works (86 s)</td></tr>
+          <tr><td>Hunyuan3d-2.1 (picture to 3D)</td><td>about 11 to 12 minutes per model: shape 261 s, texture 378 s, export 44 s, plus 30 to 55 s to load</td><td class="good">works since 11 October: a photo of a pair of sneakers on a white background came out as two recognisable sneakers, shaped and coloured, standing on a flat plate (the plate is the white background). Three earlier tries gave the same plain box whatever the picture was, because the request left out the <code>params</code> field; with that field the same bicycle photo no longer gives a box. The background-removal step still fails on the box (a missing component), so use one object on a clean background: a full scene comes out as a flat relief plate. The app has no way to hand this model a picture (the chat takes documents only, and no agent in the store does 3D), so it runs through the API only. A photo of a wooden chair, cut out of its white backdrop, came out as a clean chair at the default settings in 11.5 minutes: four separate legs, the open space under the seat, the curved back, and a plausible wood grain also on the back, which the photo does not show; only the leg edges are slightly wavy. A portrait photo gave a bust with the head, glasses, ear and collar in the right places, but the face is blurred and distorted and the lenses are painted onto the skin; the highest presets (21 minutes instead of 12), five times as many faces and a 4096-pixel texture made the edges a little crisper and left the face as it was. The request route is documented on the vendor's developer site</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>What it means</h2>
+    <ul>
+      <li>On the 100 W charger the base model runs 6 % above the reference (26.4 tok/s) and gemma sits inside the normal spread (&minus;7 %).</li>
+      <li>Power was the main limit: on the 65 W adapter with the network dock attached, Turbo ran 18 % slow; on the 100 W charger it matches the reference exactly (32.5 tok/s). Run the box on the 100 W charger.</li>
+      <li>gpt-oss-20b gained 12 % on 100 W but stays 18 % below the reference while reading long prompts faster than it, which points at a changed model build (27 instead of 32 NPU units).</li>
+      <li>gemma reads long prompts a third slower than the reference on either charger, which again points at a changed model build.</li>
+      <li>Ornith-1.0-35B matches the reference (&minus;3 %), and with thinking on it wrote the same 598-token answer as in the reference run.</li>
+      <li>Qwen3.5-9B reads prompts exactly as fast as the reference but generates 15 % slower, and it now takes 29 NPU units instead of 16, another sign of a changed model build.</li>
+      <li>Qwen3-Coder-30B-A3B-Instruct-Turbo generates 17 % slower at an unchanged NPU cost, and the cause is open. Its short answers still come out at 44-47 tok/s.</li>
+      <li>A re-run repeated both slow figures within 1 % (Qwen3.5-9B 17.8 tok/s, Coder 24.3 tok/s), so the 9B and Coder gaps are real on Unit 1 and this firmware, not run-to-run noise.</li>
+      <li>Qwen3-30B-A3B-Instruct generates 16 % slower than the reference, the same gap as the Coder Turbo and gpt-oss-20b, while the Qwen3.6 models and Ornith match it.</li>
+      <li>Embedding-4b and the reranker match the reference once they have had about 15 seconds after loading. Right after loading they answer with an empty reply, which TiinyBench counts as a failure.</li>
+      <li>The newer models were measured after every download had finished. A download running on the box slows a benchmark, so no run starts while one is in progress.</li>
+      <li>The three utility models run 6 to 13 % behind the reference, the same spread as the chat models.</li>
+      <li>Z-Image-Turbo needs 8.4 seconds per 512 x 512 image. With the same seeds it wrote files of exactly the same size as the reference run, so the image model has most likely not changed since September. The 30 seconds seen in the app on 4 October was the time between saves, including typing the prompt.</li>
+      <li>The speech gap is 0.05 to 0.11 seconds per clip at every clip length, which points at a fixed delay per request rather than slower recognition.</li>
+      <li>Speech recognition gives a different transcript on every run, so a word-error figure is one sample. Setting the temperature to 0 does not change that: the endpoint ignores the setting. In one Russian pass it added a phrase that was never spoken ("computer vision systems and statistical analysis") and turned "SQL" into "SQLAlchemy". Read machine-made minutes before relying on them.</li>
+      <li>For speech on this box, Parakeet is the pick: about five times faster than Qwen3-ASR on its build of 28 Sep (six times on the build of 2 Aug) at similar German and Russian accuracy. Qwen3-ASR on the build of 28 Sep makes the fewest English errors of all (0.7-1.3 %). Whisper as served is the slowest and adds phrases that were not spoken.</li>
+      <li>For documents, the vision model Qwen3.6-35B-A3B is the best reader on the box: no errors on either page, Russian included, in 11-13 seconds a page. PP-OCRv6-Medium is three times faster for German and English but cannot read Cyrillic. GLM-OCR does not work through the API on this firmware.</li>
+      <li>gpt-oss-120b, the largest model in the store, takes the whole box and generates 16.8 tok/s, 11 % below the September figure, which was measured on an older, pruned build. Eight parallel calls share a flat 17 tok/s without errors. It suits slow background batches; for chat, Qwen3.6-35B-A3B is faster.</li>
+      <li>Qwen3.8-27B, the model owners rate highest for agents and careful coding, runs at 15.1 tok/s, a third faster than the September figure (11.4) and in line with the faster build the store shipped on 28 September. It is still half the speed of Qwen3.6-35B-A3B-Turbo, and parallel calls do not add throughput.</li>
+      <li>Qwen3-Coder-Next, Qwen3.5-35B-A3B and GLM-4.7-Flash match the reference. Coder-Next takes 94 of the 100 NPU units and two minutes to load, so it fills the box on its own.</li>
+      <li>Qwen3.6-27B-Turbo is slower than Qwen3.8-27B (11.1 against 15.1 tok/s), but the quality test below makes it worth keeping: it got every code task right in three runs and wrote the best German and Russian.</li>
+      <li>For speech output, Qwen3-CustomVoice reads German and English cleanly at 1.5x real time; its Russian has a strong accent. The voice clone model works, but only through request fields that are not in the vendor's documentation yet. supertonic-3 lost most of the text.</li>
+      <li>All embedding models found the right passage 8 to 10 times out of 10, across languages. The small 0.6B model is three to ten times faster than the larger ones, which matters when a whole vault has to be indexed.</li>
+      <li>Two small models loaded side by side (speech output plus speech recognition) failed once with a memory-style error, while each one alone worked.</li>
+      <li>For pictures with words in them, FLUX.2-klein-4B is the pick: as fast as Z-Image and it spelled the German test word correctly, umlauts included, where Z-Image broke it. ERNIE-Image-Turbo also spells correctly but takes twice as long at 1024 x 1024.</li>
+      <li>PP-OCRv6-Small reads real documents almost as well as Medium in half the time; both answer under the same internal name, so load only one of them. The layout model PP-DocLayoutV3 returns empty replies through the API, like GLM-OCR.</li>
+      <li>Images are not limited to 512 x 512: 1024 x 1024 and 1024 x 576 render natively in about 38 seconds, four times the 512 time.</li>
+      <li>Speed and quality are different questions. In the quality test only Qwen3-Coder-Next and Qwen3.6-27B-Turbo got the pandas, SQL and bug-fix tasks right in all three runs (9 of 9); gpt-oss-20b and Qwen3-30B-A3B-Thinking followed with 8, gemma with 7; Qwen3.6-35B-A3B and Qwen3.5-35B-A3B got 6, and the fast Qwen3.6-35B-A3B-Turbo (old build), Qwen3-Coder-30B, Qwen3.8-27B, gpt-oss-120b and the two small Qwen3 models 5 each. Qwen3-30B-A3B-Instruct got 3: the same pandas error and the same wrong rank in every run.</li>
+      <li>The most common miss is not reading the task closely: asked for ranks without gaps, ten of nineteen models used RANK instead of DENSE_RANK, and Turbo and Coder-30B did it in every run. Check generated SQL against the requirement, not only for errors.</li>
+      <li>For coding, Qwen3-Coder-Next is the pick: right every time and the fastest of the error-free models (66 s for all seven tasks), but it takes 94 of the 100 NPU units. For work that mixes code with German and Russian text, Qwen3.6-27B-Turbo is the careful choice at 11 tok/s; Qwen3.6-35B-A3B-Turbo is three times faster with the same text quality but slips on details.</li>
+      <li>Two models are unreliable for text: Qwen3-Coder-30B-Turbo invented facts in the Russian summary (cracks, a person who is not in the protocol, the wrong month), and Qwen3-4B answered the Russian task in German.</li>
+      <li>Without a seed the box can return the identical answer to the same request again (Qwen3-Coder-Next gave byte-identical code three times over three and a half hours), so a repeat test needs a different seed per run. With one, the same model wrote three different pandas solutions.</li>
+      <li>The dense Qwen3.6-27B matches the reference at 6.2 tok/s, which is too slow for chat. The non-Turbo Qwen3-Coder-30B runs 27.3 tok/s, faster than its Turbo on Unit 1 (24.4). The small Qwen3-8B and Qwen3-4B (18.9 and 17.7) are no faster than the 30B models, which only use about 3B parameters per word.</li>
+      <li>Fun-ASR-Nano transcribes English well (4.6 % word errors) and gives unusable mixed-language output for German and Russian. Its build of 28 Sep is faster (4.2-6.5x against 2.9-4.0x) and the same otherwise: English 5.9 %, German and Russian unusable. Fun-ASR-MLT-Nano on the build of 28 Sep reads German (5.9-10.5 % word errors, 16 % before) and returns Russian for the first time, with 31-44 % errors. The VoiceDesign speech model works once the voice is described in the not yet documented field <code>instruct</code>; its Russian is the least clear of all speech models.</li>
+      <li>The reranker put the right passage first for all ten questions, as well as the two best embedding models and better than the small fast ones (6 to 8). A small embedding model to find candidates, then the reranker to order them, is the setup to try for vault search.</li>
+      <li>Updating the three outdated factory models changed little: the new builds are as fast as the old ones once the slower afternoon is taken into account, and as accurate. The store does not show yet that a build is outdated; the box's own data does.</li>
+      <li>The three Z-Image style models do what their names say, about 11 % slower than plain Z-Image. The community note that the image editors cannot receive a picture is out of date: the field <code>image</code> takes one, and Object-Remove, Outpaint and Zoom do their job once they get the exact prompt from their model card.</li>
+      <li>SongGeneration, the music model the Tiiny Music app needs, produced no audio through the API in any request shape; it has to be tried in the app itself.</li>
+      <li>The day bars of the app's usage chart run from 18:00 to 18:00 German time (most likely midnight in UTC+8), so evening work shows on the next day.</li>
+      <li>Picture to 3D works, but only from a script: Hunyuan3d-2.1 turned one photo into a coloured 3D model in about 12 minutes. Always send the <code>params</code> field; without it the box returns the same empty box for any picture and reports success. Give it a single object on a plain background while background removal is unavailable on the box.</li>
+      <li>Picture to 3D is for objects, not for people. A wooden chair came out clean at the default settings, legs, seat, back and wood grain. A studio portrait came out recognisable in outline but with a blurred face in three runs, and no quality setting changed that: the shape gets finer, the painting of the face does not. The default settings are the ones to use; the top presets cost almost twice the time and three times the file size for a barely visible gain.</li>
+      <li>The fast models of the 9 October update are quick but not careful with code. Over three runs the new Qwen3.6-35B-A3B-Turbo build got 7 of 9 code answers right, Ornith-1.5-Turbo and the 9B Turbo 6, BigBang 5, against 9 of 9 for Qwen3-Coder-Next and Qwen3.6-27B-Turbo. All four solved the reasoning task in every run. A single run misleads: Ornith-1.5 missed pandas and got SQL right the first time, then did the opposite three times.</li>
+      <li>Two models have a 256K context window, twice the 128K of the others: Qwen3.8-27B and the current build of Qwen3.6-35B-A3B-Turbo. Tests on 12 October confirmed it: the Turbo read a 249,000-token log and named all five codes hidden in it, and Qwen3.8-27B did the same with 135,000 tokens, past the old 128K limit. Long prompts must be sent as a stream: without streaming, any request that takes more than 8 minutes to read ends with an error from the box's gateway (the Turbo at about 250K, Qwen3.8-27B already at about 135K), while the streamed Turbo request ran for ten and a half minutes without trouble. Filling the window takes patience: reading slows with length, the Turbo from about 620 tokens per second at 43K to 400 at 249K, and Qwen3.8-27B needed 8 minutes for 135K.</li>
+      <li>From 13 October on, every model measured on more than one build is shown with its best build, and its other builds open under it with the plus sign, so a gain or a loss between builds can be read off one line apart. So far that covers four models; of the two chat models only the Turbo gained (7 % faster, 7 of 9 code answers instead of 5), the others changed little. The store update of 13 October holds newer builds of 21 installed models. The three speech models were updated and measured the same evening: Qwen3-ASR-1.7B is about 18 % faster on real speech with fewer errors in Russian and English and no change in German. The other builds are not installed yet, and the figures of the builds now on the box are already on this page.</li>
+    </ul>
+  </section>
+  <footer class="foot"><a href="../">kasatov.de</a><a href="../impressum.html">Legal notice</a><a href="../privacy.html">Privacy</a></footer>
+</div>
+
+<script>
+// Open and close the other builds of a model
+function setGroup(g, open) {
+  document.querySelectorAll('tr[data-g="' + g + '"]').forEach(r => { r.hidden = !open; });
+  const b = document.querySelector('button.tg[data-g="' + g + '"]');
+  b.textContent = open ? '-' : '+';
+  b.setAttribute('aria-expanded', open);
+}
+document.querySelectorAll('button.tg').forEach(b => b.addEventListener('click', () => setGroup(b.dataset.g, b.getAttribute('aria-expanded') !== 'true')));
+const allBtn = document.querySelector('button.tgall');
+if (allBtn) allBtn.addEventListener('click', () => {
+  const open = allBtn.textContent.startsWith('Show');
+  document.querySelectorAll('button.tg').forEach(b => setGroup(b.dataset.g, open));
+  allBtn.textContent = open ? 'Hide all builds' : 'Show all builds';
+});
+// Grouped horizontal bars on one linear scale per chart
+const data = {
+  decode: { max: 40, step: 5, rows: [["Qwen3.6-35B-A3B", 26.4, 24.9], ["Qwen3.6-35B-A3B-Turbo", 34.7, 32.5], ["gpt-oss-20b", 25.3, 30.9], ["gemma-4-26B-A4B-it", 20.2, 21.7], ["Ornith-1.0-35B", 21.8, 22.5], ["Qwen3-Coder-30B-Turbo", 24.4, 29.4], ["Qwen3.5-9B", 17.9, 20.9], ["Qwen3-30B-Instruct", 24.6, 29.3], ["gpt-oss-120b", 16.8, 18.8], ["Qwen3.8-27B", 15.1, 11.4], ["Qwen3-Coder-Next", 19.6, 20.1], ["Qwen3.6-27B-Turbo", 11.1, 13.4], ["Qwen3.5-35B-A3B", 26.7, 28.8], ["Qwen3-30B-Thinking", 26.1, 29.2], ["GLM-4.7-Flash", 13.9, 14.9], ["Qwen3.6-27B (dense)", 6.2, 6.4], ["Qwen3-Coder-30B", 27.3, 29.2], ["Qwen3-8B", 18.9, null], ["Qwen3-4B-2507", 17.7, null], ["Ornith-1.5-35B-Turbo", 32.9, null], ["Qwen3.5-9B-Turbo", 31.1, null], ["BigBang-v1-Turbo", 30.6, null]] },
+  prefill: { max: 1600, step: 200, rows: [["Qwen3.6-35B-A3B", 702, 719], ["Qwen3.6-35B-A3B-Turbo", 640, 718], ["gpt-oss-20b", 1270, 1068], ["gemma-4-26B-A4B-it", 835, 1254], ["Ornith-1.0-35B", 704, 740], ["Qwen3-Coder-30B-Turbo", 903, 960], ["Qwen3.5-9B", 1342, 1356], ["Qwen3-30B-Instruct", 898, 978], ["gpt-oss-120b", 560, 581], ["Qwen3.8-27B", 391, 453], ["Qwen3-Coder-Next", 428, 447], ["Qwen3.6-27B-Turbo", 434, 480], ["Qwen3.5-35B-A3B", 659, 695], ["Qwen3-30B-Thinking", 898, 968], ["GLM-4.7-Flash", 274, 286], ["Qwen3.6-27B (dense)", 442, null], ["Qwen3-Coder-30B", 886, null], ["Qwen3-8B", 1331, 1419], ["Qwen3-4B-2507", 1490, 1590], ["Ornith-1.5-35B-Turbo", 761, null], ["Qwen3.5-9B-Turbo", 1404, null], ["BigBang-v1-Turbo", 758, null]] }
+};
+const NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; }
+for (const id in data) {
+  data[id].rows.sort((x, y) => y[1] - x[1]);
+  const d = data[id], W = 820, left = 190, right = 60, rowH = 52, top = 10, H = top + d.rows.length * rowH + 28;
+  const x = v => left + (v / d.max) * (W - left - right);
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": id === "decode" ? "Generation speed chart" : "Prefill rate chart" });
+  for (let v = 0; v <= d.max; v += d.step) {
+    svg.append(el("line", { x1: x(v), x2: x(v), y1: top, y2: H - 22, stroke: "var(--line)", "stroke-width": 1 }));
+    svg.append(el("text", { x: x(v), y: H - 6, "text-anchor": "middle", class: "tick" }, v.toLocaleString("en-US")));
+  }
+  d.rows.forEach(([name, ours, ref], i) => {
+    const y = top + i * rowH;
+    svg.append(el("text", { x: left - 10, y: y + 22, "text-anchor": "end" }, name));
+    svg.append(el("rect", { x: left, y: y + 6, width: x(ours) - left, height: 16, fill: "var(--ours)", rx: 2 }));
+    svg.append(el("text", { x: x(ours) + 6, y: y + 18, class: "tick" }, ours.toLocaleString("en-US")));
+    if (ref == null) { svg.append(el("text", { x: left + 6, y: y + 34, class: "tick" }, "no reference")); return; }
+    svg.append(el("rect", { x: left, y: y + 25, width: x(ref) - left, height: 10, fill: "var(--ref)", rx: 2 }));
+    svg.append(el("text", { x: x(ref) + 6, y: y + 34, class: "tick" }, ref.toLocaleString("en-US")));
+  });
+  document.getElementById(id).append(svg);
+}
+</script>
+</body>
+</html>
