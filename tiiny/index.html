@@ -65,6 +65,8 @@ td.ref { color: var(--muted); }
 tr:last-child td { border-bottom: 0; }
 ul { margin: 6px 0 0; padding-left: 20px; max-width: none; columns: 58ch 3; column-gap: 56px; } li { margin: 0 0 8px; break-inside: avoid; }
 .note { font-size: 13px; color: var(--muted); }
+ol.steps { margin: 0; padding-left: 24px; max-width: 90ch; } ol.steps > li { margin: 0 0 8px; padding-left: 4px; }
+ol.steps ul { columns: auto; margin: 6px 0 0; } ol.steps ul li { margin: 0 0 4px; }
 .section { display: grid; gap: 12px; }
 .texttable th, .texttable td { text-align: left; }
 .verdicts.chat { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
@@ -308,7 +310,25 @@ body { margin: 0; }
 
   <section class="section" id="how-tested">
     <h2>How the tests work</h2>
-    <p class="note">Every model is tested alone on the box, over the network, on the 100 W charger, with nothing downloading. <b>Speed</b> comes from TiinyBench: tokens per second on one 1,500-token answer, how fast a 6,000-token prompt is read, and the load time. <b>Quality</b> is seven fixed prompts. Five are graded by a script, not by opinion: a pandas function and a SQL query are run on small test tables whose right answer is known (the SQL table has two equal amounts, so a rank that skips a number fails), a function with two bugs must pass four tests, a scrap-rate sum must give exactly 2,073 parts and EUR 25,705.20, and a job search must be sent as a correct tool call. That is the "x/5". Two answers are read and graded A to F: a German follow-up mail and a three-point Russian summary of a German meeting protocol with ten facts. Because one run can be luck, the three code tasks are asked twice more with different random seeds: three tasks times three runs is the "x/9". The tasks and test data are our own and new, so no model has seen them, and they are small, so they show what a model gets right, not a public leaderboard rank.</p>
+    <ol class="steps">
+      <li><b>Setup.</b> Every model is tested alone on Unit 1, over the network, on the 100 W charger, with no download running.</li>
+      <li><b>Speed: a community tool, run by us.</b> TiinyBench, written by another Tiiny owner and not by Tiiny, measures tokens per second on one 1,500-token answer, how fast a 6,000-token prompt is read, and the load time.</li>
+      <li><b>Reference figures: the community's own run.</b> The "reference" values are that owner's TiinyBench run of 19 September on another unit (TiinyOS 0.1.34). A model newer than that run is compared with the model it replaces.</li>
+      <li><b>Quality: our own seven prompts and test data,</b> the same for every chat model, one request each.</li>
+      <li><b>Five answers are checked by a script, not by opinion. This is the "x/5":</b>
+        <ul>
+          <li>pandas: the model's function is run on a small test table whose right answer is known;</li>
+          <li>SQL: the model's query is run on test orders; the table has two equal amounts, so a rank that skips a number fails;</li>
+          <li>bug fix: the corrected function must pass four tests;</li>
+          <li>arithmetic: a scrap-rate sum must give exactly 2,073 parts and EUR 25,705.20;</li>
+          <li>tool call: a job search must be sent as a correct tool call.</li>
+        </ul>
+      </li>
+      <li><b>Two answers are read and graded A to F:</b> a German follow-up mail, and a three-point Russian summary of a German meeting protocol with ten facts.</li>
+      <li><b>Three runs, the "x/9".</b> One run can be luck, so the three code tasks (pandas, SQL, bug fix) are asked twice more with different random seeds: three tasks times three runs.</li>
+      <li><b>Picture questions, also our own (from 21 October).</b> Three pictures, the same questions for every chat model that takes pictures: describe a bicycle picture, read a German poster exactly, read a rotated charger label.</li>
+      <li><b>What the results show.</b> The tasks and test data are new, so no model has seen them in training. They are few, so they show what a model gets right, not a rank on a public leaderboard.</li>
+    </ol>
   </section>
 
   <section class="section">
