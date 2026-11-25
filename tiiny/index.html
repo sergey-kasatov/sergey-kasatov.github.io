@@ -120,6 +120,7 @@ td.pend { color: var(--muted); font-style: italic; }
 .tabs [role="tab"][aria-selected="true"] { color: var(--fg); border-bottom-color: var(--ours); }
 .tabs [role="tab"]:focus-visible, .panel:focus-visible { outline: 2px solid var(--ours); outline-offset: 2px; border-radius: 4px; }
 .panel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; min-width: 0; }
+.panel[hidden] { display: none; }
 .tabhead a, .panel a { color: var(--ours); }
 table.plan { min-width: 0; }
 @media print { .tabs { display: none; } .wrap > .panel[hidden] { display: grid !important; } }
