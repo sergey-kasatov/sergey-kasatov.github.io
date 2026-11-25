@@ -112,6 +112,17 @@ td.pend { color: var(--muted); font-style: italic; }
 .lb[hidden] { display: none; }
 .lb img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; }
 .lb button { position: absolute; top: 10px; right: 12px; font: inherit; font-size: 15px; color: #fff; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+/* Tabs (v87): Unit 1, Unit 2 and Comparison; each panel keeps the one-column grid of .wrap */
+.tabhead { display: grid; gap: 8px; min-width: 0; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs [role="tab"] { font: 600 15px/1.2 var(--display); padding: 10px 14px 8px; margin-bottom: -1px; border: 0; border-bottom: 3px solid transparent; background: none; color: var(--muted); cursor: pointer; }
+.tabs [role="tab"]:hover { color: var(--fg); }
+.tabs [role="tab"][aria-selected="true"] { color: var(--fg); border-bottom-color: var(--ours); }
+.tabs [role="tab"]:focus-visible, .panel:focus-visible { outline: 2px solid var(--ours); outline-offset: 2px; border-radius: 4px; }
+.panel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; min-width: 0; }
+.tabhead a, .panel a { color: var(--ours); }
+table.plan { min-width: 0; }
+@media print { .tabs { display: none; } .wrap > .panel[hidden] { display: grid !important; } }
 body { margin: 0; }
 .foot { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .foot a { color: inherit; }
@@ -120,6 +131,15 @@ body { margin: 0; }
 <body>
 
 <div class="wrap">
+  <div class="tabhead">
+    <div class="tabs" role="tablist" aria-label="Unit 1, Unit 2 and their comparison">
+      <button type="button" role="tab" id="tab-unit1" data-key="unit1" aria-controls="panel-unit1" aria-selected="true">Unit 1</button>
+      <button type="button" role="tab" id="tab-unit2" data-key="unit2" aria-controls="panel-unit2" aria-selected="false" tabindex="-1">Unit 2</button>
+      <button type="button" role="tab" id="tab-compare" data-key="compare" aria-controls="panel-compare" aria-selected="false" tabindex="-1">Comparison</button>
+    </div>
+    <p class="note">Added on 25 November. v87: the page is split into three tabs, Unit 1, Unit 2 and Comparison; Unit 1 holds all results so far; Unit 2 (the replacement unit) and the comparison fill as its full test runs.</p>
+  </div>
+  <div class="panel" role="tabpanel" id="panel-unit1" aria-labelledby="tab-unit1" tabindex="0">
   <header>
     <div class="eyebrow">Tiiny Pocket Lab, 80 GB &middot; TiinyBench 0.1.11 &middot; 2026-10-05 to 2026-11-14</div>
     <h1>How Unit 1 compares with the community</h1>
@@ -929,6 +949,41 @@ body { margin: 0; }
       <li>d3 (26B), the new text classification model of the 11 November update, got all 160 answers of the classifier test right, like KnowLine-4B, at 1.47 s a call, almost three times KnowLine-4B's time, with 81 NPU units. In a Tetris demo, choosing among 8 described placements, it followed the hand-tuned rule in 28 of 33 moves and kept the board flat, where d3-mini followed it in 14 of 32 moves at near-guess probabilities and let the stack grow; one game per model with different piece orders, so a first reading, not a measurement.</li>
     </ul>
   </section>
+  </div>
+  <div class="panel" role="tabpanel" id="panel-unit2" aria-labelledby="tab-unit2" tabindex="0" hidden>
+  <header>
+    <div class="eyebrow">Tiiny Pocket Lab &middot; Unit 2, the replacement device &middot; arrived 2026-11-19</div>
+    <h1>Unit 2: the full test is pending</h1>
+    <p class="lede">The replacement device arrived on 19 November 2026 and is not set up yet, so no test has run on it so far.</p>
+    <dl class="facts">
+      <div><dt>Status</dt><dd>arrived 19 November 2026; not set up yet; no results yet</dd></div>
+      <div><dt>Test plan</dt><dd>the full test of Unit 1, with the same test scripts and the same settings, so that every result can be compared with Unit 1's; how the tests work is described in "<a href="#how-tested">How the tests work</a>" on the Unit 1 tab</dd></div>
+      <div><dt>Results</dt><dd>appear here as the tests run, and beside Unit 1's in the Comparison tab</dd></div>
+    </dl>
+  </header>
+  </div>
+  <div class="panel" role="tabpanel" id="panel-compare" aria-labelledby="tab-compare" tabindex="0" hidden>
+  <header>
+    <div class="eyebrow">Unit 1 against Unit 2 &middot; the same tests and settings on both</div>
+    <h1>How Unit 2 compares with Unit 1</h1>
+    <p class="lede">For each test this tab will show the Unit 1 value and the Unit 2 value side by side, and the difference between them.</p>
+    <dl class="facts">
+      <div><dt>Builds</dt><dd>every value carries its model build and its test date: Unit 2 downloads the newest model builds, so a difference can come from the build rather than from the hardware</dd></div>
+    </dl>
+  </header>
+
+  <section class="section">
+    <h2>Results side by side</h2>
+    <div class="tablebox">
+      <table class="texttable plan">
+        <thead><tr><th>Test</th><th>Unit 1: value, build, test date</th><th>Unit 2: value, build, test date</th><th>Difference</th></tr></thead>
+        <tbody>
+          <tr><td colspan="4" class="pend">No Unit 2 results yet.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  </div>
   <footer class="foot"><a href="../">kasatov.de</a><a href="../impressum.html">Legal notice</a><a href="../privacy.html">Privacy</a></footer>
 </div>
 
@@ -987,6 +1042,56 @@ for (const id in data) {
   }));
   lb.addEventListener("click", close);
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !lb.hidden) close(); });
+})();
+</script>
+<script>
+// Tabs: Unit 1, Unit 2, Comparison. The hash names a tab (#unit1, #unit2, #compare) or an element inside one,
+// whose tab opens before the page scrolls to it
+(() => {
+  const tabs = [...document.querySelectorAll('.tabs [role="tab"]')];
+  const panelOf = t => document.getElementById(t.getAttribute("aria-controls"));
+  const select = (tab, focus) => {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      panelOf(t).hidden = !on;
+    });
+    if (focus) tab.focus();
+  };
+  const pick = (tab, focus) => {
+    select(tab, focus);
+    try { history.replaceState(null, "", "#" + tab.dataset.key); } catch (e) {}
+  };
+  // Open the tab a hash names, or the tab that holds the element it points at; returns that element
+  const open = hash => {
+    let id = "";
+    try { id = decodeURIComponent(hash.slice(1)); } catch (e) { return null; }
+    if (!id) { select(tabs[0]); return null; }
+    const tab = tabs.find(t => t.dataset.key === id);
+    if (tab) { select(tab); return null; }
+    const el = document.getElementById(id), home = el && el.closest('[role="tabpanel"]');
+    if (!home) return null;
+    if (home.hidden) select(tabs.find(t => panelOf(t) === home));
+    return el;
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => pick(t));
+    t.addEventListener("keydown", e => {
+      const n = tabs.length, j = { ArrowRight: i + 1, ArrowLeft: i + n - 1, Home: 0, End: n - 1 }[e.key];
+      if (j === undefined) return;
+      e.preventDefault();
+      pick(tabs[j % n], true);
+    });
+  });
+  // A same-page link opens its target's tab before the browser scrolls to the target
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a) open(a.getAttribute("href"));
+  });
+  window.addEventListener("hashchange", () => { const el = open(location.hash); if (el) el.scrollIntoView(); });
+  const el = open(location.hash);
+  if (el) el.scrollIntoView();
 })();
 </script>
 </body>
