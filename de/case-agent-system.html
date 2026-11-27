@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
   <title>KI-Agentensystem (AI-Brain) · Fallstudie | Sergey Kasatov</title>
-  <meta name="description" content="Fallstudie Multi-Agenten-System: 20+ wiederkehrende Workflows mit je genau einem geplanten Owner, drei LLM-Laufzeitumgebungen auf einem Markdown-Regelwerk, zwei unabh&#228;ngige Scheduler und f&#252;nf Pr&#252;f-Gates, die einen Lauf scheitern lassen k&#246;nnen.">
+  <meta name="description" content="Fallstudie Multi-Agenten-System: 20+ Workflows mit je einem Owner, drei LLM-Laufzeitumgebungen und f&#252;nf Pr&#252;f-Gates, die einen Lauf scheitern lassen k&#246;nnen.">
   <meta name="author" content="Sergey Kasatov">
   <meta name="theme-color" content="#0d1f33">
   <link rel="canonical" href="https://kasatov.de/de/case-agent-system.html">
@@ -15,11 +15,14 @@
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="Fallstudie · KI-Agentensystem (AI-Brain)">
-  <meta property="og:description" content="Neunzehn wiederkehrende Workflows, je ein Owner, drei LLM-Laufzeiten und Gates, die den Lauf scheitern lassen k&#246;nnen. Arbeitsplan PS-03.">
+  <meta property="og:description" content="20+ wiederkehrende Workflows, je ein Owner, drei LLM-Laufzeiten und Gates, die den Lauf scheitern lassen k&#246;nnen. Arbeitsplan PS-03.">
   <meta property="og:url" content="https://kasatov.de/de/case-agent-system.html">
   <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Datenblatt-Banner: Sergey Kasatov, KI-Automatisierung und Datenanalyse, Python, SQL, Tableau, K&#246;ln, 17 Jahre Automotive, ab sofort verf&#252;gbar">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
@@ -103,7 +106,7 @@
         <div class="section-head reveal">
           <p class="section-eyebrow">Zweck &amp; Umfang</p>
           <h2 class="section-title">Die Frage ist nicht, ob ein Agent das kann</h2>
-          <p class="section-lede case-lede">Eine Jobsuche, ein Vollzeit-Datenprogramm und mehrere private Verwaltungsbereiche erzeugen immer dieselbe Art wiederkehrender Arbeit: aus einer Quelle sammeln, gegen die Historie entdoppeln, jeden Eintrag bewerten, das Ergebnis in die richtige Datei schreiben, zwischen den Sitzungen nichts verlieren. Von Hand skaliert das nicht. Einem Chat-Assistenten alles zu &#252;berlassen scheitert anders, denn er hat kein Ged&#228;chtnis zwischen Sitzungen, wiederholt bereits erledigte Arbeit und liefert lieber eine plausible Antwort, als zu melden, dass er keine bekommen hat. Die Entwurfsfrage war deshalb immer die andere: <strong>Wie verhindert man, dass er unbemerkt das Falsche tut?</strong> Daraus besteht der gr&#246;&#223;te Teil dieses Systems.</p>
+          <p class="section-lede case-lede">Eine Jobsuche, ein Vollzeit-Datenprogramm (bis September 2026) und mehrere private Verwaltungsbereiche erzeugten immer dieselbe Art wiederkehrender Arbeit: aus einer Quelle sammeln, gegen die Historie entdoppeln, jeden Eintrag bewerten, das Ergebnis in die richtige Datei schreiben, zwischen den Sitzungen nichts verlieren. Von Hand skaliert das nicht. Einem Chat-Assistenten alles zu &#252;berlassen scheitert anders, denn er hat kein Ged&#228;chtnis zwischen Sitzungen, wiederholt bereits erledigte Arbeit und liefert lieber eine plausible Antwort, als zu melden, dass er keine bekommen hat. Die Entwurfsfrage war deshalb immer die andere: <strong>Wie verhindert man, dass er unbemerkt das Falsche tut?</strong> Daraus besteht der gr&#246;&#223;te Teil dieses Systems.</p>
         </div>
         <div class="reveal">
           <div class="chip-list">
@@ -230,7 +233,7 @@
               <tr><td class="pos">01</td><td class="name">Erfundene Kennzahlen</td><td class="qty opt">Ein Assistent erzeugte konkrete, selbstbewusst formulierte, bezifferte Erfolge, die es nie gab, und bot sie als Interviewmaterial an. Regel: eine Zahl ist nur verwendbar, wenn sie in der Quelldatei steht. Gate: jede Angabe mit einer Einheit markieren, die dort nirgends vorkommt. <b>Konkretheit ist das Erscheinungsbild einer erfundenen Kennzahl, kein Gegenbeweis.</b></td></tr>
               <tr><td class="pos">02</td><td class="name">Echo der Quelle</td><td class="qty opt">Ein schreibender Agent &#252;bernimmt das Vokabular des Ausgangsdokuments in die Beschreibung der Person. Vier Dokumente gingen so hinaus, bevor es ein eigenes Inhalts-Gate gab; die sch&#228;rfste Pr&#252;fung ist dreiseitig und findet Begriffe, die im Entwurf und in der Quelle stehen, in der Stammdatei aber fehlen</td></tr>
               <tr><td class="pos">03</td><td class="name">Nicht das Substantiv wird aufgewertet, sondern das Verb</td><td class="qty opt">Eine dokumentierte Methode, formuliert als "von mir gef&#252;hrte Untersuchungen", besteht jede Begriffspr&#252;fung, denn die Gates pr&#252;fen Begriffe und die Behauptung steckt im Verb. <b>Kein automatischer Check erkennt diese Klasse.</b> Sie ist als benannte Grenze festgehalten, nicht als gel&#246;stes Problem</td></tr>
-              <tr><td class="pos">04</td><td class="name">Stiller Scheduler-Ausfall</td><td class="qty opt">Ein toter Scheduler und ein gesunder Rechner ohne Netz erzeugen dasselbe Signal. Der Heartbeat muss beide unterscheiden, statt auf Veralterung zu alarmieren, sonst gew&#246;hnt man sich das Wegsehen an</td></tr>
+              <tr><td class="pos">04</td><td class="name">Stiller Scheduler-Ausfall</td><td class="qty opt">Ein toter Scheduler und ein gesunder Rechner ohne Netz erzeugen dasselbe Signal. Der Heartbeat muss beide unterscheiden, statt blo&#223; bei ausbleibendem Signal Alarm zu schlagen, sonst gew&#246;hnt man sich das Wegsehen an</td></tr>
             </tbody>
           </table>
         </div>

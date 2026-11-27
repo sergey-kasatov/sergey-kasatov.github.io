@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
   <title>AI-Brain Agent System · Case Study | Sergey Kasatov</title>
-  <meta name="description" content="Multi-agent system case study: 20+ recurring workflows with exactly one scheduled owner each, three LLM runtimes on one Markdown rule set, two fate-independent schedulers, and five verification gates that can fail a run.">
+  <meta name="description" content="Multi-agent system case study: 20+ recurring workflows with one scheduled owner each, three LLM runtimes, and five verification gates that can fail a run.">
   <meta name="author" content="Sergey Kasatov">
   <meta name="theme-color" content="#0d1f33">
   <link rel="canonical" href="https://kasatov.de/case-agent-system.html">
@@ -15,11 +15,14 @@
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="Case study · AI-Brain Agent System">
-  <meta property="og:description" content="Nineteen recurring workflows, one owner each, three LLM runtimes, and gates that can fail the run. Process sheet PS-03.">
+  <meta property="og:description" content="20+ recurring workflows, one owner each, three LLM runtimes, and gates that can fail the run. Process sheet PS-03.">
   <meta property="og:url" content="https://kasatov.de/case-agent-system.html">
   <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Blueprint drawing-sheet banner: Sergey Kasatov, AI automation, data analytics, Python, SQL, Tableau; title block with Cologne, DE and 17 years automotive; red stamp: Released for hire, available now">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="de_DE">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -103,7 +106,7 @@
         <div class="section-head reveal">
           <p class="section-eyebrow">Purpose &amp; scope</p>
           <h2 class="section-title">The question is not "can an agent do this"</h2>
-          <p class="section-lede case-lede">A job search, a full-time data programme and several personal admin domains generate the same shape of recurring work: gather from a source, deduplicate against history, judge each item, write the result to the right file, lose nothing between sessions. By hand it does not scale. Handed wholesale to a chat assistant it fails differently, because an assistant has no memory between sessions, repeats work that is already done, and produces a plausible answer rather than reporting that it could not get one. So the design question was always the other one: <strong>how do you stop it from silently doing the wrong thing?</strong> That is what most of this system is made of.</p>
+          <p class="section-lede case-lede">A job search, a full-time data program that ran until September 2026, and several personal admin domains generated the same shape of recurring work: gather from a source, deduplicate against history, judge each item, write the result to the right file, lose nothing between sessions. By hand it does not scale. Handed wholesale to a chat assistant it fails differently, because an assistant has no memory between sessions, repeats work that is already done, and produces a plausible answer rather than reporting that it could not get one. So the design question was always the other one: <strong>how do you stop it from silently doing the wrong thing?</strong> That is what most of this system is made of.</p>
         </div>
         <div class="reveal">
           <div class="chip-list">

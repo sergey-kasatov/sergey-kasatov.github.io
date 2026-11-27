@@ -48,9 +48,10 @@ a failure model, or what a launch-phase issue backlog actually costs, is the dif
 between a model that scores well and a model someone trusts.
 
 The same instinct now runs on the work itself. Since mid-2026 a private multi-agent
-system handles the recurring parts of a job search, a full-time data programme and
-several admin domains. The design question there was never whether an agent can do the
-task, but how to stop it from silently doing the wrong thing: one scheduled owner per
+system has handled the recurring parts of a job search, a full-time data program
+(until it ended in September 2026) and several admin domains. The design question
+there was never whether an agent can do the task, but how to stop it from silently
+doing the wrong thing: one scheduled owner per
 workflow, a deterministic layer under the semantic one, agents bounded to a stated set
 of options, verification gates that can fail a run, and a watchdog on a machine that
 cannot fail together with what it watches.
@@ -65,7 +66,8 @@ KPI design, dashboards, Jupyter.
 Domain: automotive quality engineering, 8D problem solving, SPC, PPAP, APQP,
 launch management, body in white and closures, supplier quality.
 
-Languages: Russian (native), English (C1), German (B2).
+Languages: Russian (native), English (fluent), German (fluent, 10+ years of
+professional experience in Germany).
 
 ## Portfolio projects
 
@@ -76,7 +78,7 @@ repository, or demonstrable online.
 ### 1. Arkon Manufacturing AI (live executive view on Tableau Public)
 
 An Industry 4.0 quality platform for a fictional heavy manufacturer, deployed on a
-NAS and running. Seven machine-learning models on real public datasets (remaining
+NAS. Seven machine-learning models on real public datasets (remaining
 useful life of test engines, fleet fault classification, four kinds of visual
 inspection, a text model over consumer complaints) publish one twelve-field risk
 event, so nothing downstream knows which model spoke. A Quality Steering Cell on n8n
@@ -86,13 +88,15 @@ or P2. A Streamlit cockpit is the only surface that moves an incident; a Langflo
 assistant answers why, grounded in ten documents and the live store, and hands the
 operator a filled form instead of signing it, so the response-time KPI still
 measures the plant and not the agent. A live emitter raises a real re-timed incident
-every eight to twelve minutes and a simulated crew works it. The executive view is a
-Tableau workbook generated as XML from the same status API and published on Tableau
-Public. 7 ML models, 8 n8n workflows deployed, 143 tests in CI. The code repository
-is not public yet; the plant, its crew and the incident stream are simulated and
+every eight to twelve minutes while it runs (on demand since 15 September 2026) and a
+simulated crew works it. The executive view is a Tableau workbook generated as XML
+from the same status API and published on Tableau Public. 7 ML models, 12 n8n
+workflows deployed, 203 tests in CI. The code repository has been public since 10
+September 2026; the plant, its crew and the incident stream are simulated and
 labelled so, the models, the datasets, every timestamp and the n8n, Langflow,
 Streamlit and Tableau layers are real.
 
+- Code: https://github.com/sergey-kasatov/arkon-manufacturing-ai
 - Executive view (Tableau Public): https://public.tableau.com/views/ArkonQualitySteeringCell/ArkonExecutiveView
 - Explore view (Tableau Public): https://public.tableau.com/views/ArkonQualitySteeringCell/ArkonExploreView
 
@@ -189,12 +193,14 @@ edges, gaps and enemies. Four classic RL failure modes are documented rather tha
 hidden. A fourth phase replaces the frame stack with an LSTM reading one frame at a
 time: recurrence does learn the game but lands behind the frame stack on every tier,
 29.5 percent on medium against the curriculum agent's 52. Getting the numbers honest
-took three extra experiments: a budget doubling that refuted the write-up's own
+took four extra experiments: a budget doubling that refuted the write-up's own
 excuse (typical performance rose, the peak did not), a noise analysis showing a
-30-episode evaluation carries about plus or minus 14 points, and a 200-seed
+30-episode evaluation carries about plus or minus 14 points, a 200-seed
 re-measurement of all four models that replaced every headline figure - the state
-baseline's published 50 percent was really 27. The write-up was rewritten rather
-than left flattering.
+baseline's published 50 percent was really 27 - and a budget control a month later
+showing the baseline had trained on a fifth of the pixel agent's steps: at equal
+budget it reads 64 percent, and the headline gap shrank from 53 points to 16. The
+write-up was rewritten rather than left flattering, twice.
 
 - Code: https://github.com/sergey-kasatov/neuron-platformer-rl
 
@@ -293,15 +299,17 @@ corrective and preventive measures.
 
 **Manufacturing Engineer, Launch and Logistics (Opel Eisenach and Ruesselsheim,
 Stellantis Trnava)**, Jul 2019 - Sep 2020. Material flow analysis for the Opel
-Grandland X PHEV introduction, Supermarket and E-Kanban optimisation, assembly
-concepts for the Opel Astra line integration, support for PSA process introduction on
-the Peugeot 208 and e208 BEV.
+Grandland X PHEV introduction, Supermarket and E-Kanban optimisation. Supported the
+Opel Astra integration into an existing line: with the team, optimised rack space next
+to the conveyor line and adapted kit sizes. Supported the introduction of new PSA
+manufacturing processes and assembly robot adaptation for the Peugeot 208 and e208
+BEV.
 
 **Group Leader, Body Exterior and Interior (Ford)**, Apr 2014 - Jun 2019. Supported
 7 vehicle launches with a structured open-issues cadence across 3 plants and
 5 suppliers. Led a team of 3 engineers. Created a weekly KPI pack for 6 stakeholders
-tracking SOP readiness on 70+ parts. Delivered 250k EUR in cost savings through
-standardisation and localisation initiatives.
+tracking SOP readiness on 70+ parts. Delivered 250k EUR in cost savings in total
+through standardisation and localisation initiatives.
 
 ### General Motors - Product Engineer
 
@@ -312,9 +320,10 @@ programs. Owned SOP readiness for 2 vehicle programs.
 
 ### Earlier
 
-- Ford Motor Company, internship, Oct 2011 - Sep 2012, Cologne. Prototype-build
-  readiness across supplier scope for the Ford Kuga (45 components); UHSS body
-  structure repair methods.
+- Ford-Werke GmbH, purchasing internship and master's thesis, Oct 2011 - Oct 2012,
+  Cologne. Purchasing internship (Oct 2011 - Mar 2012): prototype-build readiness
+  across supplier scope for the Ford Kuga (45 components). Master's thesis in Body
+  Engineering (Apr - Oct 2012): UHSS body structure repair methods.
 - Continental AG, internship, Mar 2011 - Sep 2011, Ingolstadt. Thermo-mechanical
   simulations for injection-moulded pressure distributors, cutting cooling time
   by 35 percent.
@@ -340,6 +349,11 @@ Master's thesis at Ford-Werke GmbH on BIW repair methods for ultra-high-strength
 structures, graded 1.3. Focus areas: mathematical modelling and simulation, automotive
 design, car body construction.
 
+**KNRTU-KAI, Kazan** - Engineer's diploma, Mechanical Engineering Technology,
+Sep 2003 - Jul 2008, graduated with honors. Focus areas: part design, process
+engineering, material science. Diploma thesis: design of a mechanical workshop for
+oil and gas pump component production.
+
 ## Certificates
 
 Eleven certificates with verification links are listed on https://kasatov.de/about.html.
@@ -347,12 +361,12 @@ The most recent is "Data Analyst (IHK)" (Nov 2026), issued by IHK Akademie Münc
 Oberbayern and verifiable as an Open Badge:
 https://badges-api.ihk-kompetenz.plus/public/assertions/df40c59d-3cca-4fc4-aa22-d3ef5212ccab.
 "AI Agents PRO" (Jul 2026) covers agent workflows; the multi-agent system described
-under project 12 is the practical result.
+under project 2 is the practical result.
 
 ## Availability
 
-Open to AI consulting and enablement, automation, and data analyst roles in Germany,
-available now. Based in Cologne. On-site, hybrid or remote.
+Open to AI consulting and enablement, automation, and data analyst roles in NRW,
+on-site or hybrid, or remote within Germany, available now. Based in Cologne.
 
 ## About this site
 

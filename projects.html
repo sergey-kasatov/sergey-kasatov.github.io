@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
   <title>Projects · Sergey Kasatov | AI Automation &amp; Data Analytics</title>
-  <meta name="description" content="Thirteen end-to-end projects by Sergey Kasatov: a multi-agent system in daily operation, LLM workflows, demand forecasting, predictive maintenance, NLP, computer vision, reinforcement learning, and BI dashboards. Three online demos.">
+  <meta name="description" content="Thirteen end-to-end projects: a multi-agent system, LLM workflows, forecasting, predictive maintenance, NLP, computer vision, and BI. Three online demos.">
   <meta name="author" content="Sergey Kasatov">
   <meta name="theme-color" content="#0d1f33">
   <link rel="canonical" href="https://kasatov.de/projects.html">
@@ -15,11 +15,14 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects · Sergey Kasatov">
-  <meta property="og:description" content="Thirteen end-to-end projects: a multi-agent system in daily operation, LLM workflows, forecasting, ML, NLP, CV, RL, and BI. Every metric reproducible; three online demos.">
+  <meta property="og:description" content="Thirteen end-to-end projects: a multi-agent system, LLM workflows, forecasting, ML, NLP, CV, RL, and BI. Every metric reproducible; three online demos.">
   <meta property="og:url" content="https://kasatov.de/projects.html">
   <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Blueprint drawing-sheet banner: Sergey Kasatov, AI automation, data analytics, Python, SQL, Tableau; title block with Cologne, DE and 17 years automotive; red stamp: Released for hire, available now">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="de_DE">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -146,12 +149,12 @@
               <span class="badge-live"><span class="dot" aria-hidden="true"></span>Live</span>
             </div>
             <figure class="dc-fig">
-              <div class="dc-fig-box"><img src="assets/img/p-arkon.webp" width="960" height="600" alt="Screenshot of the Arkon Quality Steering Cell Executive view on Tableau Public, as of 6 Sep 2026 16:12 on the plant clock: the status sentence (20 of 50 open incidents open more than three days, the 6 raised in the last hour worked inside window), four KPI cards (overdue 14 of 50 open, 28 percent; open 50 with 169 raised, 113 closed and 6 resolved; time to acknowledge 48.7 min median against a window of 15 min for P1 and 60 min for P2; time to close 144.1 min median over 113 closed), open incidents by age band stacked by priority with the part past its window in red, the six slowest acknowledgements as a multiple of each incident's own window, and the six most recent transitions with who acted" loading="lazy" decoding="async"></div>
+              <div class="dc-fig-box"><img src="assets/img/p-arkon.webp" width="960" height="600" alt="Screenshot of the Arkon Quality Steering Cell Executive view on Tableau Public, as of 6 Sep 2026 16:12 on the plant clock: the status sentence (20 of 50 open incidents open more than three days, the 6 raised in the last hour worked inside window), four KPI cards (overdue 14 of 50 open, 28 percent; open 50 with 169 raised, 113 closed and 6 resolved; time to acknowledge 48.7 min median against a window of 15 min for P1 and 60 min for P2; time to close 144.1 min median over 113 closed), open incidents by age band stacked by priority with the part past its window in red, the six slowest acknowledgements as a multiple of each incident's own window, and the six most recent transitions with who acted" loading="eager" decoding="async"></div>
               <figcaption><b>Fig. 01</b><span>Executive view on Tableau Public, as of 2026-09-06 16:12 · captured 2026-09-06</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>Arkon Manufacturing AI</h3>
-              <p>An Industry 4.0 quality platform for a fictional heavy manufacturer, deployed on a NAS and running. Seven machine-learning models on real public datasets (remaining useful life of test engines, fleet fault classification, four kinds of visual inspection, a text model over consumer complaints) publish one twelve-field risk event, so nothing downstream knows which model spoke. A Quality Steering Cell on n8n validates the contract, suppresses repeats, writes an append-only incident store, assigns by department and puts a Telegram card in front of a named person for a P1 or P2. A Streamlit cockpit is the only surface that moves an incident; a Langflow assistant answers why, grounded in ten documents and the live store, and hands the operator a filled form instead of signing it, so the response-time KPI still measures the plant and not the agent. <b>Two agents face opposite ways</b>: the Langflow assistant inward, to the plant, and an n8n Customer Quality Desk outward, to the customer, which answers an OEM asking after a quality notice by its reference. They meet in exactly one file and the traffic runs one way: eight customer-safe fields out for one reference, no write endpoint back, and a guardrail in front of the desk and a sanitizer behind it. A live emitter raises a real re-timed incident every eight to twelve minutes and a simulated crew works it. The executive view is a Tableau workbook generated as XML from the same status API and published on Tableau Public.</p>
+              <h2>Arkon Manufacturing AI</h2>
+              <p>An Industry 4.0 quality platform for a fictional heavy manufacturer, deployed on a NAS. Seven machine-learning models on real public datasets (remaining useful life of test engines, fleet fault classification, four kinds of visual inspection, a text model over consumer complaints) publish one twelve-field risk event, so nothing downstream knows which model spoke. A Quality Steering Cell on n8n validates the contract, suppresses repeats, writes an append-only incident store, assigns by department and puts a Telegram card in front of a named person for a P1 or P2. A Streamlit cockpit is the only surface that moves an incident; a Langflow assistant answers why, grounded in ten documents and the live store, and hands the operator a filled form instead of signing it, so the response-time KPI still measures the plant and not the agent. <b>Two agents face opposite ways</b>: the Langflow assistant inward, to the plant, and an n8n Customer Quality Desk outward, to the customer, which answers an OEM asking after a quality notice by its reference. They meet in exactly one file and the traffic runs one way: eight customer-safe fields out for one reference, no write endpoint back, and a guardrail in front of the desk and a sanitizer behind it. A live emitter raises a real re-timed incident every eight to twelve minutes while it runs (on demand since 15 September 2026) and a simulated crew works it. The executive view is a Tableau workbook generated as XML from the same status API and published on Tableau Public.</p>
               <div class="metric-row">
                 <span class="metric">ML models on public datasets <b>7</b></span>
                 <span class="metric">AI agents, facing opposite ways <b>2</b></span>
@@ -166,7 +169,7 @@
                 <a href="https://public.tableau.com/views/ArkonQualitySteeringCell/ArkonExploreView" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Explore view</a>
                 <a href="https://github.com/sergey-kasatov/arkon-manufacturing-ai" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Code on GitHub</a>
               </div>
-              <p class="aside-note">Both agents answered as live demos on the internet until 15 September 2026, behind a login and on a temporary OpenRouter key that ends in mid-September 2026. Both public routes are closed now; the repository README shows screenshots of each agent at work, and the two Tableau views need no key at all. The plant, its crew and the incident stream are simulated and labelled so; the models, the datasets, every timestamp and the n8n, Langflow, Streamlit and Tableau layers are real.</p>
+              <p class="aside-note">Both agents answered as live demos on the internet until 15 September 2026, behind a login and on a temporary OpenRouter key that ended in mid-September 2026. Both public routes are closed now; the repository README shows screenshots of each agent at work, and the two Tableau views need no key at all. The plant, its crew and the incident stream are simulated and labelled so; the models, the datasets, every timestamp and the n8n, Langflow, Streamlit and Tableau layers are real.</p>
             </div>
           </article>
 
@@ -175,12 +178,12 @@
               <span class="anno"><span class="pos">Pos. 02</span> · since Jun 2026</span>
             </div>
             <figure class="dc-fig">
-              <div class="dc-fig-box"><img src="assets/img/p-agents.webp" width="960" height="600" alt="Screenshot of the Vault Mission Control board, worker grid only: 25 tiles, each with the worker name, its schedule, last run, 30-day run history and status; WARN states shown as found" loading="lazy" decoding="async"></div>
+              <div class="dc-fig-box"><img src="assets/img/p-agents.webp" width="960" height="600" alt="Screenshot of the Vault Mission Control board, worker grid only: 25 tiles, each with the worker name, its schedule, last run, 30-day run history and status; WARN states shown as found" loading="eager" decoding="async"></div>
               <figcaption><b>Fig. 02</b><span>Mission Control, the live status board · captured 2026-09-03</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>AI-Brain Agent System</h3>
-              <p>A job search, a full-time data programme and a set of personal admin domains all generate the same shape of recurring work: gather from a source, deduplicate against history, judge each item, write the result to the right file, and lose nothing between sessions. Doing it by hand does not scale, and handing it wholesale to a chat assistant fails differently: an assistant has no memory between sessions, will redo work that is already done, and will produce a plausible answer rather than report that it could not get one. So the design question was never "can an agent do this" but "how do you stop it from silently doing the wrong thing". The answer is four rules that everything else follows from. Every recurring job names exactly one scheduled owner and one canonical output path, because several agents write the same files with no database lock. A deterministic Python layer does the fetching, parsing, deduplication and writing, and the model is handed only the judgement that actually needs judgement. Verification gates can fail a run: separate checks assert that every identifier claimed in a report exists in the registry and the archive, that no encoding corruption shipped, that generated PDFs are machine-readable in the right order, that no document claims a skill the source-of-truth file does not carry, and that the prose does not read like a template. And the watchdog runs on a machine that cannot fail together with the machine it watches, because a watchdog sharing fate with its subject reports nothing exactly when it matters. The failure modes are the real result and each one was found by running the thing: fabricated metrics offered as interview material, a drafting agent absorbing the source document's vocabulary into a description of the candidate, and the class no gate catches at all, where a documented method is escalated by the verb rather than the noun. That last one is written down as a stated limit, not as a solved problem.</p>
+              <h2>AI-Brain Agent System</h2>
+              <p>A job search, a full-time data program that ran until September 2026, and a set of personal admin domains all generated the same shape of recurring work: gather from a source, deduplicate against history, judge each item, write the result to the right file, and lose nothing between sessions. Doing it by hand does not scale, and handing it wholesale to a chat assistant fails differently: an assistant has no memory between sessions, will redo work that is already done, and will produce a plausible answer rather than report that it could not get one. So the design question was never "can an agent do this" but "how do you stop it from silently doing the wrong thing". The answer is four rules that everything else follows from. Every recurring job names exactly one scheduled owner and one canonical output path, because several agents write the same files with no database lock. A deterministic Python layer does the fetching, parsing, deduplication and writing, and the model is handed only the judgement that actually needs judgement. Verification gates can fail a run: separate checks assert that every identifier claimed in a report exists in the registry and the archive, that no encoding corruption shipped, that generated PDFs are machine-readable in the right order, that no document claims a skill the source-of-truth file does not carry, and that the prose does not read like a template. And the watchdog runs on a machine that cannot fail together with the machine it watches, because a watchdog sharing fate with its subject reports nothing exactly when it matters. The failure modes are the real result and each one was found by running the thing: fabricated metrics offered as interview material, a drafting agent absorbing the source document's vocabulary into a description of the candidate, and the class no gate catches at all, where a documented method is escalated by the verb rather than the noun. That last one is written down as a stated limit, not as a solved problem.</p>
               <div class="metric-row">
                 <span class="metric">scheduled workflows <b>20+</b></span>
                 <span class="metric">LLM runtimes on one rule set <b>3</b></span>
@@ -202,11 +205,11 @@
               <span class="badge-demo">Demo · wakes in ~30 s</span>
             </div>
             <figure class="dc-fig">
-              <div class="dc-fig-box"><img src="assets/img/p-freshmart.webp" width="960" height="600" alt="Screenshot of the FreshMart Demand Planner Streamlit app after Generate forecast: five KPI tiles (total forecasted sales 6,779, average daily 484, peak day 2014-01-05, peak sales 768, demand level high) above a line chart of recent sales and the 14-day forecast"></div>
+              <div class="dc-fig-box"><img src="assets/img/p-freshmart.webp" width="960" height="600" alt="Screenshot of the FreshMart Demand Planner Streamlit app after Generate forecast: five KPI tiles (total forecasted sales 6,779, average daily 484, peak day 2014-01-05, peak sales 768, demand level high) above a line chart of recent sales and the 14-day forecast" loading="lazy" decoding="async"></div>
               <figcaption><b>Fig. 03</b><span>Streamlit app, forecast screen · captured 2026-09-03</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>FreshMart Demand Planner</h3>
+              <h2>FreshMart Demand Planner</h2>
               <p>End-to-end retail demand forecasting: EDA, feature engineering, 10+ models compared (SARIMAX, Prophet, XGBoost, LSTM), HyperOpt tuning, and MLflow experiment tracking. Deployed as a Streamlit planning tool that speaks the language of store managers: total demand, peak day, average daily forecast.</p>
               <div class="metric-row">
                 <span class="metric">champion RMSE <b>138.0</b></span>
@@ -229,11 +232,11 @@
               <span class="anno"><span class="pos">Pos. 04</span> · Apr&#8211;May 2026</span>
             </div>
             <figure class="dc-fig">
-              <div class="dc-fig-box"><img src="assets/img/p-maintenance.webp" width="960" height="600" alt="Horizontal bar chart of the 20 most important features by mean absolute SHAP value; Brake_Condition dominates at about 2.8, every other feature is below 0.2"></div>
+              <div class="dc-fig-box"><img src="assets/img/p-maintenance.webp" width="960" height="600" alt="Horizontal bar chart of the 20 most important features by mean absolute SHAP value; Brake_Condition dominates at about 2.8, every other feature is below 0.2" loading="lazy" decoding="async"></div>
               <figcaption><b>Fig. 04</b><span>Mean |SHAP| feature importance, XGBoost · repository figure</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>Predictive Maintenance: Fleet Risk &amp; Cost</h3>
+              <h2>Predictive Maintenance: Fleet Risk &amp; Cost</h2>
               <p>Three business questions answered on a 92,000-row logistics fleet dataset: which vehicles need maintenance (classification), what it will cost (regression), and how to segment the fleet by risk (clustering). SHAP analysis identified brake condition as the dominant failure predictor, exactly what 17 years in vehicle engineering would suggest.</p>
               <div class="metric-row">
                 <span class="metric">PR-AUC <b>0.902</b></span>
@@ -259,7 +262,7 @@
               <figcaption><b>Fig. 05</b><span>n8n workflow, decision zone · repository screenshot</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>AI Order Triage Agent</h3>
+              <h2>AI Order Triage Agent</h2>
               <p>A 26-node n8n workflow that triages free-text wholesale orders in English and Portuguese. Deterministic Airtable lookups gather every fact first; one bounded LLM agent makes the single call a rule cannot express; logic routes and logs every order, and a human stays the sender: the workflow never contacts a customer. Across three runs of each of the ten sample orders, all 30 recorded classifications matched the reference answer key, and no input ever produced two different classifications. Built on a fictional wholesale case, Volta Coffee Roasters in Porto.</p>
               <div class="metric-row">
                 <span class="metric">answer-key match <b>30 / 30</b></span>
@@ -285,7 +288,7 @@
               <figcaption><b>Fig. 06</b><span>Tableau Public, Main Dashboard · captured 2026-09-03</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>Retail KPI Dashboard</h3>
+              <h2>Retail KPI Dashboard</h2>
               <p>Interactive Tableau dashboard tracking sales, profit, discount, and orders with drill-downs by region, product category, and time. LOD expressions and dashboard actions give non-technical users self-service analysis, the same logic as a quality trend board in a plant.</p>
               <div class="metric-row">
                 <span class="metric">rows <b>~10k</b></span>
@@ -310,7 +313,7 @@
               <figcaption><b>Fig. 07</b><span>Grad-CAM saliency on held-out levels · repository figure</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>Neuron Platformer RL</h3>
+              <h2>Neuron Platformer RL</h2>
               <p>Reinforcement learning demos usually run inside somebody else's environment, which hides the hard parts: reward design, observation design, and whether the task is solvable at all. Here the whole stack is built, including a level generator whose every gap is capped by the exact jump physics and an audit that re-proves solvability across 1,200 seeds. Then the real question: an agent reading raw 84x84 pixels, with no coordinates, velocities or object lists, beats the hand-crafted state-vector baseline 80% to 64% at equal training budget on 200 held-out levels, and a difficulty curriculum carries it to 52% medium and 55% hard. Grad-CAM shows where it looks: platform edges before a jump, the gap, the enemy. A fourth phase replaces the frame stack with an LSTM reading one frame at a time: recurrence does learn the game, but lands behind the frame stack on every tier - 29.5% medium against the curriculum's 52%. Getting these numbers honest took four extra experiments: doubling the LSTM's budget refuted the write-up's own excuse (typical performance rose, the peak did not), a noise analysis showed a 30-episode evaluation is worth about plus or minus 14 points, and a 200-seed re-measurement of all four models replaced every headline figure - the state baseline's published 50% was really 27% - and a budget control a month later showed the baseline had trained on a fifth of the pixel agent's steps: at equal budget it reads 64%, and the headline gap shrank from 53 points to 16. The write-up was rewritten rather than left flattering, twice.</p>
               <div class="metric-row">
                 <span class="metric">pixel agent <b>80%</b></span>
@@ -335,7 +338,7 @@
               <figcaption><b>Fig. 08</b><span>RMSE ratio to the random walk, horizons 1 and 5 · repository figure</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>FX Random Walk Benchmark</h3>
+              <h2>FX Random Walk Benchmark</h2>
               <p>A banking brief asked for an exchange-rate forecaster. The project asked the question the brief did not: compared to what? Twenty years of daily SGD/USD and CNY/USD, the naive "tomorrow equals today" baseline built first, then ARIMA, SARIMA and gradient boosting scored against it across 42,924 walk-forward forecasts. Not one beat the baseline at any significance level, AIC selected ARIMA(0,1,0), which is the random walk itself, and a purpose-built move_ratio measure explains every model's error at r = 0.97. The no-leakage claim is not an assurance but a mechanical proof: rewrite every observation after the cut date and the earlier features must come back byte-identical.</p>
               <div class="metric-row">
                 <span class="metric">walk-forward forecasts <b>42,924</b></span>
@@ -360,7 +363,7 @@
               <figcaption><b>Fig. 09</b><span>Ablation: test accuracy and training time · repository figure</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>CIFAR-10 Transfer Learning Study</h3>
+              <h2>CIFAR-10 Transfer Learning Study</h2>
               <p>A controlled ablation study with ResNet50: isolating the impact of dataset size, augmentation, learning-rate scheduling, and partial unfreezing, tested individually and combined. Grad-CAM visualizations show what the model actually attends to. The same mechanism drives automated visual inspection in manufacturing.</p>
               <div class="metric-row">
                 <span class="metric">accuracy <b>66% &#8594; 82.7%</b></span>
@@ -380,11 +383,11 @@
               <span class="anno"><span class="pos">Pos. 10</span> · Jun 2026</span>
             </div>
             <figure class="dc-fig">
-              <div class="dc-fig-box"><img src="assets/img/p-nlp.webp" width="960" height="600" alt="Two bar charts of the tuned logistic regression: words pushing toward disaster (hiroshima, fire, wildfire, kill, storm) and words pushing toward not disaster (upheaval, traumatise, love); held-out test split of 1,523 tweets"></div>
+              <div class="dc-fig-box"><img src="assets/img/p-nlp.webp" width="960" height="600" alt="Two bar charts of the tuned logistic regression: words pushing toward disaster (hiroshima, fire, wildfire, kill, storm) and words pushing toward not disaster (upheaval, traumatise, love); held-out test split of 1,523 tweets" loading="lazy" decoding="async"></div>
               <figcaption><b>Fig. 10</b><span>Largest logistic-regression coefficients · repository figure</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>NLP: Disaster Tweets Classification</h3>
+              <h2>NLP: Disaster Tweets Classification</h2>
               <p>Does a tweet report a real disaster, or is "this album is fire" just slang? I shipped an interpretable TF-IDF + Logistic Regression classifier and stress-tested it against a from-scratch CNN and a fine-tuned DistilBERT. The explainable model won the trade-off: every flagged tweet can be defended word by word, which matters more than the last two points of accuracy.</p>
               <div class="metric-row">
                 <span class="metric">accuracy <b>0.819</b></span>
@@ -409,7 +412,7 @@
               <figcaption><b>Fig. 11</b><span>Permutation importance per feature · repository figure</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>Car Price Estimator</h3>
+              <h2>Car Price Estimator</h2>
               <p>A pricing tool that returns a calibrated price range instead of a single number, built on 56,244 used-car listings. Two of the three required model families lost to a dealer-style lookup table; XGBoost won, and its real gain sits on cars the lookup has never seen: 46% better. The finding worth arguing about after 17 years in automotive: mileage barely predicts price once age is known, at 2.2% of permutation importance against 62.5% for age.</p>
               <div class="metric-row">
                 <span class="metric">median error <b>11.9%</b></span>
@@ -434,7 +437,7 @@
               <figcaption><b>Fig. 12</b><span>Marker checker run, 7 of 7 passed · repository screenshot</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>IATF Quality Report Prompt</h3>
+              <h2>IATF Quality Report Prompt</h2>
               <p>Can a language model be stopped from filling a gap in a controlled record? A three-zone prompt drafts German ISO 9001 / IATF 16949 quality reports and is forbidden to derive any figure it was not given: in a QMS record a derived figure is an audit finding even when the arithmetic is right. A negative-control test withheld one figure and left both operands in as bait. No run computed it; the gap marker appeared in both required places in only 5 of 7 runs, and that weaker number is published as found, prompt deliberately unfixed.</p>
               <div class="metric-row">
                 <span class="metric">no invented figures <b>7 of 7</b> runs</span>
@@ -459,7 +462,7 @@
               <figcaption><b>Fig. 13</b><span>Rule-based segment sizes · notebook output</span></figcaption>
             </figure>
             <div class="dc-body">
-              <h3>TravelTide: Customer Segmentation</h3>
+              <h2>TravelTide: Customer Segmentation</h2>
               <p>Retention targeting for a travel platform: a SQL pipeline in Databricks aggregated 49,211 sessions into 30+ behavioral features for 5,998 users, then a rule-based perk-fit score assigned each user the most relevant reward. K-Means and DBSCAN served as benchmarks; the interpretable approach won on stability and deployment readiness.</p>
               <div class="metric-row">
                 <span class="metric">users <b>5,998</b></span>

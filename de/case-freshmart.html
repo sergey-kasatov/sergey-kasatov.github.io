@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='blueprint'||t==='paper'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})();</script>
   <title>FreshMart Demand Planner · Fallstudie | Sergey Kasatov</title>
-  <meta name="description" content="Fallstudie Absatzprognose: 10+ Modelle verglichen (SARIMAX, Prophet, XGBoost, LSTM), HyperOpt-getuntes Random Forest als Champion mit RMSE 138,0, MLflow-Tracking, deployed als Streamlit-Planungs-App.">
+  <meta name="description" content="Fallstudie Absatzprognose: 10+ Modelle verglichen, HyperOpt-getunter Random Forest als Champion mit RMSE 138,0, bereitgestellt als Streamlit-Planungs-App.">
   <meta name="author" content="Sergey Kasatov">
   <meta name="theme-color" content="#0d1f33">
   <link rel="canonical" href="https://kasatov.de/de/case-freshmart.html">
@@ -15,11 +15,14 @@
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="Fallstudie · FreshMart Demand Planner">
-  <meta property="og:description" content="10+ Prognosemodelle verglichen, ein Champion, eine deployed Planungs-App. Arbeitsplan PS-01.">
+  <meta property="og:description" content="10+ Prognosemodelle verglichen, ein Champion, eine online bereitgestellte Planungs-App. Arbeitsplan PS-01.">
   <meta property="og:url" content="https://kasatov.de/de/case-freshmart.html">
   <meta property="og:image" content="https://kasatov.de/assets/og-banner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Datenblatt-Banner: Sergey Kasatov, KI-Automatisierung und Datenanalyse, Python, SQL, Tableau, K&#246;ln, 17 Jahre Automotive, ab sofort verf&#252;gbar">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
@@ -92,7 +95,7 @@
         </div>
         <p class="anno case-crumb"><a href="projects.html">02 Projekte</a> / Arbeitsplan PS-01</p>
         <h1 class="page-title">FreshMart <span class="hl">Demand Planner</span></h1>
-        <p class="section-lede">Absatzprognose End-to-End: EDA, Feature Engineering, Modellvergleich &#252;ber statistische, ML- und Deep-Learning-Familien, HyperOpt-Tuning und ein deployed Streamlit-Werkzeug f&#252;r die Filialleitung.</p>
+        <p class="section-lede">Absatzprognose End-to-End: EDA, Feature Engineering, Modellvergleich &#252;ber statistische, ML- und Deep-Learning-Familien, HyperOpt-Tuning und ein online bereitgestelltes Streamlit-Werkzeug f&#252;r die Filialleitung.</p>
       </div>
     </section>
 
@@ -142,7 +145,7 @@
       <div class="container">
         <div class="section-head reveal">
           <p class="section-eyebrow">Messwerte · Testzeitraum Jan&#8211;M&#228;r 2014</p>
-          <h2 class="section-title">Champion: HyperOpt-getuntes Random Forest</h2>
+          <h2 class="section-title">Champion: HyperOpt-getunter Random Forest</h2>
         </div>
         <div class="stats-grid reveal">
           <div class="stat">
@@ -172,7 +175,7 @@
         <div class="aside-row" style="margin-top:1.6rem;">
           <div class="aside-card reveal">
             <h3>Warum der Wald das LSTM schlug</h3>
-            <p style="margin-top:.6rem;">Bei rund 424 Zeilen Tagesdaten hatte das tiefe Modell zu wenig zu lernen. Das HyperOpt-getunte Random Forest verarbeitete die konstruierten nichtlinearen Features gut, war einfacher und stabiler im Deployment und w&#228;hlte sogar eine flache max_depth von 3.</p>
+            <p style="margin-top:.6rem;">Bei rund 424 Zeilen Tagesdaten hatte das tiefe Modell zu wenig zu lernen. Der HyperOpt-getunte Random Forest verarbeitete die konstruierten nichtlinearen Features gut, war einfacher und stabiler im Deployment und w&#228;hlte sogar eine flache max_depth von 3.</p>
           </div>
           <div class="aside-card reveal">
             <h3>Warum der Vergleich fair ist</h3>
@@ -213,7 +216,7 @@
         <div class="approval reveal">
           <div>
             <h2>Sehen Sie es laufen.</h2>
-            <p>Die App ist deployed und &#246;ffentlich; jedes Experiment hinter dem Champion ist in MLflow protokolliert und aus dem Repository reproduzierbar.</p>
+            <p>Die App ist &#246;ffentlich online bereitgestellt; jedes Experiment hinter dem Champion ist in MLflow protokolliert und aus dem Repository reproduzierbar.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="https://freshmart-demand-planner.streamlit.app" target="_blank" rel="noopener">Demo &#246;ffnen (startet in ca. 30 s) <svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg></a>
               <a class="btn" href="https://github.com/sergey-kasatov/time-series-forecasting-project" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-gh"/></svg>Code &amp; Notebooks</a>

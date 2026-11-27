@@ -329,7 +329,7 @@ button { font:inherit; color:inherit; background:none; border:none; cursor:point
 @keyframes pulse { 50% { opacity:.35; } }
 .badge-demo { display:inline-flex; align-items:center; gap:.45em; font-family:var(--f-mono); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); border:1px solid var(--line); padding:.22em .6em; }
 .dc-body { padding:1.3rem 1.2rem 1.4rem; display:flex; flex-direction:column; gap:1rem; flex:1; }
-.dc-body h3 { font-family:var(--f-display); font-weight:600; text-transform:uppercase; font-size:clamp(1.3rem,1.6vw,1.75rem); letter-spacing:.02em; line-height:1.1; }
+.dc-body h2, .dc-body h3 { font-family:var(--f-display); font-weight:600; text-transform:uppercase; font-size:clamp(1.3rem,1.6vw,1.75rem); letter-spacing:.02em; line-height:1.1; }
 .dc-metric { display:flex; align-items:baseline; gap:.8rem; border-block:1px solid var(--line-soft); padding-block:.7rem; }
 .dc-metric .num { font-family:var(--f-display); font-weight:700; font-size:clamp(2rem,2.6vw,2.9rem); line-height:1; }
 .dc-metric .cap { font-family:var(--f-mono); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); }
@@ -438,7 +438,7 @@ button { font:inherit; color:inherit; background:none; border:none; cursor:point
 .about-copy strong { font-weight:600; }
 .aside-row { display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(1.2rem,1.8vw,2rem); margin-top:2rem; align-items:start; }
 .aside-card { border:1.5px solid var(--line); background:var(--paper-2); padding:1.4rem; }
-.aside-card h3 { font-family:var(--f-mono); font-size:.72rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+.aside-card h2, .aside-card h3 { font-family:var(--f-mono); font-size:.72rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
 .now-list li { display:flex; gap:.8rem; padding-block:.5rem; font-size:.94em; }
 .now-list b { font-weight:600; }
 .now-dot { flex:none; width:.6rem; height:.6rem; margin-top:.5rem; background:var(--accent); }
