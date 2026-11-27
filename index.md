@@ -342,9 +342,12 @@ design, car body construction.
 
 ## Certificates
 
-Nine certificates with verification links are listed on https://kasatov.de/about.html.
-The most recent is "AI Agents PRO" (Jul 2026), which covers agent workflows; the
-multi-agent system described under project 12 is the practical result.
+Eleven certificates with verification links are listed on https://kasatov.de/about.html.
+The most recent is "Data Analyst (IHK)" (Nov 2026), issued by IHK Akademie München und
+Oberbayern and verifiable as an Open Badge:
+https://badges-api.ihk-kompetenz.plus/public/assertions/df40c59d-3cca-4fc4-aa22-d3ef5212ccab.
+"AI Agents PRO" (Jul 2026) covers agent workflows; the multi-agent system described
+under project 12 is the practical result.
 
 ## Availability
 

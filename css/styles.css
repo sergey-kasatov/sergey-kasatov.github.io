@@ -633,6 +633,9 @@ a.contact-item:hover .ci-icon { border-color:var(--accent); color:var(--accent);
 /* ---------- Badges and Milestones Row ---------- */
 .badges-row { margin-top: 2.2rem; margin-bottom: 0; display: flex; gap: 2.2rem; flex-wrap: wrap; justify-content: start; align-items: center; }
 .milestones-panel { flex: 1 1 280px; min-width: 250px; display: flex; flex-direction: column; justify-content: center; min-height: 170px; box-sizing: border-box; }
+/* Transparent badge with dark text: a paper tile on blueprint, none on paper */
+.badge-tile { background:#f2efe9; }
+[data-theme="paper"] .badge-tile { background:transparent; }
 @media (max-width: 580px) {
   .badges-row { justify-content: center; }
   .milestones-panel { min-height: auto; margin-top: 1rem; }
