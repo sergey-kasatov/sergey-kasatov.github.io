@@ -138,7 +138,7 @@ body { margin: 0; }
       <button type="button" role="tab" id="tab-unit2" data-key="unit2" aria-controls="panel-unit2" aria-selected="false" tabindex="-1">Unit 2</button>
       <button type="button" role="tab" id="tab-compare" data-key="compare" aria-controls="panel-compare" aria-selected="false" tabindex="-1">Comparison</button>
     </div>
-    <p class="note">Added on 25 November. v87: the page is split into three tabs, Unit 1, Unit 2 and Comparison; Unit 1 holds all results so far; Unit 2 (the replacement unit) and the comparison fill as its full test runs.</p>
+    <p class="note">Updated on 27 November. v88: Unit 2 (the replacement unit) has its first results, and the Comparison tab sets them beside Unit 1's for the tests both units ran on the same model build. Unit 1 is unchanged.</p>
   </div>
   <div class="panel" role="tabpanel" id="panel-unit1" aria-labelledby="tab-unit1" tabindex="0">
   <header>
@@ -953,23 +953,43 @@ body { margin: 0; }
   </div>
   <div class="panel" role="tabpanel" id="panel-unit2" aria-labelledby="tab-unit2" tabindex="0" hidden>
   <header>
-    <div class="eyebrow">Tiiny Pocket Lab &middot; Unit 2, the replacement device &middot; arrived 2026-11-19</div>
-    <h1>Unit 2: the full test is pending</h1>
-    <p class="lede">The replacement device arrived on 19 November 2026 and is not set up yet, so no test has run on it so far.</p>
+    <div class="eyebrow">Tiiny Pocket Lab &middot; Unit 2, the replacement device &middot; first tests 26 and 27 November 2026</div>
+    <h1>Unit 2: first results</h1>
+    <p class="lede">The replacement device was set up on 26 November 2026. Its first tests used the same scripts and settings as Unit 1: wired LAN, a 100 W USB-C supply, nothing else loaded, five minutes of cool-down between models.</p>
     <dl class="facts">
-      <div><dt>Status</dt><dd>arrived 19 November 2026; not set up yet; no results yet</dd></div>
-      <div><dt>Test plan</dt><dd>the full test of Unit 1, with the same test scripts and the same settings, so that every result can be compared with Unit 1's; how the tests work is described in "<a href="#how-tested">How the tests work</a>" on the Unit 1 tab</dd></div>
-      <div><dt>Results</dt><dd>appear here as the tests run, and beside Unit 1's in the Comparison tab</dd></div>
+      <div><dt>Software</dt><dd>updated from service 0.1.33 (factory) to 0.1.39, the version Unit 1 runs; the updater reported "Upgrade failed. Please retry." at 100 %, yet the new version was installed</dd></div>
+      <div><dt>Factory models</dt><dd>four preinstalled: Qwen3.6-35B-A3B, Z-Image-Turbo, Qwen3-ASR-1.7B and Qwen3-Embedding-0.6B; three of them came on older builds than the store offered, and the API marked none of them for update, while the Model Store card did offer "Upgrade"</dd></div>
+      <div><dt>API key</dt><dd>each unit has its own key: Unit 1's key is refused by Unit 2 (HTTP 401)</dd></div>
+      <div><dt>Next</dt><dd>the other models and the agents follow; results appear here and, where Unit 1 ran the same build, in the Comparison tab</dd></div>
     </dl>
   </header>
+
+  <section class="section">
+    <h2>Results on Unit 2</h2>
+    <p>The visible row is the current build; the plus button shows the factory build, measured before its update.</p>
+    <div class="tablebox">
+      <table class="texttable plan">
+        <thead><tr><th>Model and build</th><th>Test</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="u2q36" title="Show or hide the other builds">+</button>Qwen3.6-35B-A3B<span class="bld">build 16 Oct &middot; measured 27 Nov</span></td><td>TiinyBench</td><td>decode 29.2 tok/s; prefill 812 tok/s at 6,260 tokens; load 14 s</td></tr>
+          <tr class="rev" data-g="u2q36" hidden><td>factory build 10 Aug &middot; measured 26 Nov</td><td>TiinyBench</td><td>decode 24.6 tok/s; prefill 706 tok/s at 6,260 tokens; load 42 s</td></tr>
+          <tr><td>Qwen3.6-35B-A3B<span class="bld">build 16 Oct &middot; measured 27 Nov</span></td><td>Seven quality tasks</td><td>4 of 5 checked by script (the pandas task failed on its first run); code tasks 7 of 9 over three runs; German mail A-, Russian summary B (read)</td></tr>
+          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="u2zit" title="Show or hide the other builds">+</button>Z-Image-Turbo<span class="bld">build 21 Oct &middot; measured 27 Nov</span></td><td>Image 512 x 512</td><td>7.73 s per image (median); load 6 s</td></tr>
+          <tr class="rev" data-g="u2zit" hidden><td>factory build (no date in its number) &middot; measured 26 Nov</td><td>Image 512 x 512</td><td>8.41 s per image (median); load 14 s</td></tr>
+          <tr><td>Qwen3-Embedding-0.6B<span class="bld">build 9 Jun &middot; measured 26 Nov</span></td><td>Embeddings</td><td>7.9 / 18.6 / 20.6 per second at batch 1 / 8 / 32</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
   </div>
   <div class="panel" role="tabpanel" id="panel-compare" aria-labelledby="tab-compare" tabindex="0" hidden>
   <header>
     <div class="eyebrow">Unit 1 against Unit 2 &middot; the same tests and settings on both</div>
     <h1>How Unit 2 compares with Unit 1</h1>
-    <p class="lede">For each test this tab will show the Unit 1 value and the Unit 2 value side by side, and the difference between them.</p>
+    <p class="lede">Only tests that both units ran on the same model build are compared here, each value with its build and test date. Both units ran them on wired LAN and a 100 W USB-C supply.</p>
     <dl class="facts">
-      <div><dt>Builds</dt><dd>every value carries its model build and its test date: Unit 2 downloads the newest model builds, so a difference can come from the build rather than from the hardware</dd></div>
+      <div><dt>So far</dt><dd>image and embedding speed are equal; the large chat model decoded faster on Unit 2</dd></div>
+      <div><dt>Caution</dt><dd>one run per unit, weeks apart; a repeat on both units on the same day follows before any difference is put down to the hardware</dd></div>
     </dl>
   </header>
 
@@ -979,7 +999,13 @@ body { margin: 0; }
       <table class="texttable plan">
         <thead><tr><th>Test</th><th>Unit 1: value, build, test date</th><th>Unit 2: value, build, test date</th><th>Difference</th></tr></thead>
         <tbody>
-          <tr><td colspan="4" class="pend">No Unit 2 results yet.</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, decode (TiinyBench)</td><td>25.2 tok/s &middot; build 16 Oct &middot; 30 Oct</td><td>29.2 tok/s &middot; build 16 Oct &middot; 27 Nov</td><td>Unit 2 16 % faster</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, prefill at 6,260 tokens</td><td>777 to 789 tok/s &middot; build 16 Oct &middot; 30 Oct</td><td>812 tok/s &middot; build 16 Oct &middot; 27 Nov</td><td>Unit 2 3 to 5 % faster</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, tasks checked by script</td><td>5 of 5 &middot; 30 Oct</td><td>4 of 5 &middot; 27 Nov</td><td>one first-run answer (pandas)</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, code tasks over three runs</td><td>8 of 9 &middot; 30 Oct</td><td>7 of 9 &middot; 27 Nov</td><td>the two seeded repeats were identical</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, German mail / Russian summary (read)</td><td>B / B &middot; 30 Oct</td><td>A- / B &middot; 27 Nov</td><td>same level</td></tr>
+          <tr><td>Z-Image-Turbo, 512 x 512 image (median)</td><td>7.66 s &middot; build 21 Oct &middot; 6 Nov</td><td>7.73 s &middot; build 21 Oct &middot; 27 Nov</td><td>equal (1 %)</td></tr>
+          <tr><td>Qwen3-Embedding-0.6B, batch 32</td><td>19.9 per s &middot; build 9 Jun &middot; 5 Oct</td><td>20.6 per s &middot; build 9 Jun &middot; 26 Nov</td><td>equal (4 %)</td></tr>
         </tbody>
       </table>
     </div>
