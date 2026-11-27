@@ -138,7 +138,7 @@ body { margin: 0; }
       <button type="button" role="tab" id="tab-unit2" data-key="unit2" aria-controls="panel-unit2" aria-selected="false" tabindex="-1">Unit 2</button>
       <button type="button" role="tab" id="tab-compare" data-key="compare" aria-controls="panel-compare" aria-selected="false" tabindex="-1">Comparison</button>
     </div>
-    <p class="note">Updated on 27 November. v92: five more chat models on Unit 2, each beside Unit 1 on the same build; the Comparison tab holds them too. Unit 1 is unchanged.</p>
+    <p class="note">Updated on 27 November. v93: five more chat models on Unit 2, each beside Unit 1 on the same build, with a summary over all six; the Comparison tab holds them too. Unit 1 is unchanged.</p>
   </div>
   <div class="panel" role="tabpanel" id="panel-unit1" aria-labelledby="tab-unit1" tabindex="0">
   <header>
@@ -987,7 +987,7 @@ body { margin: 0; }
 
   <section>
     <h2>Generation speed</h2>
-    <p class="note">One unbroken 1,500-token answer. Higher is better. Each pair of bars is the same model build on both units.</p>
+    <p class="note">One answer of up to 1,500 tokens; the gemma models end theirs earlier (gemma-4-26B-A4B-it after 1,011 tokens on Unit 2 and 1,081 on Unit 1, gemma-4-31B-it after 1,144 and 1,203), and the rate is taken over the tokens written. Higher is better. Each pair of bars is the same model build on both units; Unit 1's gemma-4-26B-A4B-it run of 6 November went over USB, Unit 2's runs over LAN.</p>
     <div class="legend"><span><span class="sw" style="background:var(--ours)"></span>Unit 2</span><span><span class="sw" style="background:var(--ref)"></span>Unit 1, same build</span></div>
     <div class="chart" id="decode2"></div>
   </section>
@@ -1010,9 +1010,9 @@ body { margin: 0; }
           <tr class="rev" data-g="u2c1" hidden><td>factory build 10 Aug &middot; measured 26 Nov</td><td>100 W</td><td class="ref">not recorded</td><td>42<span class="dl warn">&#9660; 28 s more</span></td><td>24.6<span class="dl warn">&#9660; 16 % slower</span></td><td class="ref">26.4</td><td>706<span class="dl warn">&#9660; 13 % slower</span></td><td class="ref">702</td><td>22.6 / 28.1</td><td class="ref">24.1 / 26.1</td><td class="t"><span class="pill warn">older build</span><span class="dl ref">replaced on 27 Nov</span></td></tr>
           <tr class="best"><td>Qwen3.8-27B<span class="bld">build 2 Nov &middot; measured 27 Nov</span></td><td>100 W</td><td>52</td><td>26</td><td>15.5</td><td class="ref">16.1</td><td>391</td><td class="ref">390</td><td>32.0 / 13.0</td><td class="ref">25.1 / 17.6</td><td class="t"><span class="pill good">same build as Unit 1</span><span class="dl ref">installed now</span></td></tr>
           <tr class="best"><td>gemma-4-31B-it<span class="bld">build 27 Oct &middot; measured 27 Nov</span></td><td>100 W</td><td>53</td><td>18</td><td>11.6</td><td class="ref">11.3</td><td>259</td><td class="ref">257</td><td>21.0 / 35.5</td><td class="ref">18.6 / 35.6</td><td class="t"><span class="pill good">same build as Unit 1</span><span class="dl ref">installed now</span></td></tr>
-          <tr class="best"><td>gemma-4-26B-A4B-it<span class="bld">build 19 Oct &middot; measured 27 Nov</span></td><td>100 W</td><td>37</td><td>14</td><td>24.2</td><td class="ref">20.4</td><td>1091</td><td class="ref">1054</td><td>13.5 / 16.0</td><td class="ref">12.1 / 18.3</td><td class="t"><span class="pill good">same build as Unit 1</span><span class="dl ref">installed now</span></td></tr>
+          <tr class="best"><td>gemma-4-26B-A4B-it<span class="bld">build 19 Oct &middot; measured 27 Nov</span></td><td>100 W</td><td>37</td><td>14</td><td>24.2</td><td class="ref">20.4</td><td>1,091</td><td class="ref">1,054</td><td>13.5 / 16.0</td><td class="ref">12.1 / 18.3</td><td class="t"><span class="pill good">same build as Unit 1</span><span class="dl ref">installed now</span></td></tr>
           <tr class="best"><td>Qwen3.6-27B-Turbo<span class="bld">build 7 Aug &middot; measured 27 Nov</span></td><td>100 W</td><td>55</td><td>22</td><td>13.1</td><td class="ref">11.1</td><td>439</td><td class="ref">434</td><td>32.2 / 32.8</td><td class="ref">26.7 / 34.9</td><td class="t"><span class="pill good">same build as Unit 1</span><span class="dl ref">installed now</span></td></tr>
-          <tr class="best"><td>gpt-oss-20b<span class="bld">build 31 Aug &middot; measured 27 Nov</span></td><td>100 W</td><td>27</td><td>10</td><td>25.3</td><td class="ref">25.3</td><td>1283</td><td class="ref">1270</td><td>23.7 / 22.1</td><td class="ref">27.3 / 24.8</td><td class="t"><span class="pill good">same build as Unit 1</span><span class="dl ref">installed now</span></td></tr>
+          <tr class="best"><td>gpt-oss-20b<span class="bld">build 31 Aug &middot; measured 27 Nov</span></td><td>100 W</td><td>27</td><td>10</td><td>25.3</td><td class="ref">25.3</td><td>1,283</td><td class="ref">1,270</td><td>23.7 / 22.1</td><td class="ref">27.3 / 24.8</td><td class="t"><span class="pill good">same build as Unit 1</span><span class="dl ref">installed now</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -1130,7 +1130,7 @@ body { margin: 0; }
 
   <section class="section">
     <h2>What it means</h2>
-    <p>So far Unit 2 behaves like Unit 1. On the same builds, image and embedding speed match. The large chat model decoded 7 % slower than Unit 1 on the factory build and 16 % faster on the newer build, one run each and weeks apart, so these runs show no difference in the hardware. A repeat on both units on the same day follows.</p>
+    <p>So far the runs show no difference in the hardware. On the same builds, image and embedding speed match, and prefill matches within 5 % on all six chat models. Decode is within 4 % of Unit 1 on three of them (Qwen3.8-27B, gemma-4-31B-it, gpt-oss-20b) and 16 to 18 % faster on Unit 2 on the other three (Qwen3.6-35B-A3B on its newer build, gemma-4-26B-A4B-it, Qwen3.6-27B-Turbo), while the factory build of Qwen3.6-35B-A3B decoded 7 % slower. Each figure is one run per unit, and the Unit 1 runs are three to seven weeks older, on earlier software, so a software or date effect cannot be told apart from the unit. A repeat on both units on the same day follows.</p>
   </section>
   </div>
   <div class="panel" role="tabpanel" id="panel-compare" aria-labelledby="tab-compare" tabindex="0" hidden>
