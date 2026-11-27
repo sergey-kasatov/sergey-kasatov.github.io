@@ -138,7 +138,7 @@ body { margin: 0; }
       <button type="button" role="tab" id="tab-unit2" data-key="unit2" aria-controls="panel-unit2" aria-selected="false" tabindex="-1">Unit 2</button>
       <button type="button" role="tab" id="tab-compare" data-key="compare" aria-controls="panel-compare" aria-selected="false" tabindex="-1">Comparison</button>
     </div>
-    <p class="note">Updated on 27 November. v93: five more chat models on Unit 2, each beside Unit 1 on the same build, with a summary over all six; the Comparison tab holds them too. Unit 1 is unchanged.</p>
+    <p class="note">Updated on 27 November. v94: five more chat models on Unit 2, each beside Unit 1 on the same build; the summaries now name the TiinyOS version of the Unit 1 runs. Unit 1 is unchanged.</p>
   </div>
   <div class="panel" role="tabpanel" id="panel-unit1" aria-labelledby="tab-unit1" tabindex="0">
   <header>
@@ -1130,7 +1130,7 @@ body { margin: 0; }
 
   <section class="section">
     <h2>What it means</h2>
-    <p>So far the runs show no difference in the hardware. On the same builds, image and embedding speed match, and prefill matches within 5 % on all six chat models. Decode is within 4 % of Unit 1 on three of them (Qwen3.8-27B, gemma-4-31B-it, gpt-oss-20b) and 16 to 18 % faster on Unit 2 on the other three (Qwen3.6-35B-A3B on its newer build, gemma-4-26B-A4B-it, Qwen3.6-27B-Turbo), while the factory build of Qwen3.6-35B-A3B decoded 7 % slower. Each figure is one run per unit, and the Unit 1 runs are three to seven weeks older, on earlier software, so a software or date effect cannot be told apart from the unit. A repeat on both units on the same day follows.</p>
+    <p>So far the runs show no difference in the hardware. On the same builds, image and embedding speed match, and prefill matches within 5 % on all six chat models. Decode is within 4 % of Unit 1 on three of them (Qwen3.8-27B, gemma-4-31B-it, gpt-oss-20b) and 16 to 18 % faster on Unit 2 on the other three (Qwen3.6-35B-A3B on its newer build, gemma-4-26B-A4B-it, Qwen3.6-27B-Turbo), while the factory build of Qwen3.6-35B-A3B decoded 7 % slower. Each figure is one run per unit, and the Unit 1 runs are three to seven weeks older. Five of them ran on earlier TiinyOS versions (0.1.35 to 0.1.38); gemma-4-26B-A4B-it ran on 0.1.39 on both units and is still 18 % faster on Unit 2, though its Unit 1 run went over USB. So a date, software or connection effect cannot yet be told apart from the unit. A repeat on both units on the same day follows.</p>
   </section>
   </div>
   <div class="panel" role="tabpanel" id="panel-compare" aria-labelledby="tab-compare" tabindex="0" hidden>
@@ -1139,7 +1139,7 @@ body { margin: 0; }
     <h1>How Unit 2 compares with Unit 1</h1>
     <p class="lede">Only tests that both units ran on the same model build are compared here, each value with its build and test date. Both units ran them on wired LAN and a 100 W USB-C supply.</p>
     <dl class="facts">
-      <div><dt>So far</dt><dd>image and embedding speed are equal; of six chat models on the same build, three decode within 4 % of Unit 1 and three 16 to 18 % faster on Unit 2, while the factory build of Qwen3.6-35B-A3B was 7 % slower; prefill is equal within 5 %. The Unit 1 runs are weeks older, on earlier software, so no hardware difference is shown yet</dd></div>
+      <div><dt>So far</dt><dd>image and embedding speed are equal; of six chat models on the same build, three decode within 4 % of Unit 1 and three 16 to 18 % faster on Unit 2, while the factory build of Qwen3.6-35B-A3B was 7 % slower; prefill is equal within 5 %. The Unit 1 runs are weeks older and, except gemma-4-26B-A4B-it (TiinyOS 0.1.39 on both units), on earlier TiinyOS versions, so no hardware difference is shown yet; gemma-4-26B-A4B-it, 18 % faster on Unit 2 on the same TiinyOS, is the first case for the same-day repeat</dd></div>
       <div><dt>Caution</dt><dd>one run per unit, weeks apart; a repeat on both units on the same day follows</dd></div>
     </dl>
   </header>
