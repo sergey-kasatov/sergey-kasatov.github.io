@@ -138,7 +138,7 @@ body { margin: 0; }
       <button type="button" role="tab" id="tab-unit2" data-key="unit2" aria-controls="panel-unit2" aria-selected="false" tabindex="-1">Unit 2</button>
       <button type="button" role="tab" id="tab-compare" data-key="compare" aria-controls="panel-compare" aria-selected="false" tabindex="-1">Comparison</button>
     </div>
-    <p class="note">Updated on 27 November. v88: Unit 2 (the replacement unit) has its first results, and the Comparison tab sets them beside Unit 1's for the tests both units ran on the same model build. Unit 1 is unchanged.</p>
+    <p class="note">Updated on 27 November. v89: the Unit 2 tab has the same sections as Unit 1 and fills as its full test runs; the Comparison tab now also holds the factory build that both units ran. Unit 1 is unchanged.</p>
   </div>
   <div class="panel" role="tabpanel" id="panel-unit1" aria-labelledby="tab-unit1" tabindex="0">
   <header>
@@ -953,33 +953,173 @@ body { margin: 0; }
   </div>
   <div class="panel" role="tabpanel" id="panel-unit2" aria-labelledby="tab-unit2" tabindex="0" hidden>
   <header>
-    <div class="eyebrow">Tiiny Pocket Lab &middot; Unit 2, the replacement device &middot; first tests 26 and 27 November 2026</div>
-    <h1>Unit 2: first results</h1>
-    <p class="lede">The replacement device was set up on 26 November 2026. Its first tests used the same scripts and settings as Unit 1: wired LAN, a 100 W USB-C supply, nothing else loaded, five minutes of cool-down between models.</p>
+    <div class="eyebrow">Tiiny Pocket Lab, 80 GB &middot; Unit 2, the replacement device &middot; TiinyBench 0.1.11 &middot; 2026-11-26 to 2026-11-27</div>
+    <h1>How Unit 2 compares with Unit 1</h1>
+    <p class="lede">Speed and answer quality of every model on the replacement unit, measured with the same scripts and settings as Unit 1 and set beside Unit 1's figure on the same model build. The full test runs model by model, and this tab fills with it.</p>
     <dl class="facts">
       <div><dt>Software</dt><dd>updated from service 0.1.33 (factory) to 0.1.39, the version Unit 1 runs; the updater reported "Upgrade failed. Please retry." at 100 %, yet the new version was installed</dd></div>
-      <div><dt>Factory models</dt><dd>four preinstalled: Qwen3.6-35B-A3B, Z-Image-Turbo, Qwen3-ASR-1.7B and Qwen3-Embedding-0.6B; three of them came on older builds than the store offered, and the API marked none of them for update, while the Model Store card did offer "Upgrade"</dd></div>
+      <div><dt>Factory models</dt><dd>four preinstalled: Qwen3.6-35B-A3B, Z-Image-Turbo, Qwen3-ASR-1.7B and Qwen3-Embedding-0.6B; three came on older builds than the store offered, the API marked none of them for update, while the Model Store card did offer "Upgrade"</dd></div>
       <div><dt>API key</dt><dd>each unit has its own key: Unit 1's key is refused by Unit 2 (HTTP 401)</dd></div>
-      <div><dt>Next</dt><dd>the other models and the agents follow; results appear here and, where Unit 1 ran the same build, in the Comparison tab</dd></div>
+      <div><dt>Settings</dt><dd>wired LAN, 100 W USB-C supply, nothing else loaded, five minutes of cool-down between models</dd></div>
     </dl>
   </header>
 
+  <section class="verdicts chat" aria-label="Verdict per chat model on Unit 2">
+    <div class="v"><span class="name">Qwen3.6-35B-A3B</span><span class="num">29.2 <small>tok/s</small></span><span class="note"><b>100 W</b> &middot; build 16 Oct &middot; Unit 1 25.2 on the same build</span><span class="pill warn">+16 % vs Unit 1; factory build &minus;7 %</span></div>
+  </section>
+
+  <section class="section" aria-label="Verdict per utility model on Unit 2">
+    <div class="eyebrow">Image generation &middot; seconds per 512 x 512 image, lower is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">Z-Image-Turbo</span><span class="num">7.73 <small>s</small></span><span class="note">build 21 Oct &middot; Unit 1 7.66 on the same build</span><span class="pill good">same as Unit 1</span></div>
+    </div>
+    <div class="eyebrow">Embeddings &middot; per second at batch 32, higher is better</div>
+    <div class="verdicts chat">
+      <div class="v"><span class="name">Qwen3-Embedding-0.6B</span><span class="num">20.6 <small>per s</small></span><span class="note">build 9 Jun &middot; Unit 1 19.9 on the same build</span><span class="pill good">same as Unit 1</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Generation speed</h2>
+    <p class="note">One unbroken 1,500-token answer. Higher is better. Each pair of bars is the same model build on both units.</p>
+    <div class="legend"><span><span class="sw" style="background:var(--ours)"></span>Unit 2</span><span><span class="sw" style="background:var(--ref)"></span>Unit 1, same build</span></div>
+    <div class="chart" id="decode2"></div>
+  </section>
+
+  <section>
+    <h2>Reading a long prompt</h2>
+    <p class="note">Prefill rate at about 6,260 prompt tokens. Higher is better. Unit 1 read 777 to 789 tok/s on build 16 Oct; the bar shows 789.</p>
+    <div class="legend"><span><span class="sw" style="background:var(--ours)"></span>Unit 2</span><span><span class="sw" style="background:var(--ref)"></span>Unit 1, same build</span></div>
+    <div class="chart" id="prefill2"></div>
+  </section>
+
   <section class="section">
-    <h2>Results on Unit 2</h2>
-    <p>The visible row is the current build; the plus button shows the factory build, measured before its update.</p>
+    <h2>All chat figures</h2>
+    <p class="note">The "Unit 1" columns hold Unit 1's figure on the same model build. The plus button shows the factory build, measured before its update; its arrows compare it with the current build.</p>
     <div class="tablebox">
-      <table class="texttable plan">
-        <thead><tr><th>Model and build</th><th>Test</th><th>Result</th></tr></thead>
+      <table class="main">
+        <thead><tr><th>Model</th><th>Power</th><th>NPU units</th><th>Load s</th><th>Decode tok/s</th><th>Unit 1</th><th>Prefill tok/s</th><th>Unit 1</th><th>Thinking off / on s</th><th>Unit 1</th><th><span class="t">Status</span></th></tr></thead>
         <tbody>
-          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="u2q36" title="Show or hide the other builds">+</button>Qwen3.6-35B-A3B<span class="bld">build 16 Oct &middot; measured 27 Nov</span></td><td>TiinyBench</td><td>decode 29.2 tok/s; prefill 812 tok/s at 6,260 tokens; load 14 s</td></tr>
-          <tr class="rev" data-g="u2q36" hidden><td>factory build 10 Aug &middot; measured 26 Nov</td><td>TiinyBench</td><td>decode 24.6 tok/s; prefill 706 tok/s at 6,260 tokens; load 42 s</td></tr>
-          <tr><td>Qwen3.6-35B-A3B<span class="bld">build 16 Oct &middot; measured 27 Nov</span></td><td>Seven quality tasks</td><td>4 of 5 checked by script (the pandas task failed on its first run); code tasks 7 of 9 over three runs; German mail A-, Russian summary B (read)</td></tr>
-          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="u2zit" title="Show or hide the other builds">+</button>Z-Image-Turbo<span class="bld">build 21 Oct &middot; measured 27 Nov</span></td><td>Image 512 x 512</td><td>7.73 s per image (median); load 6 s</td></tr>
-          <tr class="rev" data-g="u2zit" hidden><td>factory build (no date in its number) &middot; measured 26 Nov</td><td>Image 512 x 512</td><td>8.41 s per image (median); load 14 s</td></tr>
-          <tr><td>Qwen3-Embedding-0.6B<span class="bld">build 9 Jun &middot; measured 26 Nov</span></td><td>Embeddings</td><td>7.9 / 18.6 / 20.6 per second at batch 1 / 8 / 32</td></tr>
+          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="u2c1" title="Show or hide the other builds">+</button>Qwen3.6-35B-A3B<span class="bld">build 16 Oct &middot; measured 27 Nov</span></td><td>100 W</td><td>47</td><td>14</td><td>29.2</td><td class="ref">25.2</td><td>812</td><td class="ref">789</td><td>23.7 / 24.3</td><td class="ref">26.5 / 27.8</td><td class="t"><span class="pill good">best of 2 measured</span><span class="dl ref">installed now</span></td></tr>
+          <tr class="rev" data-g="u2c1" hidden><td>factory build 10 Aug &middot; measured 26 Nov</td><td>100 W</td><td class="ref">not recorded</td><td>42<span class="dl warn">&#9660; 28 s more</span></td><td>24.6<span class="dl warn">&#9660; 16 % slower</span></td><td class="ref">26.4</td><td>706<span class="dl warn">&#9660; 13 % slower</span></td><td class="ref">702</td><td>22.6 / 28.1</td><td class="ref">24.1 / 26.1</td><td class="t"><span class="pill warn">older build</span><span class="dl ref">replaced on 27 Nov</span></td></tr>
         </tbody>
       </table>
     </div>
+  </section>
+
+  <section class="section">
+    <h2>Quality: the same seven tasks for every chat model</h2>
+    <p class="note">The same tasks and checks as on Unit 1; Unit 1's result on the same build is in the note.</p>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Model</th><th>Machine-graded, first run</th><th>Code tasks over three runs</th><th>German mail</th><th>Russian summary</th><th>Seconds, 7 tasks</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3.6-35B-A3B<span class="bld">build 16 Oct &middot; measured 27 Nov</span></td><td>4/5</td><td>7/9 <span class="note">(pandas 2/3, SQL 2/3, bug fix 3/3)</span></td><td class="good">A-</td><td>B</td><td>152</td><td class="note">Unit 1, same build: 5/5, 8/9, B / B, 268 s; the pandas task failed only on the unseeded first run</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Images, speech and embeddings</h2>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Model</th><th>NPU units</th><th>Load s</th><th>Measure</th><th>Unit 2</th><th>Unit 1</th><th>Each run</th><th>Unit 1</th><th>Quality check</th><th><span class="t">Status</span></th></tr></thead>
+        <tbody>
+          <tr class="best"><td><button class="tg" type="button" aria-expanded="false" data-g="u2i1" title="Show or hide the other builds">+</button>Z-Image-Turbo<span class="bld">build 21 Oct &middot; measured 27 Nov</span></td><td>23</td><td>6</td><td>s per 512 x 512 image, 8 steps</td><td>7.73</td><td class="ref">7.66</td><td>14.94 / 7.66 / 7.73</td><td class="ref">11.58 / 7.66 / 7.64</td><td class="t">not run on Unit 2 yet</td><td class="t"><span class="pill good">best of 2 measured</span><span class="dl ref">installed now</span></td></tr>
+          <tr class="rev" data-g="u2i1" hidden><td>factory build (no date in its number) &middot; measured 26 Nov</td><td class="ref">not recorded</td><td>14<span class="dl warn">&#9660; 8 s more</span></td><td>s per 512 x 512 image, 8 steps</td><td>8.41<span class="dl warn">&#9660; 0.68 s slower</span></td><td class="ref">n/a</td><td>9.00 / 8.41 / 8.40</td><td class="ref">n/a</td><td class="t"></td><td class="t"><span class="pill warn">older build</span><span class="dl ref">replaced on 27 Nov</span></td></tr>
+          <tr><td>Qwen3-Embedding-0.6B<span class="bld">build 9 Jun &middot; measured 26 Nov</span></td><td>1</td><td class="ref">n/a</td><td>embeddings per second, batch 1 / 8 / 32</td><td>7.9 / 18.6 / 20.6</td><td class="ref">4.8 / 18.5 / 19.9</td><td>one run</td><td class="ref">one run</td><td class="t">not run on Unit 2 yet</td><td class="t"><span class="pill good">factory build</span><span class="dl ref">installed now</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Speech recognition and OCR compared</h2>
+    <p class="note">Not run on Unit 2 yet.</p>
+  </section>
+
+  <section class="section">
+    <h2>Image sizes</h2>
+    <p class="note">Not run on Unit 2 yet.</p>
+  </section>
+
+  <section class="section">
+    <h2>Voice and search models</h2>
+    <p class="note">Speech output not run on Unit 2 yet.</p>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Embedding model</th><th>NPU units</th><th>Per second, batch 32</th><th>Unit 1</th><th>Vector size</th><th>Right passage first, of 10</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3-Embedding-0.6B</td><td>1</td><td>20.6</td><td class="ref">19.9</td><td>1,024</td><td>not run on Unit 2 yet</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Image generators compared</h2>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Model</th><th>NPU units</th><th>512 x 512</th><th>Unit 1</th><th>1024 x 1024</th><th>"DATA REPORT 2026"</th><th>"PR&Uuml;FBERICHT M&Auml;RZ"</th></tr></thead>
+        <tbody>
+          <tr><td>Z-Image-Turbo<span class="bld">build 21 Oct</span></td><td>23</td><td>7.73</td><td class="ref">7.66</td><td>not run on Unit 2 yet</td><td>not run on Unit 2 yet</td><td>not run on Unit 2 yet</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Style and editing models</h2>
+    <p class="note">Not run on Unit 2 yet.</p>
+  </section>
+
+  <section class="section">
+    <h2>Newer builds waiting in the store</h2>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Model</th><th>Build on the box</th><th>Build in the store</th><th>Figure of the build on the box (both builds once updated)</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3-ASR-1.7B</td><td>2 Aug (factory)</td><td>21 Nov</td><td>not run on Unit 2 yet; runs on both units once a second identical supply is there</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Factory models updated</h2>
+    <p class="note">Unit 2 came with four models. The API reported no update for any of them, while the Model Store card offered "Upgrade" for three. Two were updated on 27 November to the builds Unit 1 runs, each measured before and after.</p>
+    <div class="tablebox">
+      <table class="texttable">
+        <thead><tr><th>Model</th><th>Build</th><th>Factory build</th><th>New build</th><th>Unit 1</th></tr></thead>
+        <tbody>
+          <tr><td>Qwen3.6-35B-A3B, tok/s</td><td>Aug 10 &rarr; Oct 16</td><td>24.6</td><td>29.2</td><td class="ref">26.4 &rarr; 25.2</td></tr>
+          <tr><td>Z-Image-Turbo, s per 512 x 512 image</td><td>factory &rarr; Oct 21</td><td>8.41</td><td>7.73</td><td class="ref">7.66 on Oct 21</td></tr>
+          <tr><td>Qwen3-ASR-1.7B</td><td>Aug 2, not updated yet</td><td>not run on Unit 2 yet</td><td>store build Nov 21</td><td class="ref">Nov 10 build</td></tr>
+          <tr><td>Qwen3-Embedding-0.6B, per second at batch 32</td><td>Jun 9, the store build</td><td>20.6</td><td>no newer build</td><td class="ref">19.9</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Imported models</h2>
+    <p class="note">Not run on Unit 2 yet.</p>
+  </section>
+
+  <section class="section">
+    <h2>Agents and apps from the Agent Store</h2>
+    <p class="note">Not run on Unit 2 yet.</p>
+  </section>
+
+  <section class="section">
+    <h2>How the tests work</h2>
+    <p>Unit 2 runs the same scripts with the same inputs as Unit 1; see "<a href="#how-tested">How the tests work</a>" on the Unit 1 tab.</p>
+  </section>
+
+  <section class="section">
+    <h2>What it means</h2>
+    <p>So far Unit 2 behaves like Unit 1. On the same builds, image and embedding speed match. The large chat model decoded 7 % slower than Unit 1 on the factory build and 16 % faster on the newer build, one run each and weeks apart, so these runs show no difference in the hardware. A repeat on both units on the same day follows.</p>
   </section>
   </div>
   <div class="panel" role="tabpanel" id="panel-compare" aria-labelledby="tab-compare" tabindex="0" hidden>
@@ -988,8 +1128,8 @@ body { margin: 0; }
     <h1>How Unit 2 compares with Unit 1</h1>
     <p class="lede">Only tests that both units ran on the same model build are compared here, each value with its build and test date. Both units ran them on wired LAN and a 100 W USB-C supply.</p>
     <dl class="facts">
-      <div><dt>So far</dt><dd>image and embedding speed are equal; the large chat model decoded faster on Unit 2</dd></div>
-      <div><dt>Caution</dt><dd>one run per unit, weeks apart; a repeat on both units on the same day follows before any difference is put down to the hardware</dd></div>
+      <div><dt>So far</dt><dd>image and embedding speed are equal; the large chat model decoded 7 % slower on Unit 2 on the factory build and 16 % faster on the newer build, so no hardware difference is shown</dd></div>
+      <div><dt>Caution</dt><dd>one run per unit, weeks apart; a repeat on both units on the same day follows</dd></div>
     </dl>
   </header>
 
@@ -999,8 +1139,10 @@ body { margin: 0; }
       <table class="texttable plan">
         <thead><tr><th>Test</th><th>Unit 1: value, build, test date</th><th>Unit 2: value, build, test date</th><th>Difference</th></tr></thead>
         <tbody>
-          <tr><td>Qwen3.6-35B-A3B, decode (TiinyBench)</td><td>25.2 tok/s &middot; build 16 Oct &middot; 30 Oct</td><td>29.2 tok/s &middot; build 16 Oct &middot; 27 Nov</td><td>Unit 2 16 % faster</td></tr>
-          <tr><td>Qwen3.6-35B-A3B, prefill at 6,260 tokens</td><td>777 to 789 tok/s &middot; build 16 Oct &middot; 30 Oct</td><td>812 tok/s &middot; build 16 Oct &middot; 27 Nov</td><td>Unit 2 3 to 5 % faster</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, decode, factory build</td><td>26.4 tok/s &middot; build 10 Aug &middot; 5 Oct</td><td>24.6 tok/s &middot; build 10 Aug &middot; 26 Nov</td><td>Unit 2 7 % slower</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, decode, newer build</td><td>25.2 tok/s &middot; build 16 Oct &middot; 30 Oct</td><td>29.2 tok/s &middot; build 16 Oct &middot; 27 Nov</td><td>Unit 2 16 % faster</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, prefill at 6,260 tokens, factory build</td><td>702 tok/s &middot; build 10 Aug &middot; 5 Oct</td><td>706 tok/s &middot; build 10 Aug &middot; 26 Nov</td><td>equal (1 %)</td></tr>
+          <tr><td>Qwen3.6-35B-A3B, prefill at 6,260 tokens, newer build</td><td>777 to 789 tok/s &middot; build 16 Oct &middot; 30 Oct</td><td>812 tok/s &middot; build 16 Oct &middot; 27 Nov</td><td>Unit 2 3 to 5 % faster</td></tr>
           <tr><td>Qwen3.6-35B-A3B, tasks checked by script</td><td>5 of 5 &middot; 30 Oct</td><td>4 of 5 &middot; 27 Nov</td><td>one first-run answer (pandas)</td></tr>
           <tr><td>Qwen3.6-35B-A3B, code tasks over three runs</td><td>8 of 9 &middot; 30 Oct</td><td>7 of 9 &middot; 27 Nov</td><td>the two seeded repeats were identical</td></tr>
           <tr><td>Qwen3.6-35B-A3B, German mail / Russian summary (read)</td><td>B / B &middot; 30 Oct</td><td>A- / B &middot; 27 Nov</td><td>same level</td></tr>
@@ -1031,6 +1173,8 @@ if (allBtn) allBtn.addEventListener('click', () => {
 });
 // Grouped horizontal bars on one linear scale per chart
 const data = {
+  decode2: { max: 40, step: 5, rows: [["Qwen3.6 build 16 Oct", 29.2, 25.2], ["Qwen3.6 factory build", 24.6, 26.4]] },
+  prefill2: { max: 1600, step: 200, rows: [["Qwen3.6 build 16 Oct", 812, 789], ["Qwen3.6 factory build", 706, 702]] },
   decode: { max: 40, step: 5, rows: [["Qwen3.6-35B-A3B", 26.4, 24.9], ["Qwen3.6-35B-A3B-Turbo", 34.7, 32.5], ["gpt-oss-20b", 25.3, 30.9], ["gemma-4-26B-A4B-it", 20.4, 21.7], ["Ornith-1.0-35B", 21.8, 22.5], ["Qwen3-Coder-30B-Turbo", 24.4, 29.4], ["Qwen3.5-9B", 17.9, 20.9], ["Qwen3-30B-Instruct", 24.6, 29.3], ["gpt-oss-120b", 16.8, 18.8], ["Qwen3.8-27B", 15.1, 11.4], ["Qwen3-Coder-Next", 19.6, 20.1], ["Qwen3.6-27B-Turbo", 11.1, 13.4], ["Qwen3.5-35B-A3B", 26.7, 28.8], ["Qwen3-30B-Thinking", 26.1, 29.2], ["GLM-4.7-Flash", 13.9, 14.9], ["Qwen3.6-27B (dense)", 6.2, 6.4], ["Qwen3.8-27B-heretic-Turbo", 16.4, null], ["Qwen3-Coder-30B", 27.3, 29.2], ["Qwen3-8B", 18.9, null], ["Qwen3-4B-2507", 17.7, null], ["Ornith-1.5-35B-Turbo", 35.2, null], ["Qwen3.5-9B-Turbo", 31.1, null], ["BigBang-v1-Turbo", 30.6, null], ["gemma-4-31B-it", 11.3, null], ["Sage-A1.5-Turbo", 33.6, null], ["Huihui-Ornith-1.5-Turbo", 33.2, null]] },
   prefill: { max: 1600, step: 200, rows: [["Qwen3.6-35B-A3B", 702, 719], ["Qwen3.6-35B-A3B-Turbo", 640, 718], ["gpt-oss-20b", 1270, 1068], ["gemma-4-26B-A4B-it", 1054, 1254], ["Ornith-1.0-35B", 704, 740], ["Qwen3-Coder-30B-Turbo", 903, 960], ["Qwen3.5-9B", 1342, 1356], ["Qwen3-30B-Instruct", 898, 978], ["gpt-oss-120b", 560, 581], ["Qwen3.8-27B", 391, 453], ["Qwen3-Coder-Next", 428, 447], ["Qwen3.6-27B-Turbo", 434, 480], ["Qwen3.5-35B-A3B", 659, 695], ["Qwen3-30B-Thinking", 898, 968], ["GLM-4.7-Flash", 274, 286], ["Qwen3.6-27B (dense)", 442, null], ["Qwen3.8-27B-heretic-Turbo", 399, null], ["Qwen3-Coder-30B", 886, null], ["Qwen3-8B", 1331, 1419], ["Qwen3-4B-2507", 1490, 1590], ["Ornith-1.5-35B-Turbo", 674, null], ["Qwen3.5-9B-Turbo", 1404, null], ["BigBang-v1-Turbo", 758, null], ["gemma-4-31B-it", 257, null], ["Sage-A1.5-Turbo", 684, null]] }
 };
@@ -1040,7 +1184,7 @@ for (const id in data) {
   data[id].rows.sort((x, y) => y[1] - x[1]);
   const d = data[id], W = 820, left = 190, right = 60, rowH = 52, top = 10, H = top + d.rows.length * rowH + 28;
   const x = v => left + (v / d.max) * (W - left - right);
-  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": id === "decode" ? "Generation speed chart" : "Prefill rate chart" });
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": id.startsWith("decode") ? "Generation speed chart" : "Prefill rate chart" });
   for (let v = 0; v <= d.max; v += d.step) {
     svg.append(el("line", { x1: x(v), x2: x(v), y1: top, y2: H - 22, stroke: "var(--line)", "stroke-width": 1 }));
     svg.append(el("text", { x: x(v), y: H - 6, "text-anchor": "middle", class: "tick" }, v.toLocaleString("en-US")));
